@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="0dp"
-    android:background="#266195"
+    android:background="@color/colorAppMain"
     app:layout_constraintTop_toTopOf="@+id/constraintLayout"
     tools:context="com.xdot.classroom.LoginActivity"
     tools:layout_editor_absoluteX="0dp">
@@ -74,9 +74,9 @@
             android:ems="10"
             android:hint="Username"
             android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorTextMain"
             android:textColorHint="#AAAAAA"
-            android:textColorLink="#FFFFFF"/>
+            android:textColorLink="@color/colorTextMain"/>
 
         <EditText
             android:id="@+id/etPassword"
@@ -90,7 +90,7 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorTextMain"
             android:textColorHint="#AAAAAA"/>
 
         <Button
@@ -102,9 +102,9 @@
             android:layout_marginRight="-14dp"
             android:layout_marginTop="29dp"
             android:alpha="0.4"
-            android:background="#FFFFFF"
-            android:text="Log in"
+            android:background="@color/colorTextMain"
             android:onClick="clicked"
+            android:text="Log in"
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteY="146dp"/>
 
@@ -115,9 +115,9 @@
             android:layout_above="@+id/tvSkipLogin"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="62dp"
-            android:text="Forgot password"
             android:onClick="clicked"
-            android:textColor="#FFFFFF"/>
+            android:text="Forgot password"
+            android:textColor="@color/colorTextMain"/>
 
         <TextView
             android:id="@+id/tvSignUp"
@@ -126,10 +126,10 @@
             android:layout_alignBaseline="@+id/tvForgotPassword"
             android:layout_alignBottom="@+id/tvForgotPassword"
             android:layout_alignParentEnd="true"
-            android:text="Don't have account? Sign up!"
             android:onClick="clicked"
+            android:text="Don't have account? Sign up!"
             android:textAlignment="viewEnd"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/colorTextMain"/>
 
         <TextView
             android:id="@+id/tvSkipLogin"
@@ -138,10 +138,10 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:text="Skip login"
             android:onClick="clicked"
+            android:text="Skip login"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorTextMain"
             android:textStyle="bold"/>
 
     </RelativeLayout>
@@ -166,7 +166,7 @@
             android:text="ClassRoom"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorTextMain"
             android:textScaleX="1.1"
             android:textSize="25sp"
             android:textStyle="bold"/>

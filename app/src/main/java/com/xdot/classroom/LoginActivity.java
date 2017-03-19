@@ -1,5 +1,6 @@
 package com.xdot.classroom;
 
+import android.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,10 +23,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        hideActionBar();
+
         btnLogIn = (Button) findViewById(R.id.btnLogIn);
         tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
         tvSkipLogin = (TextView) findViewById(R.id.tvSkipLogin);
+    }
+
+
+    private void hideActionBar() {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
     }
 
 

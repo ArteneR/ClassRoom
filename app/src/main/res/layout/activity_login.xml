@@ -6,19 +6,19 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#15317E"
-    tools:context="com.xdot.classroom.LoginActivity"
+    android:layout_marginTop="0dp"
+    android:background="#266195"
     app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-    tools:layout_editor_absoluteX="0dp"
-    android:layout_marginTop="0dp">
+    tools:context="com.xdot.classroom.LoginActivity"
+    tools:layout_editor_absoluteX="0dp">
 
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3"
+        app:layout_constraintGuide_percent="0.2"
         />
 
     <RelativeLayout
@@ -33,25 +33,24 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@mipmap/ic_launcher"/>
+            app:srcCompat="@drawable/schedule_icon_7"/>
     </RelativeLayout>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85"
-        tools:layout_editor_absoluteY="469dp"
-        tools:layout_editor_absoluteX="0dp"/>
+        app:layout_constraintGuide_percent="0.8"
+        />
 
     <RelativeLayout
-        android:layout_width="338dp"
-        android:layout_height="255dp"
+        android:layout_width="341dp"
+        android:layout_height="332dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
@@ -60,7 +59,8 @@
         app:layout_constraintLeft_toLeftOf="@+id/guideline6"
         app:layout_constraintRight_toLeftOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintVertical_bias="0.538">
+        app:layout_constraintVertical_bias="0.541"
+        tools:layout_editor_absoluteY="90dp">
 
         <EditText
             android:id="@+id/editText"
@@ -69,6 +69,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#DDDDDD"
             android:ems="10"
             android:hint="Username"
             android:inputType="textPersonName"
@@ -83,7 +85,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/editText"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="13dp"
+            android:backgroundTint="#DDDDDD"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
@@ -97,7 +100,7 @@
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
             android:layout_marginRight="-14dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="29dp"
             android:alpha="0.4"
             android:background="#FFFFFF"
             android:text="Log in"
@@ -108,9 +111,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/textView3"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="55dp"
+            android:layout_marginBottom="62dp"
             android:text="Forgot password"
             android:textColor="#FFFFFF"/>
 
@@ -131,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="11dp"
+            android:layout_marginBottom="20dp"
             android:text="Skip login"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -147,19 +150,35 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="false"
+            android:text="ClassRoom"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textScaleX="1.1"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
     </RelativeLayout>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline6"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.1"/>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline7"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9052133"/>
 

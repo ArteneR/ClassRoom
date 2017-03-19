@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ivAppIcon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
@@ -63,7 +63,7 @@
         tools:layout_editor_absoluteY="90dp">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/etUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -79,12 +79,12 @@
             android:textColorLink="#FFFFFF"/>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/etPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/editText"
+            android:layout_below="@+id/etUsername"
             android:layout_marginTop="13dp"
             android:backgroundTint="#DDDDDD"
             android:ems="10"
@@ -94,48 +94,52 @@
             android:textColorHint="#AAAAAA"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnLogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText2"
+            android:layout_below="@+id/etPassword"
             android:layout_centerHorizontal="true"
             android:layout_marginRight="-14dp"
             android:layout_marginTop="29dp"
             android:alpha="0.4"
             android:background="#FFFFFF"
             android:text="Log in"
+            android:onClick="clicked"
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteY="146dp"/>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView3"
+            android:layout_above="@+id/tvSkipLogin"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="62dp"
             android:text="Forgot password"
+            android:onClick="clicked"
             android:textColor="#FFFFFF"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView"
-            android:layout_alignBottom="@+id/textView"
+            android:layout_alignBaseline="@+id/tvForgotPassword"
+            android:layout_alignBottom="@+id/tvForgotPassword"
             android:layout_alignParentEnd="true"
             android:text="Don't have account? Sign up!"
+            android:onClick="clicked"
             android:textAlignment="viewEnd"
             android:textColor="#FFFFFF"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvSkipLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:text="Skip login"
+            android:onClick="clicked"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textStyle="bold"/>
@@ -151,7 +155,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvAppTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="false"

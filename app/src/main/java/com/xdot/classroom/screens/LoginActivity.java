@@ -1,4 +1,4 @@
-package com.xdot.classroom;
+package com.xdot.classroom.screens;
 
 import android.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.xdot.classroom.R;
 
 
 public class LoginActivity extends AppCompatActivity {

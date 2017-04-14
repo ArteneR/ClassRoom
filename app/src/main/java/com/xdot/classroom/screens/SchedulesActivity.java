@@ -1,4 +1,4 @@
-package com.xdot.classroom;
+package com.xdot.classroom.screens;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xdot.classroom.R;
 
 
 public class SchedulesActivity extends AppCompatActivity {

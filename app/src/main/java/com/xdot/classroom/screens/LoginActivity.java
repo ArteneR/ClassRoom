@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
 
 
@@ -25,12 +26,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        initializeDataProviderModule();
+
         hideActionBar();
 
         btnLogIn = (Button) findViewById(R.id.btnLogIn);
         tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
         tvSkipLogin = (TextView) findViewById(R.id.tvSkipLogin);
+    }
+
+
+    private void initializeDataProviderModule() {
+        DataProvider dataProvider = (DataProvider)getApplication();
+        dataProvider.init();
+        dataProvider.printSchedules();
     }
 
 

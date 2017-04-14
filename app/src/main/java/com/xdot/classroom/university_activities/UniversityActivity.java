@@ -1,25 +1,44 @@
 package com.xdot.classroom.university_activities;
 
-
 import android.util.Log;
+import com.xdot.classroom.Room;
+import com.xdot.classroom.Subject;
+import com.xdot.classroom.Time;
+
+
 
 public class UniversityActivity {
     private String id;
-    private String startTime;
-    private String endTime;
-    private String RoomId;
-    private String SubjectId;
+    private Time startTime;
+    private Time endTime;
+    private Subject subject;
+    private Room room;
     private boolean evenWeeksOnly = false;
     private boolean oddWeeksOnly = false;
 
 
-    public UniversityActivity(String id) {
+    public UniversityActivity(String id, Time startTime, Time endTime, Room room, Subject subject) {
         this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.room = room;
+        this.subject = subject;
+    }
+
+
+    public UniversityActivity(String id, Time startTime, Time endTime, Room room, Subject subject, boolean evenWeeksOnly, boolean oddWeeksOnly) {
+        this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.room = room;
+        this.subject = subject;
+        this.evenWeeksOnly = evenWeeksOnly;
+        this.oddWeeksOnly = oddWeeksOnly;
     }
 
 
     public void printActivity() {
-        Log.d("DEBUG", "Subject name - roomid (start time - end time)");
+        Log.d("DEBUG", this.subject.getName() + " - " + this.room.getName() + " (" + this.startTime.getTimeString() + " - " + this.endTime.getTimeString() + ")");
     }
 
 }

@@ -2,14 +2,18 @@ package com.xdot.classroom;
 
 import android.app.Application;
 
+import com.xdot.classroom.schedule.Room;
+import com.xdot.classroom.schedule.Schedule;
+import com.xdot.classroom.schedule.Subject;
+import com.xdot.classroom.schedule.Time;
 import com.xdot.classroom.university_activities.Course;
 import com.xdot.classroom.university_activities.Exam;
 import com.xdot.classroom.university_activities.Lab;
 import com.xdot.classroom.university_activities.Seminary;
 import com.xdot.classroom.university_activities.UniversityActivity;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class DataProvider extends Application {

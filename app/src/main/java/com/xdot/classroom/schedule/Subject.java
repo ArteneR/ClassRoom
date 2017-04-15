@@ -1,19 +1,19 @@
-package com.xdot.classroom;
+package com.xdot.classroom.schedule;
 
 
-public class Room {
+public class Subject {
     private String id;
     private String name;
 
 
-    public Room(String id, String name) {
+    public Subject(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
 }

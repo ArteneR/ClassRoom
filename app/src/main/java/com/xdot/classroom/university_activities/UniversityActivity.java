@@ -1,9 +1,9 @@
 package com.xdot.classroom.university_activities;
 
 import android.util.Log;
-import com.xdot.classroom.Room;
-import com.xdot.classroom.Subject;
-import com.xdot.classroom.Time;
+import com.xdot.classroom.schedule.Room;
+import com.xdot.classroom.schedule.Subject;
+import com.xdot.classroom.schedule.Time;
 
 
 

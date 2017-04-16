@@ -25,17 +25,6 @@ public class DataProvider extends Application {
     }
 
 
-    public Schedule getSchedule(String id){
-        for (int i = 0; i < this.schedules.size(); i++) {
-            String scheduleId = this.schedules.get(i).getId();
-            if (scheduleId.equals(id)) {
-                return this.schedules.get(i);
-            }
-        }
-        return null;
-    }
-
-
     public void init() {
         this.schedules = new ArrayList<Schedule>();
         this.createTestSchedule();
@@ -74,6 +63,17 @@ public class DataProvider extends Application {
     }
 
 
+    public Schedule getSchedule(String id){
+        for (int i = 0; i < this.schedules.size(); i++) {
+            String scheduleId = this.schedules.get(i).getId();
+            if (scheduleId.equals(id)) {
+                return this.schedules.get(i);
+            }
+        }
+        return null;
+    }
+
+
     public List<Schedule> getAllSchedules() {
         return schedules;
     }
@@ -81,6 +81,11 @@ public class DataProvider extends Application {
 
     public void addSchedule(Schedule newSchedule){
         this.schedules.add(newSchedule);
+    }
+
+
+    public int getSchedulesCount() {
+        return this.schedules.size();
     }
 
 }

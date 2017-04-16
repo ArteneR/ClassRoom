@@ -11,6 +11,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="300dp"
         android:layout_height="90dp"
         android:layout_marginBottom="8dp"
@@ -36,6 +37,7 @@
             android:layout_alignParentTop="true"
             android:text="No schedules have been created yet!"
             android:textAlignment="center"
+            android:textColor="#EEEEEE"
             android:textSize="18sp"
             android:textStyle="italic"/>
 
@@ -47,7 +49,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="16dp"
-        android:background="#FFFFFF"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,8 +61,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/relativeLayout2"
-            android:background="#EEEEEE">
+            android:layout_below="@+id/relativeLayout2" >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_view"
@@ -89,6 +89,7 @@
                 android:paddingBottom="10dp"
                 android:text="Your schedules:"
                 android:textAlignment="center"
+                android:textColor="#EEEEEE"
                 android:textSize="18sp"/>
         </RelativeLayout>
     </RelativeLayout>

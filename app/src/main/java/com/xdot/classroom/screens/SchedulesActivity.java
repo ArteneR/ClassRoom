@@ -1,7 +1,5 @@
 package com.xdot.classroom.screens;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,26 +9,21 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.xdot.classroom.DataObject;
-import com.xdot.classroom.MyRecyclerViewAdapter;
+import com.xdot.classroom.DataProvider;
+import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
+import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAdapter;
 import com.xdot.classroom.R;
-
 import java.util.ArrayList;
 
 
 public class SchedulesActivity extends AppCompatActivity {
 
-    final String TAG = "MY_DEBUG";
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private static String LOG_TAG = "CardViewActivity";
+    private RecyclerView schedulesRecyclerView;
+    private RecyclerView.Adapter schedulesAdapter;
+    private RecyclerView.LayoutManager schedulesLayoutManager;
+    private static String LOG_TAG = "SchedulesActivity";
+    private DataProvider dataProvider;
 
 
     @Override
@@ -38,46 +31,48 @@ public class SchedulesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedules);
 
+        initializeDataProviderModule();
+
         activateCustomActionBar();
+        activateSchedulesListView();
+    }
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyRecyclerViewAdapter(getDataSet());
-        mRecyclerView.setAdapter(mAdapter);
 
-        // Code to Add an item with default animation
-        //((MyRecyclerViewAdapter) mAdapter).addItem(obj, index);
-
-        // Code to remove an item with default animation
-        //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
+    private void initializeDataProviderModule() {
+        dataProvider = (DataProvider)getApplication();
+        dataProvider.init();
+        dataProvider.printSchedules();
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        ((MyRecyclerViewAdapter) mAdapter).setOnItemClickListener(new MyRecyclerViewAdapter
-            .MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                Log.i(LOG_TAG, " Clicked on Item " + position);
-            }
-        });
+        if (schedulesAdapter != null) {
+            ((SchedulesRecyclerViewAdapter) schedulesAdapter).setOnItemClickListener(new SchedulesRecyclerViewAdapter
+                .MyClickListener() {
+                @Override
+                public void onItemClick(int position, View v) {
+                    Log.i(LOG_TAG, " Clicked on Item " + position + " - " + v);
+                }
+            });
+        }
     }
 
-    private ArrayList<DataObject> getDataSet() {
-        ArrayList results = new ArrayList<DataObject>();
-        for (int index = 0; index < 20; index++) {
-            DataObject obj = new DataObject("Some Primary Text " + index,
-                "Secondary " + index);
+
+    private ArrayList<SchedulesListData> getDataSet() {
+        ArrayList results = new ArrayList<SchedulesListData>();
+        for (int index = 0; index < 6; index++) {
+            SchedulesListData obj = new SchedulesListData("Schedule " + index + " Name");
             results.add(index, obj);
         }
         return results;
     }
 
 
+    /*
+     * Setup the custom action bar for navigation
+     */
     private void activateCustomActionBar() {
         android.support.v7.app.ActionBar mActionBar = getSupportActionBar();
 
@@ -95,16 +90,54 @@ public class SchedulesActivity extends AppCompatActivity {
     }
 
 
+    /*
+     * Setup the list which will display the available schedules
+     */
+    private void activateSchedulesListView() {
+        Log.d(LOG_TAG, "Schedules count: " + this.dataProvider.getSchedulesCount());
+        if (this.dataProvider.getSchedulesCount() == 0) {
+            // Don't activate the schedules list -> display text telling user that there are no schedules
+            return ;
+        }
+
+        hideNoSchedulesMessage();
+
+
+        schedulesLayoutManager = new LinearLayoutManager(this);
+        schedulesAdapter = new SchedulesRecyclerViewAdapter(getDataSet());
+        schedulesRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        schedulesRecyclerView.setHasFixedSize(true);
+        schedulesRecyclerView.setLayoutManager(schedulesLayoutManager);
+        schedulesRecyclerView.setAdapter(schedulesAdapter);
+
+        // Code to Add an item with default animation
+        //((SchedulesRecyclerViewAdapter) schedulesAdapter).addItem(obj, index);
+
+        // Code to remove an item with default animation
+        //((SchedulesRecyclerViewAdapter) schedulesAdapter).deleteItem(index);
+    }
+
+
+    private void hideNoSchedulesMessage() {
+        View view = findViewById(R.id.relativeLayout3);
+        view.setVisibility(View.INVISIBLE);
+        view.setVisibility(View.GONE);
+    }
+
+
+    /*
+     * Handle user click events
+     */
     public void clicked(View view) {
-        Log.d(TAG, "Button clicked!");
+        Log.d(LOG_TAG, "Button clicked!");
 
         switch (view.getId()) {
             case R.id.imageView1:
-                Log.d(TAG, "Button: Back");
+                Log.d(LOG_TAG, "Button: Back");
                 break;
 
             case R.id.imageView2:
-                Log.d(TAG, "Button: Add Schedule");
+                Log.d(LOG_TAG, "Button: Add Schedule");
                 break;
         }
     }

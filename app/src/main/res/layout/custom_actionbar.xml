@@ -5,7 +5,7 @@
                 android:layout_height="50dp" >
 
     <TextView
-        android:id="@+id/title_text"
+        android:id="@+id/tvActivityTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
@@ -17,7 +17,7 @@
         android:textStyle="bold"/>
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/ivLeftActionbarButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentLeft="true"
@@ -27,7 +27,7 @@
         app:srcCompat="@drawable/arrow_back_icon_5"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ivRightActionbarButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentRight="true"

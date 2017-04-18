@@ -7,18 +7,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
 
 
+
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnLogIn;
-    TextView tvForgotPassword;
-    TextView tvSignUp;
-    TextView tvSkipLogin;
-    final String TAG = "MY_DEBUG";
+    private Button btnLogIn;
+    private TextView tvForgotPassword;
+    private TextView tvSignUp;
+    private TextView tvSkipLogin;
+    private static String LOG_TAG = "LoginActivity";
 
 
     @Override
@@ -51,23 +51,23 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void clicked(View view) {
-        Log.d(TAG, "Button clicked!");
+        Log.d(LOG_TAG, "Button clicked!");
 
         switch (view.getId()) {
             case R.id.btnLogIn:
-                Log.d(TAG, "Button: " + btnLogIn.getText());
+                Log.d(LOG_TAG, "Button: " + btnLogIn.getText());
                 break;
 
             case R.id.tvForgotPassword:
-                Log.d(TAG, "Button: " + tvForgotPassword.getText());
+                Log.d(LOG_TAG, "Button: " + tvForgotPassword.getText());
                 break;
 
             case R.id.tvSignUp:
-                Log.d(TAG, "Button: " + tvSignUp.getText());
+                Log.d(LOG_TAG, "Button: " + tvSignUp.getText());
                 break;
 
             case R.id.tvSkipLogin:
-                Log.d(TAG, "Button: " + tvSkipLogin.getText());
+                Log.d(LOG_TAG, "Button: " + tvSkipLogin.getText());
                 break;
         }
     }

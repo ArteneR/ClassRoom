@@ -1,7 +1,6 @@
 package com.xdot.classroom;
 
 import android.app.Application;
-
 import com.xdot.classroom.schedule.Room;
 import com.xdot.classroom.schedule.Schedule;
 import com.xdot.classroom.schedule.Subject;
@@ -18,6 +17,7 @@ import java.util.List;
 
 public class DataProvider extends Application {
     private List<Schedule> schedules;
+    private static String LOG_TAG = "DataProvider";
 
 
     public DataProvider() {

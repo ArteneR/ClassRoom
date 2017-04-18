@@ -14,18 +14,40 @@
 
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guidelineHorizontal_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2"
-        />
+        app:layout_constraintGuide_percent="0.2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHorizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineVertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineVertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9052133" />
+
+
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal_1"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -40,13 +62,7 @@
             app:srcCompat="@drawable/schedule_icon_7"/>
     </RelativeLayout>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"
-        />
+
 
     <RelativeLayout
         android:layout_width="341dp"
@@ -55,10 +71,10 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline6"
-        app:layout_constraintRight_toLeftOf="@+id/guideline7"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal_1"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal_2"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical_1"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical_2"
         app:layout_constraintVertical_bias="0.541"
         tools:layout_editor_absoluteY="90dp">
 
@@ -146,13 +162,15 @@
 
     </RelativeLayout>
 
+
+
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2">
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal_2">
 
         <TextView
             android:id="@+id/tvAppTitle"
@@ -171,19 +189,5 @@
             android:textSize="25sp"
             android:textStyle="bold"/>
     </RelativeLayout>
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9052133"/>
 
 </android.support.constraint.ConstraintLayout>

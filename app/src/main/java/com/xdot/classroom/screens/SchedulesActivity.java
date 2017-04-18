@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAdapter;
@@ -105,7 +104,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
         schedulesLayoutManager = new LinearLayoutManager(this);
         schedulesAdapter = new SchedulesRecyclerViewAdapter(getDataSet());
-        schedulesRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        schedulesRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewSchedulesList);
         schedulesRecyclerView.setHasFixedSize(true);
         schedulesRecyclerView.setLayoutManager(schedulesLayoutManager);
         schedulesRecyclerView.setAdapter(schedulesAdapter);
@@ -119,7 +118,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
     private void hideNoSchedulesMessage() {
-        View view = findViewById(R.id.relativeLayout3);
+        View view = findViewById(R.id.relativeLayoutNoSchedules);
         view.setVisibility(View.INVISIBLE);
         view.setVisibility(View.GONE);
     }
@@ -132,11 +131,11 @@ public class SchedulesActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "Button clicked!");
 
         switch (view.getId()) {
-            case R.id.imageView1:
+            case R.id.ivLeftActionbarButton:
                 Log.d(LOG_TAG, "Button: Back");
                 break;
 
-            case R.id.imageView2:
+            case R.id.ivRightActionbarButton:
                 Log.d(LOG_TAG, "Button: Add Schedule");
                 break;
         }

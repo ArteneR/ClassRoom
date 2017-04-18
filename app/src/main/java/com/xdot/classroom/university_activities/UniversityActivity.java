@@ -15,6 +15,7 @@ public class UniversityActivity {
     private Room room;
     private boolean evenWeeksOnly = false;
     private boolean oddWeeksOnly = false;
+    private static String LOG_TAG = "UniversityActivity";
 
 
     public UniversityActivity(String id, Time startTime, Time endTime, Room room, Subject subject) {
@@ -38,7 +39,7 @@ public class UniversityActivity {
 
 
     public void printActivity() {
-        Log.d("DEBUG", this.subject.getName() + " - " + this.room.getName() + " (" + this.startTime.getTimeString() + " - " + this.endTime.getTimeString() + ")");
+        Log.d(LOG_TAG, this.subject.getName() + " - " + this.room.getName() + " (" + this.startTime.getTimeString() + " - " + this.endTime.getTimeString() + ")");
     }
 
 }

@@ -13,6 +13,7 @@ import java.util.Map;
 public class Schedule {
     private String id;
     private String name;
+    private static String LOG_TAG = "Schedule";
     private Map<String, List<UniversityActivity>> univActivities;
 
 
@@ -36,9 +37,9 @@ public class Schedule {
 
 
     public void printSchedule() {
-        Log.d("DEBUG", "Schedule name: " + this.name + " (id: " + this.id + "):");
+        Log.d(LOG_TAG, "Schedule name: " + this.name + " (id: " + this.id + "):");
         for (String key : this.univActivities.keySet()) {
-            Log.d("DEBUG", key + ":");
+            Log.d(LOG_TAG, key + ":");
             for (int i = 0; i < this.univActivities.get(key).size(); i++) {
                 this.univActivities.get(key).get(i).printActivity();
             }

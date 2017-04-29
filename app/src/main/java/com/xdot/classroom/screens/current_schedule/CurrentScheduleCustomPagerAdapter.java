@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
-
+import com.xdot.classroom.DayOfWeek;
 
 
 public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {
+    private static String LOG_TAG = "CurrentScheduleCustomPagerAdapter";
     protected Context mContext;
 
 
@@ -19,17 +21,15 @@ public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {
     }
 
 
+
     @Override
-    // This method returns the fragment associated with
-    // the specified position.
-    //
-    // It is called when the Adapter needs a fragment
-    // and it does not exists.
     public Fragment getItem(int position) {
         Fragment fragment = new CurrentScheduleDemoFragment();
 
         Bundle args = new Bundle();
-        args.putInt("page_position", position + 1);
+        args.putInt("day_of_week", position);
+
+        Log.d(LOG_TAG, "day_of_week: " + position);
 
         fragment.setArguments(args);
 
@@ -39,7 +39,7 @@ public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 7;
     }
 
 }

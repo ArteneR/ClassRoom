@@ -16,6 +16,7 @@ import com.xdot.classroom.R;
 import java.util.ArrayList;
 
 
+
 public class SchedulesActivity extends AppCompatActivity {
 
     private RecyclerView schedulesRecyclerView;
@@ -82,7 +83,7 @@ public class SchedulesActivity extends AppCompatActivity {
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
 
-        View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
+        View mCustomView = mInflater.inflate(R.layout.custom_actionbar_schedules, null);
 
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);

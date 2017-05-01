@@ -36,6 +36,9 @@ public class CurrentScheduleDemoFragment extends Fragment {
         Log.d(LOG_TAG, "DoW: " + dayOfWeekIndex + " - " + DayOfWeek.values()[dayOfWeekIndex]);
         dataProvider.printSchedules();
 
+        // create and show the schedule
+
+
         return rootView;
     }
 

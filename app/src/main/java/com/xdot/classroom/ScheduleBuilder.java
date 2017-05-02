@@ -5,8 +5,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ScheduleBuilder {
@@ -19,12 +23,14 @@ public class ScheduleBuilder {
     private int smallestTimeUnit = 5;           /* 5min - 3dp */
     private int smallestTimeUnitSlotSize;       /* Will be 3dp for smallestTimeUnit==5min & oneHourSlotSize=36dp */
     private Context mContext;
+    private float scale;
 
 
     public ScheduleBuilder(String containerId, Context context) {
             this.containerId = containerId;
             this.mContext = context;
             this.calculateSmallestTimeUnitSlotSize();
+            this.findDisplayScale();
             this.prepareScheduleContainer();
     }
 
@@ -32,6 +38,12 @@ public class ScheduleBuilder {
 
     private void calculateSmallestTimeUnitSlotSize() {
             this.smallestTimeUnitSlotSize = ( this.oneHourSlotSize / ( 60 / this.smallestTimeUnit ) );
+    }
+
+
+
+    private void findDisplayScale() {
+            this.scale = this.mContext.getResources().getDisplayMetrics().density;
     }
 
 
@@ -53,6 +65,8 @@ public class ScheduleBuilder {
             int endTimeHour = extractTimeHour(endTime);
             int endTimeMinute = extractTimeMinute(endTime);
 
+            Map scheduleEntryData = createScheduleEntryDataMap(startTime, endTime, subject, room, building);
+
             if (!isTimeIntervalValid(startTimeHour, startTimeMinute, endTimeHour, endTimeMinute)) {
                     return ;
             }
@@ -66,28 +80,104 @@ public class ScheduleBuilder {
             Log.d(LOG_TAG, "scheduleEntryMarginTop: " + scheduleEntryMarginTop);
             Log.d(LOG_TAG, "scheduleEntryHeight: " + scheduleEntryHeight);
 
-
-            RelativeLayout relativeLayout = makeScheduleEntryLayout("#555555", scheduleEntryMarginTop, scheduleEntryHeight);
+            RelativeLayout relativeLayout = makeScheduleEntryLayout("#fff2cc", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
 
             addScheduleEntryLayout(relativeLayout);
     }
 
 
 
-    private RelativeLayout makeScheduleEntryLayout(String scheduleEntryColor, int scheduleEntryMarginTop, int scheduleEntryHeight) {
-            RelativeLayout relativeLayout = new RelativeLayout(((Activity) this.mContext));
+    private Map createScheduleEntryDataMap(String startTime, String endTime, String subject, String room, String building) {
+            Map scheduleEntryData = new HashMap();
+            scheduleEntryData.put("startTime", startTime);
+            scheduleEntryData.put("endTime", endTime);
+            scheduleEntryData.put("subject", subject);
+            scheduleEntryData.put("room", room);
+            scheduleEntryData.put("building", building);
+            return scheduleEntryData;
+    }
+
+
+
+    private RelativeLayout makeScheduleEntryLayout(String scheduleEntryColor, int scheduleEntryMarginTop, int scheduleEntryHeight, Map scheduleEntryData) {
+            RelativeLayout relativeLayout = new RelativeLayout((Activity) this.mContext);
             relativeLayout.setBackgroundColor(Color.parseColor(scheduleEntryColor));
 
-            final float scale = this.mContext.getResources().getDisplayMetrics().density;
-            int scheduleEntryHeightInPx = (int) (scheduleEntryHeight * scale + 0.5f);
-            int scheduleEntryMarginTopInPx = (int) (scheduleEntryMarginTop * scale + 0.5f);
+            int scheduleEntryHeightInPx = convertDpToPx(scheduleEntryHeight);
+            int scheduleEntryMarginTopInPx = convertDpToPx(scheduleEntryMarginTop);
 
+            // Set width and height
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, scheduleEntryHeightInPx);
+
+            // Set margins
             params.setMargins(0, scheduleEntryMarginTopInPx, 0, 0);
 
             relativeLayout.setLayoutParams(params);
 
+            // Setting the elements inside the schedule entry
+            TextView startTimeLayout = makeStartTimeLayout(scheduleEntryData.get("startTime").toString());
+
+            int endTimeLayoutHeight = 16;       /* in dp */
+            TextView endTimeLayout = makeEndTimeLayout(scheduleEntryData.get("endTime").toString(), scheduleEntryHeight - endTimeLayoutHeight);
+
+            relativeLayout.addView(startTimeLayout);
+            relativeLayout.addView(endTimeLayout);
+
             return relativeLayout;
+    }
+
+
+
+    private int convertDpToPx(int dpValue) {
+            int pxValue = (int) (dpValue * this.scale + 0.5f);
+            return pxValue;
+    }
+
+
+
+    private TextView makeStartTimeLayout(String startTime) {
+            TextView startTimeLayout = new TextView((Activity) this.mContext);
+
+            // Set text
+            startTimeLayout.setText(startTime);
+
+            // Set width and height
+            int startTimeLayoutWidthInPx = convertDpToPx(50);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(startTimeLayoutWidthInPx, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set margins
+            params.setMargins(0, 0, 0, 0);
+
+            // Set text alignment
+            startTimeLayout.setGravity(Gravity.CENTER);
+
+            startTimeLayout.setLayoutParams(params);
+
+            return startTimeLayout;
+    }
+
+
+
+    private TextView makeEndTimeLayout(String endTime, int marginTop) {
+            TextView endTimeLayout = new TextView((Activity) this.mContext);
+
+            // Set text
+            endTimeLayout.setText(endTime);
+
+            // Set width and height
+            int endTimeLayoutWidthInPx = convertDpToPx(50);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(endTimeLayoutWidthInPx, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set margins
+            int marginTopInPx = convertDpToPx(marginTop);
+            params.setMargins(0, marginTopInPx, 0, 0);
+
+            // Set text alignment
+            endTimeLayout.setGravity(Gravity.CENTER);
+
+            endTimeLayout.setLayoutParams(params);
+
+            return endTimeLayout;
     }
 
 

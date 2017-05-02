@@ -38,11 +38,8 @@ public class ScheduleBuilder {
 
     private void prepareScheduleContainer() {
             int scheduleContainerViewId = ((Activity) mContext).getResources().getIdentifier(this.containerId, "id", ((Activity) mContext).getPackageName());
-//            RelativeLayout scheduleContainer = (RelativeLayout) ((Activity) mContext).findViewById(scheduleContainerViewId);
-            RelativeLayout scheduleContainer = (RelativeLayout) ((Activity) mContext).findViewById(R.id.schedule_container);
-        Log.d(LOG_TAG, "this.containerId: " + this.containerId);
-        Log.d(LOG_TAG, "scheduleContainerViewId: " + scheduleContainerViewId);
-        Log.d(LOG_TAG, "scheduleContainer: " + scheduleContainer);
+            RelativeLayout scheduleContainer = (RelativeLayout) ((Activity) mContext).findViewById(scheduleContainerViewId);
+
             if(((RelativeLayout) scheduleContainer).getChildCount() > 0) {
                    ((RelativeLayout) scheduleContainer).removeAllViews();
             }
@@ -70,31 +67,36 @@ public class ScheduleBuilder {
             Log.d(LOG_TAG, "scheduleEntryHeight: " + scheduleEntryHeight);
 
 
+            RelativeLayout relativeLayout = makeScheduleEntryLayout("#555555", scheduleEntryMarginTop, scheduleEntryHeight);
 
-            RelativeLayout relativeLayout = new RelativeLayout(((Activity) mContext));
-            relativeLayout.setBackgroundColor(Color.parseColor("#555555"));
-
-            final float scale = mContext.getResources().getDisplayMetrics().density;
-            int px = (int) (scheduleEntryHeight * scale + 0.5f);
-
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, px);
-            params.setMargins(0, scheduleEntryMarginTop, 0, 0);
+            addScheduleEntryLayout(relativeLayout);
+    }
 
 
-        relativeLayout.setLayoutParams(params);
+
+    private RelativeLayout makeScheduleEntryLayout(String scheduleEntryColor, int scheduleEntryMarginTop, int scheduleEntryHeight) {
+            RelativeLayout relativeLayout = new RelativeLayout(((Activity) this.mContext));
+            relativeLayout.setBackgroundColor(Color.parseColor(scheduleEntryColor));
+
+            final float scale = this.mContext.getResources().getDisplayMetrics().density;
+            int scheduleEntryHeightInPx = (int) (scheduleEntryHeight * scale + 0.5f);
+            int scheduleEntryMarginTopInPx = (int) (scheduleEntryMarginTop * scale + 0.5f);
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, scheduleEntryHeightInPx);
+            params.setMargins(0, scheduleEntryMarginTopInPx, 0, 0);
+
+            relativeLayout.setLayoutParams(params);
+
+            return relativeLayout;
+    }
 
 
-        int scheduleContainerViewId = ((Activity) mContext).getResources().getIdentifier(this.containerId, "id", ((Activity) mContext).getPackageName());
-        RelativeLayout scheduleContainer = (RelativeLayout) ((Activity) mContext).findViewById(R.id.schedule_container);
 
-        scheduleContainer.addView(relativeLayout);
+    private void addScheduleEntryLayout(RelativeLayout relativeLayout) {
+            int scheduleContainerViewId = ((Activity) mContext).getResources().getIdentifier(this.containerId, "id", ((Activity) mContext).getPackageName());
+            RelativeLayout scheduleContainer = (RelativeLayout) ((Activity) mContext).findViewById(scheduleContainerViewId);
 
-        Log.d(LOG_TAG, "relativeLayout: " + relativeLayout);
-        Log.d(LOG_TAG, "scale: " + scale);
-        Log.d(LOG_TAG, "px: " + px);
-        Log.d(LOG_TAG, "params: " + params);
-        Log.d(LOG_TAG, "scheduleContainerViewId: " + scheduleContainerViewId);
-        Log.d(LOG_TAG, "scheduleContainer: " + scheduleContainer);
+            scheduleContainer.addView(relativeLayout);
     }
 
 

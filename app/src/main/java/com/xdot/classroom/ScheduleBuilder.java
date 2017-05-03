@@ -2,7 +2,6 @@ package com.xdot.classroom;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
@@ -124,12 +123,13 @@ public class ScheduleBuilder {
 
             LinearLayout subjectNameLayout = makeSubjectNameLayout(scheduleEntryData.get("subject").toString());
 
-            LinearLayout locationLayout = makeLocationLayout(scheduleEntryData.get("room").toString(), scheduleEntryData.get("building").toString());
+            int locationLayoutHeight = 15;
+            LinearLayout locationLayout = makeLocationLayout(scheduleEntryData.get("room").toString(), scheduleEntryData.get("building").toString(), scheduleEntryHeight - locationLayoutHeight);
 
             relativeLayout.addView(startTimeLayout);
             relativeLayout.addView(endTimeLayout);
             relativeLayout.addView(subjectNameLayout);
-//            relativeLayout.addView(locationLayout);
+            relativeLayout.addView(locationLayout);
 
             return relativeLayout;
     }
@@ -191,10 +191,7 @@ public class ScheduleBuilder {
 
 
     private LinearLayout makeSubjectNameLayout(String subject) {
-            String color = "#FF0000";
-
             LinearLayout linearLayout = new LinearLayout((Activity) this.mContext);
-            linearLayout.setBackgroundColor(Color.parseColor(color));
 
             // Set text alignment
             linearLayout.setGravity(Gravity.CENTER);
@@ -214,12 +211,12 @@ public class ScheduleBuilder {
             int paddingRightInPx = convertDpToPx(40);
             linearLayout.setPadding(0, 0, paddingRightInPx, 0);
 
+            linearLayout.setLayoutParams(params);
+
             // Set the text layout
             TextView textViewLayout = makeSubjectTextViewLayout(subject);
 
             linearLayout.addView(textViewLayout);
-
-            linearLayout.setLayoutParams(params);
 
             return linearLayout;
     }
@@ -248,8 +245,117 @@ public class ScheduleBuilder {
 
 
 
-    private LinearLayout makeLocationLayout(String room, String building) {
-            return null;
+    private LinearLayout makeLocationLayout(String room, String building, int marginTop) {
+            LinearLayout linearLayout = new LinearLayout((Activity) this.mContext);
+
+            // Set text alignment
+            linearLayout.setGravity(Gravity.RIGHT);
+
+            // Set width and height
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set margins
+            int marginTopInPx = convertDpToPx(marginTop);
+            int marginLeftInPx = convertDpToPx(60);
+            int marginRightInPx = convertDpToPx(10);
+            params.setMargins(marginLeftInPx, marginTopInPx, marginRightInPx, 0);
+
+            linearLayout.setLayoutParams(params);
+
+            // Set the text layouts
+            TextView textViewRoomLayout = makeRoomTextViewLayout();
+            TextView textViewRoomNameLayout = makeRoomNameTextViewLayout(room);
+            TextView textViewSeparatorLayout = makeSeparatorTextViewLayout();
+            TextView textViewBuildingNameLayout = makeBuilgingNameTextViewLayout(building);
+
+            linearLayout.addView(textViewRoomLayout);
+            linearLayout.addView(textViewRoomNameLayout);
+            linearLayout.addView(textViewSeparatorLayout);
+            linearLayout.addView(textViewBuildingNameLayout);
+
+            return linearLayout;
+    }
+
+
+
+    private TextView makeRoomTextViewLayout() {
+            TextView roomTextViewLayout = new TextView((Activity) this.mContext);
+
+            // Set text
+            roomTextViewLayout.setText("Room ");
+
+            // Set width and height
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set text size
+            roomTextViewLayout.setTextSize(10);
+
+            roomTextViewLayout.setLayoutParams(params);
+
+            return roomTextViewLayout;
+    }
+
+
+
+    private TextView makeRoomNameTextViewLayout(String room) {
+            TextView roomNameTextViewLayout = new TextView((Activity) this.mContext);
+
+            // Set text
+            roomNameTextViewLayout.setText(room);
+
+            // Set width and height
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set text size
+            roomNameTextViewLayout.setTextSize(11);
+
+            // Set text bold
+            roomNameTextViewLayout.setTypeface(null, Typeface.BOLD);
+
+            roomNameTextViewLayout.setLayoutParams(params);
+
+            return roomNameTextViewLayout;
+    }
+
+
+
+    private TextView makeSeparatorTextViewLayout() {
+            TextView separatorTextViewLayout = new TextView((Activity) this.mContext);
+
+            // Set text
+            separatorTextViewLayout.setText(" - ");
+
+            // Set width and height
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set text size
+            separatorTextViewLayout.setTextSize(10);
+
+            separatorTextViewLayout.setLayoutParams(params);
+
+            return separatorTextViewLayout;
+    }
+
+
+
+    private TextView makeBuilgingNameTextViewLayout(String building) {
+            TextView roomNameTextViewLayout = new TextView((Activity) this.mContext);
+
+            // Set text
+            roomNameTextViewLayout.setText(building);
+
+            // Set width and height
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set text size
+            roomNameTextViewLayout.setTextSize(11);
+
+            // Set text bold
+            roomNameTextViewLayout.setTypeface(null, Typeface.BOLD);
+
+            roomNameTextViewLayout.setLayoutParams(params);
+
+            return roomNameTextViewLayout;
     }
 
 

@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Gravity;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -120,8 +122,14 @@ public class ScheduleBuilder {
             int endTimeLayoutHeight = 16;       /* in dp */
             TextView endTimeLayout = makeEndTimeLayout(scheduleEntryData.get("endTime").toString(), scheduleEntryHeight - endTimeLayoutHeight);
 
+            LinearLayout subjectNameLayout = makeSubjectNameLayout(scheduleEntryData.get("subject").toString());
+
+            LinearLayout locationLayout = makeLocationLayout(scheduleEntryData.get("room").toString(), scheduleEntryData.get("building").toString());
+
             relativeLayout.addView(startTimeLayout);
             relativeLayout.addView(endTimeLayout);
+            relativeLayout.addView(subjectNameLayout);
+//            relativeLayout.addView(locationLayout);
 
             return relativeLayout;
     }
@@ -178,6 +186,70 @@ public class ScheduleBuilder {
             endTimeLayout.setLayoutParams(params);
 
             return endTimeLayout;
+    }
+
+
+
+    private LinearLayout makeSubjectNameLayout(String subject) {
+            String color = "#FF0000";
+
+            LinearLayout linearLayout = new LinearLayout((Activity) this.mContext);
+            linearLayout.setBackgroundColor(Color.parseColor(color));
+
+            // Set text alignment
+            linearLayout.setGravity(Gravity.CENTER);
+
+            int subjectNameLayoutHeightInPx = convertDpToPx(18);
+
+            // Set width and height
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, subjectNameLayoutHeightInPx);
+
+            // Set margins
+            int marginTopInPx = convertDpToPx(3);
+            int marginLeftInPx = convertDpToPx(60);
+            int marginRightInPx = convertDpToPx(10);
+            params.setMargins(marginLeftInPx, marginTopInPx, marginRightInPx, 0);
+
+            // Set padding
+            int paddingRightInPx = convertDpToPx(40);
+            linearLayout.setPadding(0, 0, paddingRightInPx, 0);
+
+            // Set the text layout
+            TextView textViewLayout = makeSubjectTextViewLayout(subject);
+
+            linearLayout.addView(textViewLayout);
+
+            linearLayout.setLayoutParams(params);
+
+            return linearLayout;
+    }
+
+
+
+    private TextView makeSubjectTextViewLayout(String subject) {
+            TextView subjectTextViewLayout = new TextView((Activity) this.mContext);
+
+            // Set text alignment
+            subjectTextViewLayout.setGravity(Gravity.CENTER);
+
+            // Set width and height
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+
+            // Set text
+            subjectTextViewLayout.setText(subject);
+
+            // Set text bold
+            subjectTextViewLayout.setTypeface(null, Typeface.BOLD);
+
+            subjectTextViewLayout.setLayoutParams(params);
+
+            return subjectTextViewLayout;
+    }
+
+
+
+    private LinearLayout makeLocationLayout(String room, String building) {
+            return null;
     }
 
 

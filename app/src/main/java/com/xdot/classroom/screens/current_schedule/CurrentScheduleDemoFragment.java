@@ -49,6 +49,8 @@ public class CurrentScheduleDemoFragment extends Fragment {
             // create and show the schedule
             ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container", mContext);
             scheduleBuilder.addScheduleEntry("08:30", "10:00", "Programming", "B514", "Corpul B");
+
+            scheduleBuilder.addScheduleEntry("11:00", "12:00", "Mathematics", "B514", "Corpul B");
     }
 
 

@@ -7,7 +7,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/schedule_container_2"
+        android:id="@+id/schedule_container_tuesday"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

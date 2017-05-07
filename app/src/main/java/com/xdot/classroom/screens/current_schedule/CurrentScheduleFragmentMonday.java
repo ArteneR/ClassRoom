@@ -40,7 +40,7 @@ public class CurrentScheduleFragmentMonday extends Fragment {
         Log.d(LOG_TAG, "-----------------------ON ACTIVITY CREATE");
 
         // create and show the schedule
-        ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_1", mContext);
+        ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_monday", mContext);
         scheduleBuilder.addScheduleEntry("08:30", "10:00", "Programming", "B514", "Corpul B");
 
         scheduleBuilder.addScheduleEntry("11:00", "12:00", "Mathematics", "B514", "Corpul B");

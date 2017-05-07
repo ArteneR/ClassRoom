@@ -15,7 +15,7 @@ import com.xdot.classroom.ScheduleBuilder;
 
 
 
-public class CurrentScheduleFragmentWednesday extends Fragment {
+public class CurrentScheduleFragmentSunday extends Fragment {
     private static String LOG_TAG = "CurrentScheduleDemoFragment";
     private DataProvider dataProvider;
     private Context mContext;
@@ -23,7 +23,7 @@ public class CurrentScheduleFragmentWednesday extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_current_schedule_wednesday, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_current_schedule_sunday, container, false);
         Log.d(LOG_TAG, "-----------------------ON FRAGMENT CREATE");
 
         mContext = getContext();
@@ -40,7 +40,7 @@ public class CurrentScheduleFragmentWednesday extends Fragment {
         Log.d(LOG_TAG, "-----------------------ON ACTIVITY CREATE");
 
         // create and show the schedule
-        ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_wednesday", mContext);
+        ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_sunday", mContext);
         scheduleBuilder.addScheduleEntry("08:30", "10:00", "Programming", "B514", "Corpul B");
 
         scheduleBuilder.addScheduleEntry("11:00", "12:00", "Mathematics", "B514", "Corpul B");

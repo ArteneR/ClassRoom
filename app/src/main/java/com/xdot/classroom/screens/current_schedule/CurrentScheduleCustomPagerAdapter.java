@@ -44,6 +44,22 @@ public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {
                 fragment = new CurrentScheduleFragmentWednesday();
                 break;
 
+            case 3:
+                fragment = new CurrentScheduleFragmentThursday();
+                break;
+
+            case 4:
+                fragment = new CurrentScheduleFragmentFriday();
+                break;
+
+            case 5:
+                fragment = new CurrentScheduleFragmentSaturday();
+                break;
+
+            case 6:
+                fragment = new CurrentScheduleFragmentSunday();
+                break;
+
             default:
                 fragment = new CurrentScheduleFragmentMonday();
         }

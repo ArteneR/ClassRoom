@@ -1,5 +1,7 @@
 package com.xdot.classroom.screens.current_schedule;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,8 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import com.xdot.classroom.DataProvider;
+import com.xdot.classroom.DayOfWeek;
 import com.xdot.classroom.R;
-
+import com.xdot.classroom.ScheduleBuilder;
 
 
 public class CurrentScheduleActivity extends AppCompatActivity {
@@ -20,11 +23,13 @@ public class CurrentScheduleActivity extends AppCompatActivity {
     private android.support.v7.app.ActionBar mActionBar;
     private CurrentScheduleCustomPagerAdapter mCustomPagerAdapter;
     private ViewPager mViewPager;
+    private Context mContext;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_current_schedule);
 
         activateCustomActionBar();
@@ -62,7 +67,42 @@ public class CurrentScheduleActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.current_schedule_pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
+
+        setupOnPageChangeListener();
     }
+
+
+
+    private void setupOnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d(LOG_TAG, "-----------------------PAGINAAA SELECTATA: " + position);
+
+                String dayOfWeek = DayOfWeek.values()[position].toString();
+                TextView v = (TextView) ((Activity)mContext).findViewById(R.id.tvDayOfWeek);
+                v.setText(dayOfWeek);
+
+
+//                ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container", mContext);
+//                scheduleBuilder.addScheduleEntry("08:30", "10:00", "Programming", "B514", "Corpul B");
+//
+//                scheduleBuilder.addScheduleEntry("11:00", "12:00", "Mathematics", "B514", "Corpul B");
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+
 
 
     private void setCustomActionBarTitle(String newTitle) {

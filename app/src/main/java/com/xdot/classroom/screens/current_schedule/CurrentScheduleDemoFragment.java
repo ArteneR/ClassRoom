@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import com.xdot.classroom.DataProvider;
-import com.xdot.classroom.DayOfWeek;
 import com.xdot.classroom.R;
 import com.xdot.classroom.ScheduleBuilder;
 
@@ -26,17 +24,10 @@ public class CurrentScheduleDemoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_current_schedule_demo, container, false);
-
-            Bundle args = getArguments();
-            int dayOfWeekIndex = args.getInt("day_of_week");
-            String dayOfWeek = DayOfWeek.values()[dayOfWeekIndex].toString();
-            ((TextView) rootView.findViewById(R.id.text)).setText(dayOfWeek);
+            Log.d(LOG_TAG, "-----------------------ON FRAGMENT CREATE");
 
             mContext = getContext();
             initializeDataProviderModule();
-
-            Log.d(LOG_TAG, "DoW: " + dayOfWeekIndex + " - " + DayOfWeek.values()[dayOfWeekIndex]);
-            dataProvider.printSchedules();
 
             return rootView;
     }
@@ -45,6 +36,8 @@ public class CurrentScheduleDemoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
+
+        Log.d(LOG_TAG, "-----------------------ON ACTIVITY CREATE");
 
             // create and show the schedule
             ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container", mContext);

@@ -27,7 +27,27 @@ public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Log.d(LOG_TAG, "-----------------GET ITEM: " + position);
-        Fragment fragment = new CurrentScheduleDemoFragment();
+//        Fragment fragment = new CurrentScheduleDemoFragment();
+        Fragment fragment;
+
+
+        switch(position) {
+            case 0:
+                fragment = new CurrentScheduleFragmentMonday();
+                break;
+
+            case 1:
+                fragment = new CurrentScheduleFragmentTuesday();
+                break;
+
+            case 2:
+                fragment = new CurrentScheduleFragmentWednesday();
+                break;
+
+            default:
+                fragment = new CurrentScheduleFragmentMonday();
+        }
+
 
         Bundle args = new Bundle();
         args.putInt("day_of_week", position);

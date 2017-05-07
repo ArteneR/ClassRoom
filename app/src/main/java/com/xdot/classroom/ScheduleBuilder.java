@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,7 +80,14 @@ public class ScheduleBuilder {
             Log.d(LOG_TAG, "scheduleEntryMarginTop: " + scheduleEntryMarginTop);
             Log.d(LOG_TAG, "scheduleEntryHeight: " + scheduleEntryHeight);
 
-            RelativeLayout relativeLayout = makeScheduleEntryLayout("#99ff99", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
+            RelativeLayout relativeLayout;
+
+            if (startTime.equals("10:30")) {
+                relativeLayout = makeScheduleEntryLayout("#ffcccc", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
+            }
+            else {
+                relativeLayout = makeScheduleEntryLayout("#99ff99", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
+            }
 
             addScheduleEntryLayout(relativeLayout);
     }

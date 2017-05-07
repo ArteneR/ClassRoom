@@ -67,6 +67,7 @@ public class CurrentScheduleActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.current_schedule_pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
+        mViewPager.setOffscreenPageLimit(3);
 
         setupOnPageChangeListener();
     }

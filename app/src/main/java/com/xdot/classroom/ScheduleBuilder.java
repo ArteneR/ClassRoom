@@ -81,7 +81,7 @@ public class ScheduleBuilder {
             Log.d(LOG_TAG, "scheduleEntryMarginTop: " + scheduleEntryMarginTop);
             Log.d(LOG_TAG, "scheduleEntryHeight: " + scheduleEntryHeight);
 
-            RelativeLayout relativeLayout = makeScheduleEntryLayout("#fff2cc", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
+            RelativeLayout relativeLayout = makeScheduleEntryLayout("#99ff99", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
 
             addScheduleEntryLayout(relativeLayout);
     }
@@ -177,7 +177,8 @@ public class ScheduleBuilder {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(endTimeLayoutWidthInPx, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
             // Set margins
-            int marginTopInPx = convertDpToPx(marginTop);
+            int marginBottomAdjustment = 3;
+            int marginTopInPx = convertDpToPx(marginTop - marginBottomAdjustment);
             params.setMargins(0, marginTopInPx, 0, 0);
 
             // Set text alignment

@@ -27,50 +27,65 @@ public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Log.d(LOG_TAG, "-----------------GET ITEM: " + position);
-//        Fragment fragment = new CurrentScheduleDemoFragment();
         Fragment fragment;
+        String fragmentLayoutId = "";
+        String scheduleContainerId = "";
 
 
         switch(position) {
             case 0:
                 fragment = new CurrentScheduleFragmentMonday();
+                fragmentLayoutId = "fragment_current_schedule_monday";
+                scheduleContainerId = "schedule_container_monday";
                 break;
 
             case 1:
                 fragment = new CurrentScheduleFragmentTuesday();
+                fragmentLayoutId = "fragment_current_schedule_tuesday";
+                scheduleContainerId = "schedule_container_tuesday";
                 break;
 
             case 2:
                 fragment = new CurrentScheduleFragmentWednesday();
+                fragmentLayoutId = "fragment_current_schedule_wednesday";
+                scheduleContainerId = "schedule_container_wednesday";
                 break;
 
             case 3:
                 fragment = new CurrentScheduleFragmentThursday();
+                fragmentLayoutId = "fragment_current_schedule_thursday";
+                scheduleContainerId = "schedule_container_thursday";
                 break;
 
             case 4:
                 fragment = new CurrentScheduleFragmentFriday();
+                fragmentLayoutId = "fragment_current_schedule_friday";
+                scheduleContainerId = "schedule_container_friday";
                 break;
 
             case 5:
                 fragment = new CurrentScheduleFragmentSaturday();
+                fragmentLayoutId = "fragment_current_schedule_saturday";
+                scheduleContainerId = "schedule_container_saturday";
                 break;
 
             case 6:
                 fragment = new CurrentScheduleFragmentSunday();
+                fragmentLayoutId = "fragment_current_schedule_sunday";
+                scheduleContainerId = "schedule_container_sunday";
                 break;
 
             default:
                 fragment = new CurrentScheduleFragmentMonday();
+                fragmentLayoutId = "fragment_current_schedule_monday";
+                scheduleContainerId = "schedule_container_monday";
         }
 
 
         Bundle args = new Bundle();
         args.putInt("day_of_week", position);
-
-//        String dayOfWeek = DayOfWeek.values()[position].toString();
-//        TextView v = (TextView) ((Activity)mContext).findViewById(R.id.tvDayOfWeek);
-//        v.setText(dayOfWeek);
+        args.putString("fragment_id", fragmentLayoutId);
+        args.putString("schedule_container_id", scheduleContainerId);
 
         fragment.setArguments(args);
 

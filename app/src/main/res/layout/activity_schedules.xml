@@ -10,6 +10,19 @@
     tools:context="com.xdot.classroom.screens.SchedulesActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_classroom"/>
+
     <RelativeLayout
         android:id="@+id/relativeLayoutNoSchedules"
         android:layout_width="300dp"

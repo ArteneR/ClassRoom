@@ -15,11 +15,12 @@
         android:alpha="0.8"
         card_view:cardBackgroundColor="#7EABCE"
         card_view:cardCornerRadius="25dp"
-        card_view:contentPadding="10dp">
+        card_view:contentPadding="0dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground">
 
             <TextView
                 android:id="@+id/tvScheduleName"
@@ -28,7 +29,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="13dp"
                 android:text="Schedule Name"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"

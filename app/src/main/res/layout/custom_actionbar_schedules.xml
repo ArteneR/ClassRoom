@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:onClick="clicked"
-        app:srcCompat="@drawable/arrow_back_icon_5"/>
+        app:srcCompat="@drawable/selector_arrow_back_icon"/>
 
     <ImageView
         android:id="@+id/ivRightActionbarButton"
@@ -34,6 +34,6 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp"
         android:onClick="clicked"
-        app:srcCompat="@drawable/plus_icon_1"/>
+        app:srcCompat="@drawable/selector_plus_icon"/>
 
 </RelativeLayout>

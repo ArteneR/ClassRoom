@@ -1,15 +1,11 @@
 package com.xdot.classroom.screens.current_schedule;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
-import android.widget.TextView;
-import com.xdot.classroom.DayOfWeek;
-import com.xdot.classroom.R;
 
 
 
@@ -80,7 +76,6 @@ public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {
                 fragmentLayoutId = "fragment_current_schedule_monday";
                 scheduleContainerId = "schedule_container_monday";
         }
-
 
         Bundle args = new Bundle();
         args.putInt("day_of_week", position);

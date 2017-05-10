@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAppMain"
-    tools:context="com.xdot.classroom.screens.SchedulesActivity">
+    tools:context="com.xdot.classroom.screens.schedules.SchedulesActivity">
 
 
     <ImageView

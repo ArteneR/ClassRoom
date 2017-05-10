@@ -9,7 +9,7 @@
     android:layout_marginTop="0dp"
     android:background="@color/colorAppMain"
     app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-    tools:context="com.xdot.classroom.screens.LoginActivity"
+    tools:context="com.xdot.classroom.screens.login.LoginActivity"
     tools:layout_editor_absoluteX="0dp">
 
 

@@ -1,4 +1,4 @@
-package com.xdot.classroom.screens;
+package com.xdot.classroom.screens.schedules;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;

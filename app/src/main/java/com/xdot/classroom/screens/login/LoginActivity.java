@@ -1,4 +1,4 @@
-package com.xdot.classroom.screens;
+package com.xdot.classroom.screens.login;
 
 import android.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;

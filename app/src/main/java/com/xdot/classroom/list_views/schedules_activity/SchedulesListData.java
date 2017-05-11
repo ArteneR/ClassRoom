@@ -5,8 +5,6 @@ public class SchedulesListData {
         private String scheduleName;
 
 
-
-        
         public SchedulesListData(String scheduleName){
                 this.scheduleName = scheduleName;
         }

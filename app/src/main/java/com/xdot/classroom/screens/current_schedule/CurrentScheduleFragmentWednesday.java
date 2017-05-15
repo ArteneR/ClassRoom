@@ -16,7 +16,7 @@ import com.xdot.classroom.ScheduleBuilder;
 
 
 public class CurrentScheduleFragmentWednesday extends Fragment {
-        private static String LOG_TAG = "CurrentScheduleDemoFragment";
+        private static String LOG_TAG = "CurrentScheduleFragmentWednesday";
         private DataProvider dataProvider;
         private Context mContext;
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
+
 
 
 public class ScheduleBuilder {
@@ -82,6 +84,7 @@ public class ScheduleBuilder {
 
                 RelativeLayout relativeLayout;
 
+                // TEST only:
                 if (startTime.equals("10:30")) {
                     relativeLayout = makeScheduleEntryLayout("#ffcccc", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
                 }
@@ -132,10 +135,13 @@ public class ScheduleBuilder {
                 int locationLayoutHeight = 15;
                 LinearLayout locationLayout = makeLocationLayout(scheduleEntryData.get("room").toString(), scheduleEntryData.get("building").toString(), scheduleEntryHeight - locationLayoutHeight);
 
+                LinearLayout bottomBorderLayout = makeBottomBorderLayout(scheduleEntryHeightInPx);
+
                 relativeLayout.addView(startTimeLayout);
                 relativeLayout.addView(endTimeLayout);
                 relativeLayout.addView(subjectNameLayout);
                 relativeLayout.addView(locationLayout);
+                relativeLayout.addView(bottomBorderLayout);
 
                 return relativeLayout;
         }
@@ -363,6 +369,27 @@ public class ScheduleBuilder {
                 roomNameTextViewLayout.setLayoutParams(params);
 
                 return roomNameTextViewLayout;
+        }
+
+
+
+        private LinearLayout makeBottomBorderLayout(int scheduleEntryHeightInPx) {
+                LinearLayout linearLayout = new LinearLayout((Activity) this.mContext);
+                int bottomBorderSize = convertDpToPx(1);
+                int bottomBorderColor = ContextCompat.getColor(this.mContext, R.color.colorTransparentBlack);
+
+                linearLayout.setBackgroundColor(bottomBorderColor);
+
+                // Set width and height
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, bottomBorderSize);
+
+                // Set margins
+                int marginTopInPx = scheduleEntryHeightInPx - bottomBorderSize;
+                params.setMargins(0, marginTopInPx, 0, 0);
+
+                linearLayout.setLayoutParams(params);
+
+                return linearLayout;
         }
 
 

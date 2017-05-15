@@ -44,6 +44,7 @@ public class SchedulesRecyclerViewAdapter extends RecyclerView.Adapter<Schedules
 
                 private void openScheduleActivity(int selectedScheduleIndex) {
                         Intent intent = new Intent(mContext, CurrentScheduleActivity.class);
+                        intent.putExtra("SELECTED_SCHEDULE_INDEX", selectedScheduleIndex);
                         mContext.startActivity(intent);
                 }
         }

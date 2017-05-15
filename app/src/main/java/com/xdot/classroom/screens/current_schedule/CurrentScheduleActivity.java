@@ -23,6 +23,7 @@ public class CurrentScheduleActivity extends AppCompatActivity {
         private CurrentScheduleCustomPagerAdapter mCustomPagerAdapter;
         private ViewPager mViewPager;
         private Context mContext;
+        private final int DEFAULT_SCHEDULE_INDEX = 0;
 
 
         @Override
@@ -30,6 +31,9 @@ public class CurrentScheduleActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 mContext = this;
                 setContentView(R.layout.activity_current_schedule);
+
+                int scheduleIndex = getIntent().getIntExtra("SELECTED_SCHEDULE_INDEX", DEFAULT_SCHEDULE_INDEX);
+                Log.d(LOG_TAG, "Schedule index: " + scheduleIndex);
 
                 activateCustomActionBar();
                 activateViewPager();

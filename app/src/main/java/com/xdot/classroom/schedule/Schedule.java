@@ -52,6 +52,10 @@ public class Schedule {
         }
 
 
+        public List<UniversityActivity> getUniversityActivitiesOnDay(String day) {
+                return this.univActivities.get(day);
+        }
+
         public void addUniversityActivity(UniversityActivity univActivity, String dayOfTheWeek) {
                 this.univActivities.get(dayOfTheWeek).add(univActivity);
         }

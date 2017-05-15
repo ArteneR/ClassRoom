@@ -13,4 +13,10 @@ public class Time {
         public String getTimeString() {
                 return time;
         }
+
+
+        @Override
+        public String toString() {
+                return time;
+        }
 }

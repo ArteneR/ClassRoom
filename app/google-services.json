@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "355282350662",
+    "project_id": "firebase-classroomapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355282350662:android:55fa979bfb58319b",
+        "android_client_info": {
+          "package_name": "com.xdot.classroom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7Tkr35fLccIulQlXf-gnSuEQYohm2GQM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

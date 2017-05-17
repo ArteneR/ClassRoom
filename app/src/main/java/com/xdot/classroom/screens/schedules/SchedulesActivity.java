@@ -1,5 +1,6 @@
 package com.xdot.classroom.screens.schedules;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,10 @@ import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAdapter;
 import com.xdot.classroom.R;
+import com.xdot.classroom.screens.create_schedule.CreateScheduleActivity;
+import com.xdot.classroom.screens.current_schedule.CurrentScheduleActivity;
+import com.xdot.classroom.send_notifications.RegistrationService;
+
 import java.util.ArrayList;
 
 
@@ -34,6 +39,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
                 activateCustomActionBar();
                 activateSchedulesListView();
+                activateNotificationsRegistrationService();
         }
 
 
@@ -123,10 +129,24 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
 
+        private void activateNotificationsRegistrationService() {
+                Intent i = new Intent(this, RegistrationService.class);
+                startService(i);
+        }
+
+
+
         private void hideNoSchedulesMessage() {
                 View view = findViewById(R.id.relativeLayoutNoSchedules);
                 view.setVisibility(View.INVISIBLE);
                 view.setVisibility(View.GONE);
+        }
+
+
+
+        private void openCreateScheduleActivity() {
+                Intent intent = new Intent(this, CreateScheduleActivity.class);
+                this.startActivity(intent);
         }
 
 
@@ -144,6 +164,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
                     case R.id.ivRightActionbarButton:
                         Log.d(LOG_TAG, "Button: Add Schedule");
+                        openCreateScheduleActivity();
                         break;
                 }
         }

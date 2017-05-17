@@ -1,6 +1,7 @@
 package com.xdot.classroom.screens.login;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
-
+import com.xdot.classroom.send_notifications.RegistrationService;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,10 +30,18 @@ public class LoginActivity extends AppCompatActivity {
 
                 hideActionBar();
 
+                activateNotificationsRegistrationService();
+
                 btnLogIn = (Button) findViewById(R.id.btnLogIn);
                 tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
                 tvSignUp = (TextView) findViewById(R.id.tvSignUp);
                 tvSkipLogin = (TextView) findViewById(R.id.tvSkipLogin);
+        }
+
+
+        private void activateNotificationsRegistrationService() {
+                Intent i = new Intent(this, RegistrationService.class);
+                startService(i);
         }
 
 

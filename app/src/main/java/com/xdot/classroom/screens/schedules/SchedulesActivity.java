@@ -10,12 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAdapter;
 import com.xdot.classroom.R;
 import com.xdot.classroom.screens.create_schedule.CreateScheduleActivity;
-import com.xdot.classroom.screens.current_schedule.CurrentScheduleActivity;
 import com.xdot.classroom.send_notifications.RegistrationService;
 
 import java.util.ArrayList;
@@ -35,11 +36,24 @@ public class SchedulesActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_schedules);
 
+                connectToFirebase();
+
                 initializeDataProviderModule();
 
                 activateCustomActionBar();
                 activateSchedulesListView();
                 activateNotificationsRegistrationService();
+        }
+
+
+
+        private void connectToFirebase() {
+                Log.d(LOG_TAG, "connectToFirebase");
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference();
+
+                myRef.child("test").setValue("Hello, World!");
+                Log.d(LOG_TAG, "HERE1");
         }
 
 

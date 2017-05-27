@@ -1,20 +1,27 @@
 {
   "project_info": {
-    "project_number": "355282350662",
-    "project_id": "firebase-classroomapp"
+    "project_number": "962102694135",
+    "firebase_url": "https://classroom-88cb8.firebaseio.com",
+    "project_id": "classroom-88cb8",
+    "storage_bucket": "classroom-88cb8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:355282350662:android:55fa979bfb58319b",
+        "mobilesdk_app_id": "1:962102694135:android:7cc89dabc7abbd39",
         "android_client_info": {
-          "package_name": "com.xdot.classroom"
+          "package_name": "com.classroomapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "962102694135-p45504tmfmo165q6ovkt5m6a9mmmbrmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyB7Tkr35fLccIulQlXf-gnSuEQYohm2GQM"
+          "current_key": "AIzaSyApVO4E_AZPYDKKjgXIxS5SQaHmEfmX4e0"
         }
       ],
       "services": {
@@ -26,7 +33,51 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962102694135:android:55fa979bfb58319b",
+        "android_client_info": {
+          "package_name": "com.xdot.classroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962102694135-mhtte493ul235p81hoqohio9kdap35gq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xdot.classroom",
+            "certificate_hash": "8e8f93387eae196d30d29ab1781a3d17d29007ad"
+          }
+        },
+        {
+          "client_id": "962102694135-p45504tmfmo165q6ovkt5m6a9mmmbrmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApVO4E_AZPYDKKjgXIxS5SQaHmEfmX4e0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
           "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962102694135-p45504tmfmo165q6ovkt5m6a9mmmbrmq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     }

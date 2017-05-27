@@ -20,20 +20,20 @@ public class RegistrationService extends IntentService {
         @Override
         protected void onHandleIntent(Intent intent) {
                 InstanceID myID = InstanceID.getInstance(this);
-//                try {
-//                    String registrationToken = myID.getToken(
-//                        getString(R.string.gcm_defaultSenderId),
-//                        GoogleCloudMessaging.INSTANCE_ID_SCOPE,
-//                        null
-//                    );
-//
-//                    Log.d("Registration Token", registrationToken);
-//
-//                    GcmPubSub subscription = GcmPubSub.getInstance(this);
-//                    subscription.subscribe(registrationToken, "/topics/my_little_topic", null);
-//
-//                } catch(Exception e) {
-//                    Log.e("REGISTRATION ERROR", e.toString());
-//                }
+                try {
+                    String registrationToken = myID.getToken(
+                        getString(R.string.gcm_defaultSenderId),
+                        GoogleCloudMessaging.INSTANCE_ID_SCOPE,
+                        null
+                    );
+
+                    Log.d("Registration Token", registrationToken);
+
+                    GcmPubSub subscription = GcmPubSub.getInstance(this);
+                    subscription.subscribe(registrationToken, "/topics/my_little_topic", null);
+
+                } catch(Exception e) {
+                    Log.e("REGISTRATION ERROR", e.toString());
+                }
         }
 }

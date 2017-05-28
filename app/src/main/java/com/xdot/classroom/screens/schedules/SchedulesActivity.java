@@ -10,8 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
@@ -28,6 +31,8 @@ public class SchedulesActivity extends AppCompatActivity {
         private RecyclerView.LayoutManager schedulesLayoutManager;
         private static String LOG_TAG = "SchedulesActivity";
         private DataProvider dataProvider;
+        private FirebaseDatabase firebaseDB;
+        private DatabaseReference firebaseDBRef;
 
 
         @Override
@@ -35,10 +40,8 @@ public class SchedulesActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_schedules);
 
-            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-            Log.d(LOG_TAG, "Reg Token: " + refreshedToken);
-
                 connectToFirebase();
+                addListenerForUpdateDeviceRegistrationId();
 
                 initializeDataProviderModule();
 
@@ -50,11 +53,43 @@ public class SchedulesActivity extends AppCompatActivity {
 
         private void connectToFirebase() {
                 Log.d(LOG_TAG, "connectToFirebase");
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference();
+                firebaseDB = FirebaseDatabase.getInstance();
+                firebaseDBRef = firebaseDB.getReference();
+        }
 
-                myRef.child("test").setValue("Hello, World!");
-                Log.d(LOG_TAG, "HERE1");
+
+
+        private void addListenerForUpdateDeviceRegistrationId() {
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+
+                firebaseDBRef.child("Users").child(userId).child("DeviceRegistrationID").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        String firebaseDeviceRegistrationId = snapshot.getValue().toString();
+                        checkForUpdateDeviceRegistrationId(firebaseDeviceRegistrationId);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
+        }
+
+
+
+        private void checkForUpdateDeviceRegistrationId(String firebaseDeviceRegistrationId) {
+                String newDeviceRegistrationId = FirebaseInstanceId.getInstance().getToken();
+                Log.d(LOG_TAG, "OLD Token: " + firebaseDeviceRegistrationId);
+                Log.d(LOG_TAG, "NEW Token: " + newDeviceRegistrationId);
+                if (!newDeviceRegistrationId.equals(firebaseDeviceRegistrationId)) {
+                    updateDeviceRegistrationId(newDeviceRegistrationId);
+                }
+        }
+
+
+
+        private void updateDeviceRegistrationId(String newDeviceRegistrationId) {
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                firebaseDBRef.child("Users").child(userId).child("DeviceRegistrationID").setValue(newDeviceRegistrationId);
         }
 
 

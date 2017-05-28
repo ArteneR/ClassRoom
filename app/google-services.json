@@ -8,37 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:962102694135:android:7cc89dabc7abbd39",
-        "android_client_info": {
-          "package_name": "com.classroomapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "962102694135-p45504tmfmo165q6ovkt5m6a9mmmbrmq.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyApVO4E_AZPYDKKjgXIxS5SQaHmEfmX4e0"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:962102694135:android:55fa979bfb58319b",
         "android_client_info": {
           "package_name": "com.xdot.classroom"

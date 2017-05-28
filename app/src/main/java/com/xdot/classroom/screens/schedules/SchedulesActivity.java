@@ -12,13 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAdapter;
 import com.xdot.classroom.R;
 import com.xdot.classroom.screens.create_schedule.CreateScheduleActivity;
-import com.xdot.classroom.send_notifications.RegistrationService;
-
 import java.util.ArrayList;
 
 
@@ -36,13 +35,15 @@ public class SchedulesActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_schedules);
 
+            String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+            Log.d(LOG_TAG, "Reg Token: " + refreshedToken);
+
                 connectToFirebase();
 
                 initializeDataProviderModule();
 
                 activateCustomActionBar();
                 activateSchedulesListView();
-                activateNotificationsRegistrationService();
         }
 
 
@@ -139,13 +140,6 @@ public class SchedulesActivity extends AppCompatActivity {
 
                 // Code to remove an item with default animation
                 //((SchedulesRecyclerViewAdapter) schedulesAdapter).deleteItem(index);
-        }
-
-
-
-        private void activateNotificationsRegistrationService() {
-                Intent i = new Intent(this, RegistrationService.class);
-                startService(i);
         }
 
 

@@ -12,7 +12,7 @@
     <application
         android:name=".DataProvider"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_classroom_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -28,26 +28,27 @@
         </receiver>
 
 
-        <service android:name=".send_notifications.RegistrationService"
-                 android:exported="false" />
-
-
-        <service
-            android:name=".send_notifications.TokenRefreshListenerService"
-            android:exported="false">
+        <service android:name=".send_notifications.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
 
-        <service
-            android:name=".send_notifications.NotificationsListenerService"
-            android:exported="false" >
+        <service android:name=".send_notifications.FirebaseIDService">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_classroom_launcher" />
+
+
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+                   android:resource="@color/colorAppMain" />
 
 
         <activity android:name=".screens.login.LoginActivity">

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class SchedulesRecyclerViewAdapter extends RecyclerView.Adapter<SchedulesRecyclerViewAdapter.DataObjectHolder> {
         private static String LOG_TAG = "SchedulesRecyclerViewAdapter";
         private ArrayList<SchedulesListData> schedulesDataset;
-        private static MyClickListener myClickListener;
 
 
         public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -36,8 +35,7 @@ public class SchedulesRecyclerViewAdapter extends RecyclerView.Adapter<Schedules
 
                 @Override
                 public void onClick(View v) {
-                        myClickListener.onItemClick(getAdapterPosition(), v);
-                        Log.d(LOG_TAG, "Clicked: " + getAdapterPosition());
+                        Log.d(LOG_TAG, "Clicked on item: " + getAdapterPosition());
                         openScheduleActivity(getAdapterPosition());
                 }
 
@@ -47,11 +45,6 @@ public class SchedulesRecyclerViewAdapter extends RecyclerView.Adapter<Schedules
                         intent.putExtra("SELECTED_SCHEDULE_INDEX", selectedScheduleIndex);
                         mContext.startActivity(intent);
                 }
-        }
-
-
-        public void setOnItemClickListener(MyClickListener myClickListener) {
-                this.myClickListener = myClickListener;
         }
 
 

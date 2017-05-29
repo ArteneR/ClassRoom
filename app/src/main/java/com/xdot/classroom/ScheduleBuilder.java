@@ -61,7 +61,7 @@ public class ScheduleBuilder {
 
 
 
-        public void addScheduleEntry(String startTime, String endTime, String subject, String room, String building) {
+        public void addScheduleEntry(String startTime, String endTime, String subject, String room, String building, String backgroundColor) {
                 int startTimeHour = extractTimeHour(startTime);
                 int startTimeMinute = extractTimeMinute(startTime);
                 int endTimeHour = extractTimeHour(endTime);
@@ -82,15 +82,7 @@ public class ScheduleBuilder {
                 Log.d(LOG_TAG, "scheduleEntryMarginTop: " + scheduleEntryMarginTop);
                 Log.d(LOG_TAG, "scheduleEntryHeight: " + scheduleEntryHeight);
 
-                RelativeLayout relativeLayout;
-
-                // TEST only:
-                if (startTime.equals("10:30")) {
-                    relativeLayout = makeScheduleEntryLayout("#ffcccc", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
-                }
-                else {
-                    relativeLayout = makeScheduleEntryLayout("#99ff99", scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
-                }
+                RelativeLayout relativeLayout = makeScheduleEntryLayout(backgroundColor, scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
 
                 addScheduleEntryLayout(relativeLayout);
         }

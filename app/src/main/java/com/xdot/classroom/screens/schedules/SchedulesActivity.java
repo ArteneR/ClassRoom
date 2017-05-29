@@ -20,7 +20,9 @@ import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAdapter;
 import com.xdot.classroom.R;
+import com.xdot.classroom.schedule.Schedule;
 import com.xdot.classroom.screens.create_schedule.CreateScheduleActivity;
+import com.xdot.classroom.university_activities.UniversityActivity;
 import java.util.ArrayList;
 
 
@@ -46,7 +48,7 @@ public class SchedulesActivity extends AppCompatActivity {
                 initializeDataProviderModule();
 
                 activateCustomActionBar();
-                activateSchedulesListView();
+                getFirebaseSchedules();
         }
 
 
@@ -95,7 +97,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
         private void initializeDataProviderModule() {
-                dataProvider = (DataProvider)getApplication();
+                dataProvider = (DataProvider) getApplication();
                 dataProvider.init();
                 dataProvider.printSchedules();
         }
@@ -105,24 +107,17 @@ public class SchedulesActivity extends AppCompatActivity {
         @Override
         protected void onResume() {
                 super.onResume();
-                if (schedulesAdapter != null) {
-                    ((SchedulesRecyclerViewAdapter) schedulesAdapter).setOnItemClickListener(new SchedulesRecyclerViewAdapter
-                        .MyClickListener() {
-                        @Override
-                        public void onItemClick(int position, View v) {
-                            Log.i(LOG_TAG, " Clicked on Item " + position + " - " + v);
-                        }
-                    });
-                }
         }
 
 
 
         private ArrayList<SchedulesListData> getDataSet() {
                 ArrayList results = new ArrayList<SchedulesListData>();
-                for (int index = 0; index < 6; index++) {
-                    SchedulesListData obj = new SchedulesListData("Schedule " + index + " Name");
+                int index = 0;
+                for (Schedule schedule: dataProvider.getAllSchedules()) {
+                    SchedulesListData obj = new SchedulesListData(schedule.Name);
                     results.add(index, obj);
+                    index++;
                 }
                 return results;
         }
@@ -150,10 +145,88 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
 
+        private void getFirebaseSchedules() {
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+
+                firebaseDBRef.child("Users").child(userId).child("Schedules").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot scheduleSnapshot: dataSnapshot.getChildren()) {
+                                String scheduleId = scheduleSnapshot.getKey();
+                                Schedule firebaseSchedule = scheduleSnapshot.getValue(Schedule.class);
+                                firebaseSchedule.setId(scheduleId);
+                                firebaseSchedule.init();
+
+                                for (DataSnapshot entrySnapshot: scheduleSnapshot.child("Entries").getChildren()) {
+                                    String dayOfWeek = entrySnapshot.getKey();
+
+                                    for (DataSnapshot univActivityTypeSnapshot: entrySnapshot.getChildren()) {
+                                        String univActivityType = univActivityTypeSnapshot.getKey();
+
+                                        for (DataSnapshot univActivitySnapshot: univActivityTypeSnapshot.getChildren()) {
+                                            String univActivityId = univActivitySnapshot.getKey();
+                                            String className = "com.xdot.classroom.university_activities." + pluralToSingular(univActivityType);
+
+                                            try {
+                                                Class univActivityClass = Class.forName(className);
+                                                UniversityActivity univActivity = (UniversityActivity) univActivitySnapshot.getValue(univActivityClass);
+                                                univActivity.setId(univActivityId);
+                                                firebaseSchedule.addUniversityActivity(univActivity, dayOfWeek);
+                                            }
+                                            catch (ClassNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+
+                                firebaseSchedule.printSchedule();
+                                dataProvider.addSchedule(firebaseSchedule);
+                            }
+
+                            // display Schedules data...
+                            activateSchedulesListView();
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
+        }
+
+
+        private String pluralToSingular(String plural) {
+                String singular = "";
+                int pluralLength = plural.length();
+
+                if (pluralLength <= 0) {
+                    return "";
+                }
+
+                if (pluralLength >= 3) {
+                    String lastThreeLetters = plural.substring(pluralLength-3, pluralLength);
+                    if (lastThreeLetters.equals("ies")) {
+                        singular = plural.substring(0, pluralLength-3) + "y";
+                        return singular;
+                    }
+                }
+
+                String lastLetter = plural.substring(pluralLength-1, pluralLength);
+                if (lastLetter.equals("s")) {
+                    singular = plural.substring(0, pluralLength-1);
+                }
+
+                return singular;
+        }
+
+
         /*
          * Setup the list which will display the available schedules
          */
-        private void activateSchedulesListView() {
+        public void activateSchedulesListView() {
                 Log.d(LOG_TAG, "Schedules count: " + this.dataProvider.getSchedulesCount());
                 if (this.dataProvider.getSchedulesCount() == 0) {
                     // Don't activate the schedules list -> display text telling user that there are no schedules

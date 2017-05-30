@@ -34,6 +34,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp"
         android:onClick="clicked"
-        app:srcCompat="@drawable/selector_plus_icon"/>
+        app:srcCompat="@drawable/selector_plus_icon"
+        android:visibility="invisible" />
 
 </RelativeLayout>

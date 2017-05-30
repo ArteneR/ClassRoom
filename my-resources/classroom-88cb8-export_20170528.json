@@ -1,0 +1,428 @@
+{
+  "Locations" : {
+    "-KaXH2rswZJJXVWrJ5dS" : {
+      "Name" : "Arad"
+    },
+    "-KagTbkEsbt8p_lL654W" : {
+      "Buildings" : {
+        "-KabtD6dGEGmLU9wHreS" : {
+          "BuildingLocation" : {
+            "Latitude" : 45.745602,
+            "Longitude" : 21.229886
+          },
+          "Name" : "Constructii",
+          "Rooms" : {
+            "-KafK9WUF4owUIkc7Ez4" : {
+              "Name" : "CON209"
+            },
+            "-KagTOAYdbiPmhebapcF" : {
+              "Name" : "CON103"
+            }
+          }
+        },
+        "-Kafc7zKvEHdi1T1LVl2" : {
+          "BuildingLocation" : {
+            "Latitude" : 45.745602,
+            "Longitude" : 21.229886
+          },
+          "Name" : "Electro",
+          "Sections" : {
+            "-Kafc7zKvEHdi1T1LVl2" : {
+              "Floors" : {
+                "-KabtD6dGEGmLU9wHreS" : {
+                  "Name" : "Ground Floor",
+                  "Rooms" : {
+                    "-KafK9WUF4owUIkc7Ez4" : {
+                      "Name" : "A010"
+                    },
+                    "-KagTbkEsbt8p_lL654W" : {
+                      "Name" : "A008"
+                    }
+                  }
+                },
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Name" : "Floor 3",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS" : {
+                      "Name" : "A316"
+                    },
+                    "-KagTOAYdbiPmhebapcF" : {
+                      "Name" : "A320"
+                    }
+                  }
+                },
+                "-KagTOAYdbiPmhebapcF" : {
+                  "Name" : "Floor 1",
+                  "Rooms" : {
+                    "-KagTOAYdbiPmhebapcF" : {
+                      "Name" : "A109"
+                    }
+                  }
+                },
+                "-KagTbkEsbt8p_lL654W" : {
+                  "Name" : "Floor 2",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS" : {
+                      "Name" : "A215"
+                    },
+                    "-KagTbkEsbt8p_lL654W" : {
+                      "Name" : "A209"
+                    }
+                  }
+                }
+              },
+              "Name" : "Section A",
+              "SectionLocation" : {
+                "Latitude" : 45.747262,
+                "Longitude" : 21.226709
+              }
+            },
+            "-KagTbkEsbt8p_lL654W" : {
+              "Floors" : {
+                "-KabtD6dGEGmLU9wHreS" : {
+                  "Name" : "Ground Floor",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS" : {
+                      "Name" : "B009"
+                    },
+                    "-KagTbkEsbt8p_lL654W" : {
+                      "Name" : "B014"
+                    }
+                  }
+                },
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Name" : "Floor 1",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS  " : {
+                      "Name" : "B125"
+                    }
+                  }
+                }
+              },
+              "Name" : "Section B",
+              "SectionLocation" : {
+                "Latitude" : 45.745602,
+                "Longitude" : 21.229886
+              }
+            }
+          }
+        }
+      },
+      "Name" : "Timisoara"
+    }
+  },
+  "Users" : {
+    "4o5JWilDQyTcrY7JyngUhzR8NGj1" : {
+      "AccountActivated" : false,
+      "ActivationCode" : "4FG58KJ8",
+      "AssignedSubjects" : {
+        "-KabtD6dGEGmLU9wHreS" : {
+          "Name" : "Algebra"
+        },
+        "-KafK9WUF4owUIkc7Ez4" : {
+          "Name" : "Management"
+        },
+        "-Kafc7zKvEHdi1T1LVl2" : {
+          "Name" : "Programming"
+        },
+        "-KagQdaMzoITK552_rop" : {
+          "Name" : "Digital Logic"
+        },
+        "-KagTOAYdbiPmhebapcF" : {
+          "Name" : "Physics"
+        },
+        "-KagTbkEsbt8p_lL654W" : {
+          "Name" : "Mathematics"
+        }
+      },
+      "DeviceRegistrationID" : "daXWP2T4-Rw:APA91bHs-XcIMyPx3IJJkRe1B3i40tbAurcd9yfTFkKWl4s1qqSkDxDvcrS1dh6lr40ePVVBJI5fJDyA4k-tIy3lM9-F2gzucodsjizQhxnAVV8mOuSe87YIDfTODsX_hswkIaPWApyd",
+      "Email" : "andrei.popescu@yahoo.com",
+      "Firstname" : "Andrei",
+      "Lastname" : "POPESCU",
+      "Preferences" : {
+        "CurrentlySelectedSchedule" : "-KaXH2rswZJJXVWrJ5dS",
+        "NotificationMinutesBefore" : 15
+      },
+      "Schedules" : {
+        "-KaXH2rswZJJXVWrJ5dS" : {
+          "Friday" : {
+            "Courses" : {
+              "-KagTOAYdbiPmhebapcF" : {
+                "EndTime" : "00:00",
+                "EvenWeeksOnly" : true,
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "22:00",
+                "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+              },
+              "-KagTbkEsbt8p_lL654W" : {
+                "EndTime" : "18:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            },
+            "Exams" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "21:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "19:00",
+                "SubjectID" : "-KagTOAYdbiPmhebapcF"
+              }
+            },
+            "Labs" : {
+              "-KagQdaMzoITK552_rop" : {
+                "EndTime" : "12:00",
+                "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                "StartTime" : "10:00",
+                "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+              }
+            },
+            "Seminaries" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "18:00",
+                "OddWeeksOnly" : true,
+                "RoomID" : "-KagTbkEsbt8p_lL654W",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            }
+          },
+          "Monday" : {
+            "Courses" : {
+              "-KagTOAYdbiPmhebapcF" : {
+                "EndTime" : "00:00",
+                "EvenWeeksOnly" : true,
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "22:00",
+                "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+              },
+              "-KagTbkEsbt8p_lL654W" : {
+                "EndTime" : "18:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            },
+            "Exams" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "21:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "19:00",
+                "SubjectID" : "-KagTOAYdbiPmhebapcF"
+              }
+            },
+            "Labs" : {
+              "-KagQdaMzoITK552_rop" : {
+                "EndTime" : "12:00",
+                "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                "StartTime" : "10:00",
+                "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+              }
+            },
+            "Seminaries" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "18:00",
+                "OddWeeksOnly" : true,
+                "RoomID" : "-KagTbkEsbt8p_lL654W",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            }
+          },
+          "Name" : "Schedule AAA Name",
+          "Saturday" : {
+            "Courses" : {
+              "-KagTOAYdbiPmhebapcF" : {
+                "EndTime" : "00:00",
+                "EvenWeeksOnly" : true,
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "22:00",
+                "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+              },
+              "-KagTbkEsbt8p_lL654W" : {
+                "EndTime" : "18:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            },
+            "Exams" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "21:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "19:00",
+                "SubjectID" : "-KagTOAYdbiPmhebapcF"
+              }
+            },
+            "Labs" : {
+              "-KagQdaMzoITK552_rop" : {
+                "EndTime" : "12:00",
+                "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                "StartTime" : "10:00",
+                "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+              }
+            },
+            "Seminaries" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "18:00",
+                "OddWeeksOnly" : true,
+                "RoomID" : "-KagTbkEsbt8p_lL654W",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            }
+          },
+          "Thursday" : {
+            "Courses" : {
+              "-KagTOAYdbiPmhebapcF" : {
+                "EndTime" : "00:00",
+                "EvenWeeksOnly" : true,
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "22:00",
+                "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+              },
+              "-KagTbkEsbt8p_lL654W" : {
+                "EndTime" : "18:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            },
+            "Exams" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "21:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "19:00",
+                "SubjectID" : "-KagTOAYdbiPmhebapcF"
+              }
+            },
+            "Labs" : {
+              "-KagQdaMzoIRK652_rop" : {
+                "EndTime" : "16:00",
+                "RoomID" : "-KabtD6dGEGmLU9wHreS",
+                "StartTime" : "14:00",
+                "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+              },
+              "-KagQdaMzoITK552_rop" : {
+                "EndTime" : "12:00",
+                "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                "StartTime" : "10:00",
+                "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+              }
+            },
+            "Seminaries" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "18:00",
+                "OddWeeksOnly" : true,
+                "RoomID" : "-KagTbkEsbt8p_lL654W",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            }
+          },
+          "Tuesday" : {
+            "Courses" : {
+              "-KagTOAYdbiPmhebapcF" : {
+                "EndTime" : "00:00",
+                "EvenWeeksOnly" : true,
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "22:00",
+                "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+              },
+              "-KagTbkEsbt8p_lL654W" : {
+                "EndTime" : "18:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            },
+            "Exams" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "21:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "19:00",
+                "SubjectID" : "-KagTOAYdbiPmhebapcF"
+              }
+            },
+            "Labs" : {
+              "-KagQdaMzoITK552_rop" : {
+                "EndTime" : "12:00",
+                "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                "StartTime" : "10:00",
+                "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+              }
+            },
+            "Seminaries" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "18:00",
+                "OddWeeksOnly" : true,
+                "RoomID" : "-KagTbkEsbt8p_lL654W",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            }
+          },
+          "Wednesday" : {
+            "Courses" : {
+              "-KagTOAYdbiPmhebapcF" : {
+                "EndTime" : "00:00",
+                "EvenWeeksOnly" : true,
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "22:00",
+                "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+              },
+              "-KagTbkEsbt8p_lL654W" : {
+                "EndTime" : "18:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            },
+            "Exams" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "21:00",
+                "RoomID" : "-KagTOAYdbiPmhebapcF",
+                "StartTime" : "19:00",
+                "SubjectID" : "-KagTOAYdbiPmhebapcF"
+              }
+            },
+            "Labs" : {
+              "-KagQdaMzoITK552_rop" : {
+                "EndTime" : "12:00",
+                "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                "StartTime" : "10:00",
+                "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+              }
+            },
+            "Seminaries" : {
+              "-KafK9WUF4owUIkc7Ez4" : {
+                "EndTime" : "18:00",
+                "OddWeeksOnly" : true,
+                "RoomID" : "-KagTbkEsbt8p_lL654W",
+                "StartTime" : "15:00",
+                "SubjectID" : "-KagQdaMzoITK552_rop"
+              }
+            }
+          }
+        },
+        "-Kablg0Istatuwe79F_P" : {
+          "Name" : "Schedule BBB Name"
+        }
+      }
+    },
+    "HSu85kwLgTS1SV8NMXEQvCaW7Hz1" : {
+      "AccountActivated" : true,
+      "ActivationCode" : "IF058MJ8",
+      "DeviceRegistrationID" : "fcdsK8qRbpc:APA91bHjdLxUFlsQyqxSoHKXOtQPKPxvskTG3LJ2FR_9-bCth53JJqRoZLEaqUl_NGNLIadTOof4N1aFaoeHA3Obp6L7K6R9qbXAkvhzI5sUeNL_VWyzvO_3I61UUbaqKKt4yuhWP5r-",
+      "Email" : "maria.lupescu@gmail.com",
+      "Firstname" : "Maria",
+      "Lastname" : "LUPESCU",
+      "Preferences" : {
+        "CurrentlySelectedSchedule" : "n/a",
+        "NotificationMinutesBefore" : 10
+      }
+    }
+  },
+  "message" : "abcd",
+  "test" : "Hello, World!"
+}

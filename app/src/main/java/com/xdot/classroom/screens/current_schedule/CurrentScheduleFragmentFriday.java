@@ -28,13 +28,11 @@ public class CurrentScheduleFragmentFriday extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
                 View rootView = inflater.inflate(R.layout.fragment_current_schedule_friday, container, false);
-                Log.d(LOG_TAG, "-----------------------ON FRAGMENT CREATE");
 
                 mContext = getContext();
                 initializeDataProviderModule();
 
-                int currentScheduleIndex = dataProvider.getCurrentScheduleIndex();
-                currentSchedule = dataProvider.getSchedule("" + currentScheduleIndex);
+                currentSchedule = dataProvider.getCurrentSchedule();
 
                 return rootView;
         }
@@ -44,25 +42,18 @@ public class CurrentScheduleFragmentFriday extends Fragment {
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
                 super.onActivityCreated(savedInstanceState);
 
-                Log.d(LOG_TAG, "-----------------------ON ACTIVITY CREATE");
-
                 // create and show the schedule
                 ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_friday", mContext);
-//                scheduleBuilder.addScheduleEntry("08:30", "10:00", "Programming", "B514", "Corpul B");
-
-//                scheduleBuilder.addScheduleEntry("11:00", "14:00", "Mathematics", "B514", "Corpul B");
-
-//                int currentScheduleIndex = dataProvider.getCurrentScheduleIndex();
-//                currentSchedule = dataProvider.getSchedule("" + currentScheduleIndex);
                 List<UniversityActivity> univActivities = currentSchedule.getUniversityActivitiesOnDay("Friday");
 
                 for (int i = 0; i < univActivities.size(); i++) {
                         Log.d(LOG_TAG, "UnivActivity: " + univActivities.get(i));
-                        scheduleBuilder.addScheduleEntry(univActivities.get(i).getStartTime().toString(),
-                                                         univActivities.get(i).getEndTime().toString(),
-                                                         univActivities.get(i).getSubject().toString(),
-                                                         univActivities.get(i).getRoom().toString(),
-                                                         univActivities.get(i).getBuilding().toString());
+                        scheduleBuilder.addScheduleEntry(univActivities.get(i).StartTime,
+                                                         univActivities.get(i).EndTime,
+                                                         univActivities.get(i).Subject,
+                                                         univActivities.get(i).Room,
+                                                         univActivities.get(i).Building,
+                                                         univActivities.get(i).getBackgroundColor());
                 }
         }
 
@@ -70,6 +61,5 @@ public class CurrentScheduleFragmentFriday extends Fragment {
         private void initializeDataProviderModule() {
                 Log.d(LOG_TAG, "Initializing Data Provider");
                 dataProvider = (DataProvider) (((Activity) mContext)).getApplication();
-                dataProvider.init();
         }
 }

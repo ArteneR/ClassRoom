@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
 import com.xdot.classroom.ScheduleBuilder;
+import com.xdot.classroom.schedule.Schedule;
+import com.xdot.classroom.university_activities.UniversityActivity;
+import java.util.List;
 
 
 
@@ -19,6 +22,7 @@ public class CurrentScheduleFragmentSaturday extends Fragment {
         private static String LOG_TAG = "CurrentScheduleFragmentSaturday";
         private DataProvider dataProvider;
         private Context mContext;
+        private Schedule currentSchedule;
 
 
         @Override
@@ -29,6 +33,8 @@ public class CurrentScheduleFragmentSaturday extends Fragment {
                 mContext = getContext();
                 initializeDataProviderModule();
 
+                currentSchedule = dataProvider.getCurrentSchedule();
+
                 return rootView;
         }
 
@@ -37,19 +43,24 @@ public class CurrentScheduleFragmentSaturday extends Fragment {
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
                 super.onActivityCreated(savedInstanceState);
 
-                Log.d(LOG_TAG, "-----------------------ON ACTIVITY CREATE");
-
                 // create and show the schedule
                 ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_saturday", mContext);
-                scheduleBuilder.addScheduleEntry("09:30", "10:50", "Programming", "B514", "Corpul B");
+                List<UniversityActivity> univActivities = currentSchedule.getUniversityActivitiesOnDay("Saturday");
 
-                scheduleBuilder.addScheduleEntry("11:00", "12:00", "Mathematics", "B514", "Corpul B");
+                for (int i = 0; i < univActivities.size(); i++) {
+                        Log.d(LOG_TAG, "UnivActivity: " + univActivities.get(i));
+                        scheduleBuilder.addScheduleEntry(univActivities.get(i).StartTime,
+                                                         univActivities.get(i).EndTime,
+                                                         univActivities.get(i).Subject,
+                                                         univActivities.get(i).Room,
+                                                         univActivities.get(i).Building,
+                                                         univActivities.get(i).getBackgroundColor());
+                }
         }
 
 
         private void initializeDataProviderModule() {
                 Log.d(LOG_TAG, "Initializing Data Provider");
                 dataProvider = (DataProvider) (((Activity) mContext)).getApplication();
-                dataProvider.init();
         }
 }

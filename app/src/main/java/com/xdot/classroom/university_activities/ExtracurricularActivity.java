@@ -1,22 +1,23 @@
 package com.xdot.classroom.university_activities;
 
-import com.xdot.classroom.schedule.Building;
-import com.xdot.classroom.schedule.Room;
-import com.xdot.classroom.schedule.Subject;
-import com.xdot.classroom.schedule.Time;
-
-
 
 public class ExtracurricularActivity  extends UniversityActivity {
-        private String backgroundColor = "#B38481";
+        private String backgroundColor = "#E1D5E7";
 
 
-        public ExtracurricularActivity(String id, Time startTime, Time endTime, Room room, Building building, Subject subject) {
-                super(id, startTime, endTime, room, building, subject);
+        /*
+         * Do not delete!
+         * Needed by Firebase.
+         */
+        public ExtracurricularActivity() {}
+
+
+        public String getBackgroundColor() {
+                return backgroundColor;
         }
 
 
-        public ExtracurricularActivity(String id, Time startTime, Time endTime, Room room, Building building, Subject subject, boolean evenWeeksOnly, boolean oddWeeksOnly) {
-                super(id, startTime, endTime, room, building, subject, evenWeeksOnly, oddWeeksOnly);
+        public ExtracurricularActivity(String id, String StartTime, String EndTime, String Room, String Building, String Subject) {
+                super(id, StartTime, EndTime, Room, Building, Subject);
         }
 }

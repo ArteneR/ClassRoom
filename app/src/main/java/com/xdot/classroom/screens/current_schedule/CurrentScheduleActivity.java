@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.DayOfWeek;
 import com.xdot.classroom.R;
 
@@ -24,6 +25,7 @@ public class CurrentScheduleActivity extends AppCompatActivity {
         private ViewPager mViewPager;
         private Context mContext;
         private final int DEFAULT_SCHEDULE_INDEX = 0;
+        private DataProvider dataProvider;
 
 
         @Override
@@ -32,11 +34,21 @@ public class CurrentScheduleActivity extends AppCompatActivity {
                 mContext = this;
                 setContentView(R.layout.activity_current_schedule);
 
+                initializeDataProviderModule();
+
                 int scheduleIndex = getIntent().getIntExtra("SELECTED_SCHEDULE_INDEX", DEFAULT_SCHEDULE_INDEX);
-                Log.d(LOG_TAG, "Schedule index: " + scheduleIndex);
+                Log.d(LOG_TAG, "Selected schedule index: " + scheduleIndex);
+                dataProvider.setCurrentScheduleIndex(scheduleIndex);
+                activityTitle = dataProvider.getCurrentScheduleName();
 
                 activateCustomActionBar();
                 activateViewPager();
+        }
+
+
+
+        private void initializeDataProviderModule() {
+                dataProvider = (DataProvider) (((Activity) mContext)).getApplication();
         }
 
 

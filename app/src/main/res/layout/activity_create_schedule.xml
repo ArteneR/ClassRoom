@@ -7,4 +7,58 @@
     android:layout_height="match_parent"
     tools:context="com.xdot.classroom.screens.create_schedule.CreateScheduleActivity">
 
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_classroom_2"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/tvNewSchedule"
+        android:layout_width="310dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="71dp"
+        android:text="New Schedule:"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivBackground"/>
+
+    <EditText
+        android:id="@+id/etScheduleName"
+        android:layout_width="312dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="7dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="Schedule name..."
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColorLink="#333333"
+        android:textCursorDrawable="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewSchedule"/>
+
+    <Button
+        android:id="@+id/btnCreateSchedule"
+        android:layout_width="182dp"
+        android:layout_height="52dp"
+        android:text="Create Schedule"
+        android:onClick="clicked"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.464"/>
+
 </android.support.constraint.ConstraintLayout>

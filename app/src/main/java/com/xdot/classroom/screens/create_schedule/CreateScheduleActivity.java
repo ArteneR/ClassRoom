@@ -38,7 +38,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
                 mActionBar.setDisplayShowTitleEnabled(false);
                 LayoutInflater mInflater = LayoutInflater.from(this);
 
-                View mCustomView = mInflater.inflate(R.layout.custom_actionbar_schedules, null);
+                View mCustomView = mInflater.inflate(R.layout.custom_actionbar_create_schedule, null);
 
                 mActionBar.setCustomView(mCustomView);
                 mActionBar.setDisplayShowCustomEnabled(true);
@@ -55,8 +55,16 @@ public class CreateScheduleActivity extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.ivLeftActionbarButton:
                         Log.d(LOG_TAG, "Button: Back");
+                        goToPreviousActivity();
                         break;
 
                 }
         }
+
+
+
+        private void goToPreviousActivity() {
+                super.onBackPressed();
+        }
+
 }

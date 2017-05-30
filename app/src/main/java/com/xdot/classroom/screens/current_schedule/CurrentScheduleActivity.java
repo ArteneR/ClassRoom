@@ -39,6 +39,7 @@ public class CurrentScheduleActivity extends AppCompatActivity {
                 int scheduleIndex = getIntent().getIntExtra("SELECTED_SCHEDULE_INDEX", DEFAULT_SCHEDULE_INDEX);
                 Log.d(LOG_TAG, "Selected schedule index: " + scheduleIndex);
                 dataProvider.setCurrentScheduleIndex(scheduleIndex);
+                activityTitle = dataProvider.getCurrentScheduleName();
 
                 activateCustomActionBar();
                 activateViewPager();

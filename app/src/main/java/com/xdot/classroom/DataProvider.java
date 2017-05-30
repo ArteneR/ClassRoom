@@ -55,6 +55,21 @@ public class DataProvider extends Application {
         }
 
 
+        public void removeAllSchedules() {
+                this.schedules.clear();
+        }
+
+
+        public void setCurrentScheduleIndex(int currentScheduleIndex) {
+                this.currentScheduleIndex = currentScheduleIndex;
+        }
+
+
+        public void addSchedule(Schedule newSchedule) {
+                this.schedules.add(newSchedule);
+        }
+
+
         public Schedule getSchedule(String id){
                 return this.schedules.get(Integer.parseInt(id));
         }
@@ -69,18 +84,8 @@ public class DataProvider extends Application {
         }
 
 
-        public void setCurrentScheduleIndex(int currentScheduleIndex) {
-                this.currentScheduleIndex = currentScheduleIndex;
-        }
-
-
         public List<Schedule> getAllSchedules() {
                 return schedules;
-        }
-
-
-        public void addSchedule(Schedule newSchedule) {
-                this.schedules.add(newSchedule);
         }
 
 
@@ -89,8 +94,8 @@ public class DataProvider extends Application {
         }
 
 
-        public void removeAllSchedules() {
-                this.schedules.clear();
+        public String getCurrentScheduleName() {
+                return schedules.get(currentScheduleIndex).Name;
         }
 
 }

@@ -7,12 +7,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.R;
+import com.xdot.classroom.schedule.Schedule;
 
 
 
 public class CreateScheduleActivity extends AppCompatActivity {
         private static String LOG_TAG = "CreateScheduleActivity";
+        private FirebaseDatabase firebaseDB;
+        private DatabaseReference firebaseDBRef;
+        private EditText etScheduleName;
 
 
         @Override
@@ -20,9 +31,19 @@ public class CreateScheduleActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_create_schedule);
 
+                connectToFirebase();
+
+                etScheduleName = (EditText) findViewById(R.id.etScheduleName);
+
                 activateCustomActionBar();
         }
 
+
+        private void connectToFirebase() {
+                Log.d(LOG_TAG, "Connectint To Firebase...");
+                firebaseDB = FirebaseDatabase.getInstance();
+                firebaseDBRef = firebaseDB.getReference();
+        }
 
 
         /*
@@ -45,7 +66,6 @@ public class CreateScheduleActivity extends AppCompatActivity {
         }
 
 
-
         /*
          * Handle user click events
          */
@@ -58,13 +78,63 @@ public class CreateScheduleActivity extends AppCompatActivity {
                         goToPreviousActivity();
                         break;
 
+                    case R.id.btnCreateSchedule:
+                        Log.d(LOG_TAG, "Button: Create Schedule");
+                        createNewSchedule();
+                        break;
                 }
         }
 
 
-
         private void goToPreviousActivity() {
                 super.onBackPressed();
+        }
+
+
+        private void createNewSchedule() {
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+
+                final String newScheduleName = etScheduleName.getText().toString();
+
+                firebaseDBRef.child("Users").child(userId).child("Schedules").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot userSchedulesSnapshot) {
+                                if (existsScheduleInFirebase(newScheduleName, userSchedulesSnapshot)) {
+                                        CommonFunctionalities.displayShortToast("Schedule name already exists! Please select another name.", getApplicationContext());
+                                }
+                                else {
+                                        createNewScheduleInFirebase(newScheduleName);
+                                        CommonFunctionalities.displayShortToast("Schedule have been created!", getApplicationContext());
+                                        goToPreviousActivity();
+                                }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
+        }
+
+
+        private boolean existsScheduleInFirebase(String newScheduleName, DataSnapshot userSchedulesSnapshot) {
+                boolean scheduleExists = false;
+
+                for (DataSnapshot scheduleSnapshot: userSchedulesSnapshot.getChildren()) {
+                        Schedule schedule = scheduleSnapshot.getValue(Schedule.class);
+                        if (schedule.Name.equals(newScheduleName)) {
+                                scheduleExists = true;
+                                break;
+                        }
+                }
+
+                return scheduleExists;
+        }
+
+
+        private void createNewScheduleInFirebase(String newScheduleName) {
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+
+                String newKey = firebaseDBRef.child("Users").child(userId).child("Schedules").push().getKey();
+                firebaseDBRef.child("Users").child(userId).child("Schedules").child(newKey).child("Name").setValue(newScheduleName);
         }
 
 }

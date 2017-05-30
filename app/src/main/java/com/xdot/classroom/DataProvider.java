@@ -88,4 +88,9 @@ public class DataProvider extends Application {
                 return this.schedules.size();
         }
 
+
+        public void removeAllSchedules() {
+                this.schedules.clear();
+        }
+
 }

@@ -151,6 +151,10 @@ public class SchedulesActivity extends AppCompatActivity {
                 firebaseDBRef.child("Users").child(userId).child("Schedules").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            // First delete the schedules
+                            dataProvider.removeAllSchedules();
+
                             for (DataSnapshot scheduleSnapshot: dataSnapshot.getChildren()) {
                                 String scheduleId = scheduleSnapshot.getKey();
                                 Schedule firebaseSchedule = scheduleSnapshot.getValue(Schedule.class);

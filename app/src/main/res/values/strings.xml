@@ -5,7 +5,7 @@
     <string name="login_hint_password">Password</string>
     <string name="login_button_log_in">Log in</string>
     <string name="login_text_forgot_password">Forgot password</string>
-    <string name="login_text_no_account_sign_up">Don't have account? Sign up!</string>
+    <string name="login_text_no_account_sign_up">Don\'t have account? Sign up!</string>
     <string name="login_text_skip_login">Skip login</string>
 
     <string name="schedules_title_schedules">Schedules</string>
@@ -19,7 +19,6 @@
     <string name="create_schedule_button_create_schedule">Create Schedule</string>
 
     <string name="current_schedule_title_current_schedule_name">Current Schedule Name</string>
-    <string name="current_schedule_button_week_view">Week View</string>
     <string name="current_schedule_button_edit_schedule">Edit Schedule </string>
     <string name="current_schedule_text_monday">MONDAY</string>
 </resources>

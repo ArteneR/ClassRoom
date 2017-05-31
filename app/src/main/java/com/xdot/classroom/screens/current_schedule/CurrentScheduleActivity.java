@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.DayOfWeek;
 import com.xdot.classroom.R;
-
+import com.xdot.classroom.screens.current_schedule.adapters.CurrentScheduleCustomPagerAdapter;
 
 
 public class CurrentScheduleActivity extends AppCompatActivity {

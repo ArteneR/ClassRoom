@@ -8,4 +8,9 @@
     <color name="colorTransparentBlack">#4c000000</color>
     <color name="color1">#DDDDDD</color>
     <color name="color2">#AAAAAA</color>
+    <color name="color3">#EEEEEE</color>
+    <color name="color4">#F4F4F4</color>
+    <color name="color5">#333333</color>
+    <color name="color6">#6699cc</color>
+    <color name="color7">#7EABCE</color>
 </resources>

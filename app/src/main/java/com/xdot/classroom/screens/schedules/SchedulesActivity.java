@@ -255,20 +255,11 @@ public class SchedulesActivity extends AppCompatActivity {
         }
 
 
-
         private void hideNoSchedulesMessage() {
                 View view = findViewById(R.id.relativeLayoutNoSchedules);
                 view.setVisibility(View.INVISIBLE);
                 view.setVisibility(View.GONE);
         }
-
-
-
-        private void openCreateScheduleActivity() {
-                Intent intent = new Intent(this, CreateScheduleActivity.class);
-                this.startActivity(intent);
-        }
-
 
 
         /*
@@ -288,4 +279,11 @@ public class SchedulesActivity extends AppCompatActivity {
                         break;
                 }
         }
+
+
+        private void openCreateScheduleActivity() {
+                Intent intent = new Intent(this, CreateScheduleActivity.class);
+                this.startActivity(intent);
+        }
+
 }

@@ -6,4 +6,6 @@
     <color name="colorAppMain">#266195</color>
     <color name="colorTextMain">#FFFFFF</color>
     <color name="colorTransparentBlack">#4c000000</color>
+    <color name="color1">#DDDDDD</color>
+    <color name="color2">#AAAAAA</color>
 </resources>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ClassRoom</string>
+    <string name="login_hint_username">Username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_button_log_in">Log in</string>
+    <string name="login_text_forgot_password">Forgot password</string>
+    <string name="login_text_no_account_sign_up">Don't have account? Sign up!</string>
+    <string name="login_text_skip_login">Skip login</string>
 </resources>

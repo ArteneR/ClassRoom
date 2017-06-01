@@ -8,6 +8,14 @@
     <string name="login_text_no_account_sign_up">Don\'t have account? Sign up!</string>
     <string name="login_text_skip_login">Skip login</string>
 
+    <string name="signup_title_signup">Signup</string>
+    <string name="signup_hint_firstname">Firstname</string>
+    <string name="signup_hint_lastname">Lastname</string>
+    <string name="signup_hint_email">Email</string>
+    <string name="signup_hint_password">Password</string>
+    <string name="signup_hint_re_password">Re-Password</string>
+    <string name="signup_button_create_account">Create Account</string>
+
     <string name="schedules_title_schedules">Schedules</string>
     <string name="schedules_text_no_schedules_created_yet">No schedules have been created yet!</string>
     <string name="schedules_text_your_schedules">Your schedules:</string>

@@ -75,6 +75,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="30dp"
+        android:onClick="clicked"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"/>
@@ -86,6 +87,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="30dp"
+        android:onClick="clicked"
         android:backgroundTint="@color/color8"
         android:text="@string/edit_schedule_button_delete_schedule"
         app:layout_constraintLeft_toLeftOf="parent"

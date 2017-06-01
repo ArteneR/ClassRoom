@@ -23,6 +23,10 @@
     <string name="current_schedule_text_monday">MONDAY</string>
 
     <string name="edit_schedule_title_edit_schedule">Edit Schedule</string>
+    <string name="edit_schedule_text_schedule_name">Schedule name</string>
+    <string name="edit_schedule_hint_enter_schedule_name">Enter schedule name...</string>
+    <string name="edit_schedule_button_save_changes">Save Changes</string>
+    <string name="edit_schedule_button_delete_schedule">Delete Schedule</string>
 
     <string name="edit_schedule_entry_title_edit_schedule_entry">Edit Schedule Entry</string>
     <string name="edit_schedule_entry_text_entry_type">Entry type:</string>

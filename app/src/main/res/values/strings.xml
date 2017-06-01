@@ -16,6 +16,18 @@
     <string name="signup_hint_re_password">Re-Password</string>
     <string name="signup_button_create_account">Create Account</string>
 
+    <string name="activate_account_title_activate_account">Activate Account</string>
+    <string name="activate_account_text_enter_activation_code">Enter activation code:</string>
+    <string name="activate_account_hint_example_code">eg. 4FG58KJ8</string>
+    <string name="activate_account_button_activate_account">Activate Account</string>
+    <string name="activate_account_text_help_message">You should have received an email with the activation code.  Enter the code in the above box in order to activate your account.</string>
+
+
+    <string name="activate_account_text_resend_activation_code"><u>Resend activation code</u></string>
+
+
+
+
     <string name="schedules_title_schedules">Schedules</string>
     <string name="schedules_text_no_schedules_created_yet">No schedules have been created yet!</string>
     <string name="schedules_text_your_schedules">Your schedules:</string>

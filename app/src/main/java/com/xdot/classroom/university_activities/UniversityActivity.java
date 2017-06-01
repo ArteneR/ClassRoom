@@ -1,6 +1,8 @@
 package com.xdot.classroom.university_activities;
 
 import android.util.Log;
+import com.google.firebase.database.Exclude;
+
 
 
 public class UniversityActivity {
@@ -38,6 +40,7 @@ public class UniversityActivity {
         }
 
 
+        @Exclude
         public String getBackgroundColor() {
                 return backgroundColor;
         }

@@ -1,8 +1,10 @@
 package com.xdot.classroom.screens.edit_schedule_entry;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
-import com.xdot.classroom.screens.create_schedule.CreateScheduleActivity;
 import com.xdot.classroom.screens.edit_schedule_entry.fragments.EndTimePickerFragment;
 import com.xdot.classroom.screens.edit_schedule_entry.fragments.StartTimePickerFragment;
 import com.xdot.classroom.screens.schedules.SchedulesActivity;
@@ -202,6 +203,11 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
                         Log.d(LOG_TAG, "Button: Save Changes");
                         saveChanges();
                         break;
+
+                    case R.id.btnDeleteScheduleEntry:
+                        Log.d(LOG_TAG, "Button: Delete Schedule Entry");
+                        openDeleteScheduleEntryConfirmation();
+                        break;
                 }
         }
 
@@ -242,20 +248,13 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
         private void saveChanges() {
                 getUserSelectedValues();
 
-                // Save changes here
                 String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
                 String scheduleId = "-KaXH2rswZJJXVWrJ5dS";
                 String dayOfWeek = "Monday";
-                final String entryType = "Labs";
                 String entryId = "-KagQdaMzoITK559_rop";
-
-                // Remove old entry
-                DatabaseReference oldScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Entries").child(dayOfWeek).child(entryType).child(entryId).getRef();
-                Log.d(LOG_TAG, "oldScheduleEntryRef: " + oldScheduleEntryRef);
-                oldScheduleEntryRef.setValue(null);
-                Log.d(LOG_TAG, "oldScheduleEntryRef: " + oldScheduleEntryRef);
-
                 String newEntryType = CommonFunctionalities.singularToPlural(selectedEntryType);
+
+                deleteScheduleEntry();
 
                 DatabaseReference newScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Entries").child(dayOfWeek).child(newEntryType).child(entryId).getRef();
                 UniversityActivity editedUnivActivity = new UniversityActivity("UNDEFINED_INDEX",
@@ -264,12 +263,39 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
                                                                                selectedRoomName,
                                                                                selectedBuildingName,
                                                                                selectedSubjectName);
-            Log.d(LOG_TAG, "newScheduleEntryRef: " + newScheduleEntryRef);
+                Log.d(LOG_TAG, "newScheduleEntryRef: " + newScheduleEntryRef);
                 newScheduleEntryRef.setValue(editedUnivActivity);
-            Log.d(LOG_TAG, "newScheduleEntryRef: " + newScheduleEntryRef);
+                Log.d(LOG_TAG, "newScheduleEntryRef: " + newScheduleEntryRef);
 
                 CommonFunctionalities.displayShortToast("Changes have been successfully saved!", getApplicationContext());
                 goToSchedulesActivity();
         }
 
+
+        private void openDeleteScheduleEntryConfirmation() {
+                new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_DARK)
+                    .setTitle("Confirmation")
+                    .setMessage("Do you really want to delete this schedule entry?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                    deleteScheduleEntry();
+                                    CommonFunctionalities.displayShortToast("Schedule entry has been successfully deleted!", getApplicationContext());
+                                    goToSchedulesActivity();
+                            }})
+                    .setNegativeButton(android.R.string.no, null)
+                    .show();
+        }
+
+
+        private void deleteScheduleEntry() {
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String scheduleId = "-KaXH2rswZJJXVWrJ5dS";
+                String dayOfWeek = "Monday";
+                final String entryType = "Labs";
+                String entryId = "-KagQdaMzoITK559_rop";
+
+                DatabaseReference oldScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Entries").child(dayOfWeek).child(entryType).child(entryId).getRef();
+                oldScheduleEntryRef.setValue(null);
+        }
 }

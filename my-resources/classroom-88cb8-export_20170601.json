@@ -1,0 +1,476 @@
+{
+  "Locations" : {
+    "-KaXH2rswZJJXVWrJ5dS" : {
+      "Name" : "Arad"
+    },
+    "-KagTbkEsbt8p_lL654W" : {
+      "Buildings" : {
+        "-KabtD6dGEGmLU9wHreS" : {
+          "BuildingLocation" : {
+            "Latitude" : 45.745602,
+            "Longitude" : 21.229886
+          },
+          "Name" : "Constructii",
+          "Rooms" : {
+            "-KafK9WUF4owUIkc7Ez4" : {
+              "Name" : "CON209"
+            },
+            "-KagTOAYdbiPmhebapcF" : {
+              "Name" : "CON103"
+            }
+          }
+        },
+        "-Kafc7zKvEHdi1T1LVl2" : {
+          "BuildingLocation" : {
+            "Latitude" : 45.745602,
+            "Longitude" : 21.229886
+          },
+          "Name" : "Electro",
+          "Sections" : {
+            "-Kafc7zKvEHdi1T1LVl2" : {
+              "Floors" : {
+                "-KabtD6dGEGmLU9wHreS" : {
+                  "Name" : "Ground Floor",
+                  "Rooms" : {
+                    "-KafK9WUF4owUIkc7Ez4" : {
+                      "Name" : "A010"
+                    },
+                    "-KagTbkEsbt8p_lL654W" : {
+                      "Name" : "A008"
+                    }
+                  }
+                },
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Name" : "Floor 3",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS" : {
+                      "Name" : "A316"
+                    },
+                    "-KagTOAYdbiPmhebapcF" : {
+                      "Name" : "A320"
+                    }
+                  }
+                },
+                "-KagTOAYdbiPmhebapcF" : {
+                  "Name" : "Floor 1",
+                  "Rooms" : {
+                    "-KagTOAYdbiPmhebapcF" : {
+                      "Name" : "A109"
+                    }
+                  }
+                },
+                "-KagTbkEsbt8p_lL654W" : {
+                  "Name" : "Floor 2",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS" : {
+                      "Name" : "A215"
+                    },
+                    "-KagTbkEsbt8p_lL654W" : {
+                      "Name" : "A209"
+                    }
+                  }
+                }
+              },
+              "Name" : "Section A",
+              "SectionLocation" : {
+                "Latitude" : 45.747262,
+                "Longitude" : 21.226709
+              }
+            },
+            "-KagTbkEsbt8p_lL654W" : {
+              "Floors" : {
+                "-KabtD6dGEGmLU9wHreS" : {
+                  "Name" : "Ground Floor",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS" : {
+                      "Name" : "B009"
+                    },
+                    "-KagTbkEsbt8p_lL654W" : {
+                      "Name" : "B014"
+                    }
+                  }
+                },
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Name" : "Floor 1",
+                  "Rooms" : {
+                    "-KabtD6dGEGmLU9wHreS  " : {
+                      "Name" : "B125"
+                    }
+                  }
+                }
+              },
+              "Name" : "Section B",
+              "SectionLocation" : {
+                "Latitude" : 45.745602,
+                "Longitude" : 21.229886
+              }
+            }
+          }
+        }
+      },
+      "Name" : "Timisoara"
+    }
+  },
+  "ScheduleEntryTypes" : {
+    "Course" : true,
+    "Exam" : true,
+    "Extracurricular Activity" : true,
+    "Lab" : true,
+    "Seminary" : true
+  },
+  "Users" : {
+    "4o5JWilDQyTcrY7JyngUhzR8NGj1" : {
+      "AccountActivated" : false,
+      "ActivationCode" : "4FG58KJ8",
+      "AssignedSubjects" : {
+        "-KabtD6dGEGmLU9wHreS" : {
+          "Name" : "Algebra"
+        },
+        "-KafK9WUF4owUIkc7Ez4" : {
+          "Name" : "Management"
+        },
+        "-Kafc7zKvEHdi1T1LVl2" : {
+          "Name" : "Programming"
+        },
+        "-KagQdaMzoITK552_rop" : {
+          "Name" : "Digital Logic"
+        },
+        "-KagTOAYdbiPmhebapcF" : {
+          "Name" : "Physics"
+        },
+        "-KagTbkEsbt8p_lL654W" : {
+          "Name" : "Mathematics"
+        }
+      },
+      "DeviceRegistrationID" : "daXWP2T4-Rw:APA91bHs-XcIMyPx3IJJkRe1B3i40tbAurcd9yfTFkKWl4s1qqSkDxDvcrS1dh6lr40ePVVBJI5fJDyA4k-tIy3lM9-F2gzucodsjizQhxnAVV8mOuSe87YIDfTODsX_hswkIaPWApyd",
+      "Email" : "andrei.popescu@yahoo.com",
+      "Firstname" : "Andrei",
+      "Lastname" : "POPESCU",
+      "Preferences" : {
+        "CurrentlySelectedSchedule" : "-KaXH2rswZJJXVWrJ5dS",
+        "NotificationMinutesBefore" : 15
+      },
+      "Schedules" : {
+        "-KaXH2rswZJJXVWrJ5dS" : {
+          "Entries" : {
+            "Friday" : {
+              "Courses" : {
+                "-KagTOAYdbiPmhebapcF" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "14:30",
+                  "EvenWeeksOnly" : true,
+                  "Room" : "A209",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "13:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+                },
+                "-KagTbkEsbt8p_lL654W" : {
+                  "Building" : "Corpul B",
+                  "EndTime" : "18:00",
+                  "Room" : "B512",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "15:00",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              },
+              "Exams" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "21:00",
+                  "Room" : "A110",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "19:00",
+                  "Subject" : "Physics",
+                  "SubjectID" : "-KagTOAYdbiPmhebapcF"
+                }
+              },
+              "Labs" : {
+                "-KagQdaMzoITK552_rop" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "12:00",
+                  "Room" : "A420",
+                  "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                  "StartTime" : "10:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+                }
+              },
+              "Seminaries" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul C",
+                  "EndTime" : "18:00",
+                  "OddWeeksOnly" : true,
+                  "Room" : "C309",
+                  "RoomID" : "-KagTbkEsbt8p_lL654W",
+                  "StartTime" : "15:00",
+                  "Subject" : "Management",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              }
+            },
+            "Monday" : {
+              "Courses" : {
+                "-KagTOAYdbiPmhebapcF" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "00:00",
+                  "EvenWeeksOnly" : true,
+                  "Room" : "A209",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "22:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+                },
+                "-KagTbkEsbt8p_lL654W" : {
+                  "Building" : "Corpul B",
+                  "EndTime" : "18:00",
+                  "Room" : "B110",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "16:30",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              },
+              "Exams" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul C",
+                  "EndTime" : "21:00",
+                  "Room" : "C318",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "19:00",
+                  "Subject" : "Digital Logic",
+                  "SubjectID" : "-KagTOAYdbiPmhebapcF"
+                }
+              },
+              "Seminaries" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "16:30",
+                  "OddWeeksOnly" : true,
+                  "Room" : "A313",
+                  "RoomID" : "-KagTbkEsbt8p_lL654W",
+                  "StartTime" : "15:00",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              }
+            },
+            "Saturday" : {
+              "Courses" : {
+                "-KagTOAYdbiPmhebapcF" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "00:00",
+                  "EvenWeeksOnly" : true,
+                  "Room" : "A209",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "22:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+                },
+                "-KagTbkEsbt8p_lL654W" : {
+                  "Building" : "Corpul B",
+                  "EndTime" : "18:00",
+                  "Room" : "B110",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "15:00",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              },
+              "Exams" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul C",
+                  "EndTime" : "21:00",
+                  "Room" : "C318",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "19:00",
+                  "Subject" : "Digital Logic",
+                  "SubjectID" : "-KagTOAYdbiPmhebapcF"
+                }
+              },
+              "Labs" : {
+                "-KagQdaMzoITK552_rop" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "12:00",
+                  "Room" : "A209",
+                  "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                  "StartTime" : "10:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+                }
+              },
+              "Seminaries" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "18:00",
+                  "OddWeeksOnly" : true,
+                  "Room" : "A313",
+                  "RoomID" : "-KagTbkEsbt8p_lL654W",
+                  "StartTime" : "15:00",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              }
+            },
+            "Thursday" : {
+              "Courses" : {
+                "-KagTOAYdbiPmhebapcF" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "14:30",
+                  "EvenWeeksOnly" : true,
+                  "Room" : "A209",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "13:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+                },
+                "-KagTbkEsbt8p_lL654W" : {
+                  "Building" : "Corpul B",
+                  "EndTime" : "18:00",
+                  "Room" : "B512",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "15:00",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              },
+              "Exams" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "21:00",
+                  "Room" : "A110",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "19:00",
+                  "Subject" : "Physics",
+                  "SubjectID" : "-KagTOAYdbiPmhebapcF"
+                }
+              },
+              "Labs" : {
+                "-KagQdaMzoITK552_rop" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "12:00",
+                  "Room" : "A420",
+                  "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                  "StartTime" : "10:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+                }
+              },
+              "Seminaries" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul C",
+                  "EndTime" : "18:00",
+                  "OddWeeksOnly" : true,
+                  "Room" : "C309",
+                  "RoomID" : "-KagTbkEsbt8p_lL654W",
+                  "StartTime" : "15:00",
+                  "Subject" : "Management",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              }
+            },
+            "Tuesday" : {
+              "Courses" : {
+                "-KagTOAYdbiPmhebapcF" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "00:00",
+                  "EvenWeeksOnly" : true,
+                  "Room" : "A209",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "22:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-KabtD6dGEGmLU9wHreS"
+                },
+                "-KagTbkEsbt8p_lL654W" : {
+                  "Building" : "Corpul B",
+                  "EndTime" : "21:00",
+                  "Room" : "B110",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "20:30",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              },
+              "Exams" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul C",
+                  "EndTime" : "21:00",
+                  "Room" : "C318",
+                  "RoomID" : "-KagTOAYdbiPmhebapcF",
+                  "StartTime" : "19:00",
+                  "Subject" : "Digital Logic",
+                  "SubjectID" : "-KagTOAYdbiPmhebapcF"
+                }
+              },
+              "Labs" : {
+                "-KagQdaMzoITK552_rop" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "12:00",
+                  "Room" : "A209",
+                  "RoomID" : "-KabtD6dGEGmLU9wHreS ",
+                  "StartTime" : "10:00",
+                  "Subject" : "Programming",
+                  "SubjectID" : "-Kafc7zKvEHdi1T1LVl2"
+                }
+              },
+              "Seminaries" : {
+                "-KafK9WUF4owUIkc7Ez4" : {
+                  "Building" : "Corpul A",
+                  "EndTime" : "18:00",
+                  "OddWeeksOnly" : true,
+                  "Room" : "A313",
+                  "RoomID" : "-KagTbkEsbt8p_lL654W",
+                  "StartTime" : "15:00",
+                  "Subject" : "Mathematics",
+                  "SubjectID" : "-KagQdaMzoITK552_rop"
+                }
+              }
+            }
+          },
+          "Name" : "My University Schedule"
+        },
+        "-Kablg0Istatuwe79F_P" : {
+          "Name" : "University Schedule 2"
+        },
+        "-KlQ-4U77Zr3hHUNBxSQ" : {
+          "Name" : "New Test Schedule"
+        },
+        "-KlQ-_rM_1qOXS5wwzng" : {
+          "Name" : "New Test Schedule 2"
+        },
+        "-KlQ-kBjmnHcZP40um7d" : {
+          "Name" : "Test Schedule2"
+        },
+        "-KlQ1P3OrZjHA7_dhM1V" : {
+          "Name" : "Teeest Schedule"
+        },
+        "-KlQ2toT001i8ak0Lwcl" : {
+          "Name" : "T"
+        }
+      }
+    },
+    "HSu85kwLgTS1SV8NMXEQvCaW7Hz1" : {
+      "AccountActivated" : true,
+      "ActivationCode" : "IF058MJ8",
+      "DeviceRegistrationID" : "fcdsK8qRbpc:APA91bHjdLxUFlsQyqxSoHKXOtQPKPxvskTG3LJ2FR_9-bCth53JJqRoZLEaqUl_NGNLIadTOof4N1aFaoeHA3Obp6L7K6R9qbXAkvhzI5sUeNL_VWyzvO_3I61UUbaqKKt4yuhWP5r-",
+      "Email" : "maria.lupescu@gmail.com",
+      "Firstname" : "Maria",
+      "Lastname" : "LUPESCU",
+      "Preferences" : {
+        "CurrentlySelectedSchedule" : "n/a",
+        "NotificationMinutesBefore" : 10
+      },
+      "Schedules" : {
+        "-Kablg0Istatuwe79F_P" : {
+          "Name" : "Sch2"
+        },
+        "-KlPyZyPm6UM5rNuiOrN" : {
+          "Name" : "Sch1"
+        }
+      }
+    }
+  },
+  "message" : "abcd",
+  "test" : "Hello, World!"
+}

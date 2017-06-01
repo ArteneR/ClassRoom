@@ -1,4 +1,4 @@
-package com.xdot.classroom.screens.current_schedule;
+package com.xdot.classroom.screens.current_schedule.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,8 +18,8 @@ import java.util.List;
 
 
 
-public class CurrentScheduleFragmentWednesday extends Fragment {
-        private static String LOG_TAG = "CurrentScheduleFragmentWednesday";
+public class CurrentScheduleFragmentMonday extends Fragment {
+        private static String LOG_TAG = "CurrentScheduleFragmentMonday";
         private DataProvider dataProvider;
         private Context mContext;
         private Schedule currentSchedule;
@@ -27,7 +27,7 @@ public class CurrentScheduleFragmentWednesday extends Fragment {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                View rootView = inflater.inflate(R.layout.fragment_current_schedule_wednesday, container, false);
+                View rootView = inflater.inflate(R.layout.fragment_current_schedule_monday, container, false);
                 Log.d(LOG_TAG, "-----------------------ON FRAGMENT CREATE");
 
                 mContext = getContext();
@@ -44,17 +44,17 @@ public class CurrentScheduleFragmentWednesday extends Fragment {
                 super.onActivityCreated(savedInstanceState);
 
                 // create and show the schedule
-                ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_wednesday", mContext);
-                List<UniversityActivity> univActivities = currentSchedule.getUniversityActivitiesOnDay("Wednesday");
+                ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_monday", mContext);
+                List<UniversityActivity> univActivities = currentSchedule.getUniversityActivitiesOnDay("Monday");
 
                 for (int i = 0; i < univActivities.size(); i++) {
                         Log.d(LOG_TAG, "UnivActivity: " + univActivities.get(i));
                         scheduleBuilder.addScheduleEntry(univActivities.get(i).StartTime,
-                                                    univActivities.get(i).EndTime,
-                                                    univActivities.get(i).Subject,
-                                                    univActivities.get(i).Room,
-                                                    univActivities.get(i).Building,
-                                                    univActivities.get(i).getBackgroundColor());
+                                                         univActivities.get(i).EndTime,
+                                                         univActivities.get(i).Subject,
+                                                         univActivities.get(i).Room,
+                                                         univActivities.get(i).Building,
+                                                         univActivities.get(i).getBackgroundColor());
                 }
         }
 

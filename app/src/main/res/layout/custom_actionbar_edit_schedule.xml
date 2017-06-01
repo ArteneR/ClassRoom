@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
         android:layout_centerInParent="true"
-        android:text="@string/create_schedule_title_create_schedule"
+        android:text="@string/edit_schedule_title_edit_schedule"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/colorTextMain"

@@ -55,8 +55,14 @@ public class CodeTemplateActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.ivLeftActionbarButton:
                 Log.d(LOG_TAG, "Button: Back");
+                goToPreviousActivity();
                 break;
 
         }
+    }
+
+
+    private void goToPreviousActivity() {
+        super.onBackPressed();
     }
 }

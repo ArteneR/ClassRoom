@@ -10,10 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
         android:layout_centerInParent="true"
-        android:text="Schedules"
+        android:text="@string/schedules_title_schedules"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#fff"
+        android:textColor="@color/colorTextMain"
         android:textStyle="bold"/>
 
     <ImageView

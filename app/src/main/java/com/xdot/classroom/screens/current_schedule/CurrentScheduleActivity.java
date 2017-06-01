@@ -2,6 +2,7 @@ package com.xdot.classroom.screens.current_schedule;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.DayOfWeek;
 import com.xdot.classroom.R;
+import com.xdot.classroom.screens.current_schedule.adapters.CurrentScheduleCustomPagerAdapter;
+import com.xdot.classroom.screens.edit_schedule.EditScheduleActivity;
 
 
 
@@ -136,6 +139,11 @@ public class CurrentScheduleActivity extends AppCompatActivity {
                     case R.id.ivRightActionbarButton:
                         Log.d(LOG_TAG, "Button: Add Course");
                         break;
+
+                    case R.id.btnEditSchedule:
+                        Log.d(LOG_TAG, "Button: Edit Schedule");
+                        goToEditScheduleActivity();
+                        break;
                 }
         }
 
@@ -143,6 +151,13 @@ public class CurrentScheduleActivity extends AppCompatActivity {
 
         private void goToPreviousActivity() {
                 super.onBackPressed();
+        }
+
+
+
+        private void goToEditScheduleActivity() {
+                Intent intent = new Intent(this, EditScheduleActivity.class);
+                this.startActivity(intent);
         }
 
 }

@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">ClassRoom</string>
+
+    <string name="login_hint_username">Username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_button_log_in">Log in</string>
+    <string name="login_text_forgot_password">Forgot password</string>
+    <string name="login_text_no_account_sign_up">Don\'t have account? Sign up!</string>
+    <string name="login_text_skip_login">Skip login</string>
+
+    <string name="schedules_title_schedules">Schedules</string>
+    <string name="schedules_text_no_schedules_created_yet">No schedules have been created yet!</string>
+    <string name="schedules_text_your_schedules">Your schedules:</string>
+    <string name="schedules_text_card_view_row_schedule_name">Schedule Name</string>
+
+    <string name="create_schedule_title_create_schedule">Create schedule</string>
+    <string name="create_schedule_text_new_schedule">New Schedule:</string>
+    <string name="create_schedule_hint_schedule_name">Schedule name...</string>
+    <string name="create_schedule_button_create_schedule">Create Schedule</string>
+
+    <string name="current_schedule_title_current_schedule_name">Current Schedule Name</string>
+    <string name="current_schedule_button_edit_schedule">Edit Schedule </string>
+    <string name="current_schedule_text_monday">MONDAY</string>
+
+    <string name="edit_schedule_title_edit_schedule">Edit Schedule</string>
+    <string name="edit_schedule_text_schedule_name">Schedule name</string>
+    <string name="edit_schedule_hint_enter_schedule_name">Enter schedule name...</string>
+    <string name="edit_schedule_button_save_changes">Save Changes</string>
+    <string name="edit_schedule_button_delete_schedule">Delete Schedule</string>
+
+    <string name="edit_schedule_entry_title_edit_schedule_entry">Edit Schedule Entry</string>
+    <string name="edit_schedule_entry_text_entry_type">Entry type:</string>
+    <string name="edit_schedule_entry_text_subject_name">Subject name:</string>
+    <string name="edit_schedule_entry_hint_subject_name">eg. Programming</string>
+    <string name="edit_schedule_entry_text_start_time">Start time:</string>
+    <string name="edit_schedule_entry_text_end_time">End time:</string>
+    <string name="edit_schedule_entry_text_building_name">Building name:</string>
+    <string name="edit_schedule_entry_hint_building_name">eg. Corpul A</string>
+    <string name="edit_schedule_entry_text_room_name">Room name:</string>
+    <string name="edit_schedule_entry_hint_room_name">eg. A209</string>
+    <string name="edit_schedule_entry_button_save_changes">Save Changes</string>
+
+    <string-array name="schedule_entry_types_array">
+        <item>Course</item>
+        <item>Lab</item>
+        <item>Seminary</item>
+        <item>Exam</item>
+        <item>Extracurricular Activity</item>
+    </string-array>
 </resources>

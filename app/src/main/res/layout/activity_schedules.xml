@@ -48,9 +48,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="No schedules have been created yet!"
+            android:text="@string/schedules_text_no_schedules_created_yet"
             android:textAlignment="center"
-            android:textColor="#EEEEEE"
+            android:textColor="@color/color3"
             android:textSize="18sp"
             android:textStyle="italic"/>
 
@@ -100,9 +100,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:paddingBottom="10dp"
-                android:text="Your schedules:"
+                android:text="@string/schedules_text_your_schedules"
                 android:textAlignment="center"
-                android:textColor="#EEEEEE"
+                android:textColor="@color/color3"
                 android:textSize="18sp"/>
         </RelativeLayout>
     </RelativeLayout>

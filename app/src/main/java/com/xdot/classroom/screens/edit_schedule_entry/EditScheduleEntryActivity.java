@@ -80,6 +80,11 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
                         Log.d(LOG_TAG, "Button: End Time");
                         showEndTimePickerDialog();
                         break;
+
+                    case R.id.btnSaveChanges:
+                        Log.d(LOG_TAG, "Button: Save Changes");
+                        saveChanges();
+                        break;
                 }
         }
 
@@ -98,6 +103,11 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
         private void showEndTimePickerDialog() {
                 EndTimePickerFragment newFragment = new EndTimePickerFragment();
                 newFragment.show(getSupportFragmentManager(), "endTimePicker");
+        }
+
+
+        private void saveChanges() {
+
         }
 
 }

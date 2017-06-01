@@ -25,6 +25,17 @@
     <string name="edit_schedule_title_edit_schedule">Edit Schedule</string>
 
     <string name="edit_schedule_entry_title_edit_schedule_entry">Edit Schedule Entry</string>
+    <string name="edit_schedule_entry_text_entry_type">Entry type:</string>
+    <string name="edit_schedule_entry_text_subject_name">Subject name:</string>
+    <string name="edit_schedule_entry_hint_subject_name">eg. Programming</string>
+    <string name="edit_schedule_entry_text_start_time">Start time:</string>
+    <string name="edit_schedule_entry_text_end_time">End time:</string>
+    <string name="edit_schedule_entry_text_building_name">Building name:</string>
+    <string name="edit_schedule_entry_hint_building_name">eg. Corpul A</string>
+    <string name="edit_schedule_entry_text_room_name">Room name:</string>
+    <string name="edit_schedule_entry_hint_room_name">eg. A209</string>
+    <string name="edit_schedule_entry_button_save_changes">Save Changes</string>
+
     <string-array name="schedule_entry_types_array">
         <item>Course</item>
         <item>Lab</item>

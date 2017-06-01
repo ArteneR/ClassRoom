@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesListData;
 import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAdapter;
@@ -169,7 +170,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
                                         for (DataSnapshot univActivitySnapshot: univActivityTypeSnapshot.getChildren()) {
                                             String univActivityId = univActivitySnapshot.getKey();
-                                            String className = "com.xdot.classroom.university_activities." + pluralToSingular(univActivityType);
+                                            String className = "com.xdot.classroom.university_activities." + CommonFunctionalities.pluralToSingular(univActivityType);
 
                                             try {
                                                 Class univActivityClass = Class.forName(className);
@@ -201,30 +202,6 @@ public class SchedulesActivity extends AppCompatActivity {
                 });
         }
 
-
-        private String pluralToSingular(String plural) {
-                String singular = "";
-                int pluralLength = plural.length();
-
-                if (pluralLength <= 0) {
-                    return "";
-                }
-
-                if (pluralLength >= 3) {
-                    String lastThreeLetters = plural.substring(pluralLength-3, pluralLength);
-                    if (lastThreeLetters.equals("ies")) {
-                        singular = plural.substring(0, pluralLength-3) + "y";
-                        return singular;
-                    }
-                }
-
-                String lastLetter = plural.substring(pluralLength-1, pluralLength);
-                if (lastLetter.equals("s")) {
-                    singular = plural.substring(0, pluralLength-1);
-                }
-
-                return singular;
-        }
 
 
         /*

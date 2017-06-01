@@ -50,6 +50,6 @@ public class UniversityActivity {
 
         @Override
         public String toString() {
-                return "[id: " + this.id + "]" + this.Subject + " - " + this.EndTime + ": " + this.Subject + " (" + this.Room + " - " + this.Building + ")";
+                return "[id: " + this.id + "]" + this.Subject + "  " + this.StartTime + " - " + this.EndTime + ": " + this.Subject + " (" + this.Room + " - " + this.Building + ")";
         }
 }

@@ -45,4 +45,29 @@ public class CommonFunctionalities {
                 return Integer.parseInt(minute);
         }
 
+
+        public static String pluralToSingular(String plural) {
+                String singular = "";
+                int pluralLength = plural.length();
+
+                if (pluralLength <= 0) {
+                    return "";
+                }
+
+                if (pluralLength >= 3) {
+                    String lastThreeLetters = plural.substring(pluralLength-3, pluralLength);
+                    if (lastThreeLetters.equals("ies")) {
+                        singular = plural.substring(0, pluralLength-3) + "y";
+                        return singular;
+                    }
+                }
+
+                String lastLetter = plural.substring(pluralLength-1, pluralLength);
+                if (lastLetter.equals("s")) {
+                    singular = plural.substring(0, pluralLength-1);
+                }
+
+                return singular;
+        }
+
 }

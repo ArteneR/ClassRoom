@@ -10,14 +10,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.R;
+import com.xdot.classroom.schedule.Schedule;
 import com.xdot.classroom.screens.schedules.SchedulesActivity;
 
 
 
 public class EditScheduleActivity extends AppCompatActivity {
         private static String LOG_TAG = "EditScheduleActivity";
+        private FirebaseDatabase firebaseDB;
+        private DatabaseReference firebaseDBRef;
+        private EditText etScheduleName;
 
 
         @Override
@@ -25,7 +35,45 @@ public class EditScheduleActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_edit_schedule);
 
+                connectToFirebase();
+
+                initializeUIElements();
+                fillElementsWithFirebaseData();
+
                 activateCustomActionBar();
+        }
+
+
+        private void connectToFirebase() {
+                firebaseDB = FirebaseDatabase.getInstance();
+                firebaseDBRef = firebaseDB.getReference();
+        }
+
+
+        private void initializeUIElements() {
+                etScheduleName = (EditText) findViewById(R.id.etScheduleName);
+        }
+
+
+        private void fillElementsWithFirebaseData() {
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+
+                firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot scheduleSnapshot) {
+                            Schedule schedule = scheduleSnapshot.getValue(Schedule.class);
+                            fillScheduleElements(schedule);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
+        }
+
+
+        private void fillScheduleElements(Schedule schedule) {
+                etScheduleName.setText(schedule.Name);
         }
 
 
@@ -86,7 +134,15 @@ public class EditScheduleActivity extends AppCompatActivity {
 
 
         private void saveChanges() {
-                Log.d(LOG_TAG, "Saving changes...");
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+                String editedScheduleName = etScheduleName.getText().toString();
+
+                DatabaseReference scheduleRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Name").getRef();
+                scheduleRef.setValue(editedScheduleName);
+
+                CommonFunctionalities.displayShortToast("Changes have been successfully saved!", getApplicationContext());
+                goToSchedulesActivity();
         }
 
 
@@ -107,10 +163,11 @@ public class EditScheduleActivity extends AppCompatActivity {
 
 
         private void deleteSchedule() {
-                Log.d(LOG_TAG, "Deleting schedule...");
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
 
-
-
+                DatabaseReference oldScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).getRef();
+                oldScheduleEntryRef.setValue(null);
         }
 
 }

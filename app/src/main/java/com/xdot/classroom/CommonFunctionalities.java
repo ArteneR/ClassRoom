@@ -12,6 +12,11 @@ public class CommonFunctionalities {
         }
 
 
+        public static void displayLongToast(String message, Context context) {
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        }
+
+
         public static String formatTime(int hour, int minute) {
                 String hourFormatted = String.valueOf(hour);
                 String minuteFormatted = String.valueOf(minute);
@@ -68,6 +73,70 @@ public class CommonFunctionalities {
                 }
 
                 return singular;
+        }
+
+
+        public static String singularToPlural(String singular) {
+                String CONSONANTS = "bcdfghjklmnpqrstvwxz";
+
+                switch (singular) {
+                    case "Person":
+                        return "People";
+                    case "Trash":
+                        return "Trash";
+                    case "Life":
+                        return "Lives";
+                    case "Man":
+                        return "Men";
+                    case "Woman":
+                        return "Women";
+                    case "Child":
+                        return "Children";
+                    case "Foot":
+                        return "Feet";
+                    case "Tooth":
+                        return "Teeth";
+                    case "Dozen":
+                        return "Dozen";
+                    case "Hundred":
+                        return "Hundred";
+                    case "Thousand":
+                        return "Thousand";
+                    case "Million":
+                        return "Million";
+                    case "Datum":
+                        return "Data";
+                    case "Criterion":
+                        return "Criteria";
+                    case "Analysis":
+                        return "Analyses";
+                    case "Fungus":
+                        return "Fungi";
+                    case "Index":
+                        return "Indices";
+                    case "Matrix":
+                        return "Matrices";
+                    case "Settings":
+                        return "Settings";
+                    case "UserSettings":
+                        return "UserSettings";
+                    default:
+                        // Handle ending with "o" (if preceeded by a consonant, end with -es, otherwise -s: Potatoes and Radios)
+                        if (singular.endsWith("o") && CONSONANTS.contains(String.valueOf(singular.charAt(singular.length() - 2)))) {
+                            return singular + "es";
+                        }
+
+                        // Handle ending with "y" (if preceeded by a consonant, end with -ies, otherwise -s: Companies and Trays)
+                        if (singular.endsWith("y") && CONSONANTS.contains(String.valueOf(singular.charAt(singular.length() - 2)))) {
+                            return singular.substring(0, singular.length() - 1) + "ies";
+                        }
+
+                        // Ends with a whistling sound: boxes, buzzes, churches, passes
+                        if (singular.endsWith("s") || singular.endsWith("sh") || singular.endsWith("ch") || singular.endsWith("x") || singular.endsWith("z")) {
+                            return singular + "es";
+                        }
+                        return singular + "s";
+                }
         }
 
 }

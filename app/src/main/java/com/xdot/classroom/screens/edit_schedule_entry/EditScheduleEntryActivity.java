@@ -36,6 +36,12 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
         private DataProvider dataProvider;
         private FirebaseDatabase firebaseDB;
         private DatabaseReference firebaseDBRef;
+        private String selectedEntryType;
+        private String selectedSubjectName;
+        private String selectedStartTime;
+        private String selectedEndTime;
+        private String selectedBuildingName;
+        private String selectedRoomName;
 
 
         @Override
@@ -90,6 +96,10 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
                                 try {
                                     Class univActivityClass = Class.forName(className);
                                     UniversityActivity univActivity = (UniversityActivity) univActivitySnapshot.getValue(univActivityClass);
+                                    if (univActivity == null) {
+                                        CommonFunctionalities.displayLongToast("Couldn't load data for the current schedule entry!", getApplicationContext());
+                                        return ;
+                                    }
                                     fillUniversityActivityElements(univActivity, className);
                                 }
                                 catch (ClassNotFoundException e) {
@@ -210,15 +220,44 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
         }
 
 
+        private void getUserSelectedValues() {
+                selectedEntryType = spinnerEntryType.getSelectedItem().toString();
+                selectedSubjectName = etSubjectName.getText().toString();
+                selectedStartTime = btnStartTime.getText().toString();
+                selectedEndTime = btnEndTime.getText().toString();
+                selectedBuildingName = etBuildingName.getText().toString();
+                selectedRoomName = etRoomName.getText().toString();
+        }
+
+
         private void saveChanges() {
-                String selectedEntryType = spinnerEntryType.getSelectedItem().toString();
-                String selectedSubjectName = etSubjectName.getText().toString();
-                String selectedStartTime = btnStartTime.getText().toString();
-                String selectedEndTime = btnEndTime.getText().toString();
-                String selectedBuildingName = etBuildingName.getText().toString();
-                String selectedRoomName = etRoomName.getText().toString();
+                getUserSelectedValues();
 
                 // Save changes here
+                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String scheduleId = "-KaXH2rswZJJXVWrJ5dS";
+                String dayOfWeek = "Monday";
+                final String entryType = "Labs";
+                String entryId = "-KagQdaMzoITK552_rop";
+
+                // Remove old entry
+                DatabaseReference oldScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Entries").child(dayOfWeek).child(entryType).child(entryId).getRef();
+                Log.d(LOG_TAG, "oldScheduleEntryRef: " + oldScheduleEntryRef);
+                oldScheduleEntryRef.setValue(null);
+            Log.d(LOG_TAG, "oldScheduleEntryRef: " + oldScheduleEntryRef);
+
+                String newEntryType = CommonFunctionalities.singularToPlural(selectedEntryType);
+
+                DatabaseReference newScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Entries").child(dayOfWeek).child(newEntryType).child(entryId).getRef();
+                UniversityActivity editedUnivActivity = new UniversityActivity("UNDEFINED_INDEX",
+                                                                               selectedStartTime,
+                                                                               selectedEndTime,
+                                                                               selectedRoomName,
+                                                                               selectedBuildingName,
+                                                                               selectedSubjectName);
+            Log.d(LOG_TAG, "newScheduleEntryRef: " + newScheduleEntryRef);
+                newScheduleEntryRef.setValue(editedUnivActivity);
+            Log.d(LOG_TAG, "newScheduleEntryRef: " + newScheduleEntryRef);
 
                 CommonFunctionalities.displayShortToast("Changes have been successfully saved!", getApplicationContext());
                 goToPreviousActivity();

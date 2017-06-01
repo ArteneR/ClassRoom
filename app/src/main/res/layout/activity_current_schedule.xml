@@ -23,19 +23,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background_classroom" />
 
-    <Button
-        android:id="@+id/btnEditSchedule"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:text="@string/current_schedule_button_edit_schedule"
+    <LinearLayout
         android:background="@color/color6"
-        android:alpha="0.8"
-        android:onClick="clicked"
-        android:textColor="@color/colorTextMain"
+        android:layout_weight="1"
+        android:layout_width="150dp"
+        android:layout_height="44dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="125dp"/>
+        android:layout_marginRight="125dp"
+        android:layout_marginEnd="125dp" >
+
+        <Button
+            android:id="@+id/btnEditSchedule"
+            android:layout_width="150dp"
+            android:layout_height="44dp"
+            android:text="@string/current_schedule_button_edit_schedule"
+            android:alpha="0.8"
+            android:onClick="clicked"
+            android:textColor="@color/colorTextMain"
+            android:background="?android:attr/selectableItemBackground"/>
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/current_schedule_pager"
@@ -55,7 +63,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <TextView
             android:id="@+id/tvDayOfWeek"

@@ -47,9 +47,10 @@
                 android:textSize="18sp"/>
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerEntryType"
                 android:layout_weight="5"
-                android:background="@color/color6"/>
+                android:padding="8dp"
+                android:background="@color/color4"/>
 
         </TableRow>
 
@@ -71,8 +72,8 @@
                 android:id="@+id/editText"
                 android:layout_weight="5"
                 android:background="@color/color4"
+                android:hint="eg. Programming"
                 android:padding="6dp"
-                android:text="Name"
                 android:textColorLink="@null"
                 android:textCursorDrawable="@null"/>
         </TableRow>
@@ -137,8 +138,8 @@
                 android:id="@+id/editText2"
                 android:layout_weight="5"
                 android:background="@color/color4"
+                android:hint="eg. Corpul A"
                 android:padding="6dp"
-                android:text="Name"
                 android:textCursorDrawable="@null"/>
         </TableRow>
 
@@ -160,8 +161,8 @@
                 android:id="@+id/editText3"
                 android:layout_weight="5"
                 android:background="@color/color4"
+                android:hint="eg. A209"
                 android:padding="6dp"
-                android:text="Name"
                 android:textCursorDrawable="@null"/>
         </TableRow>
 

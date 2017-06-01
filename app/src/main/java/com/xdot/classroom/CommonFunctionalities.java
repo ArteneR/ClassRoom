@@ -27,4 +27,22 @@ public class CommonFunctionalities {
                 return hourFormatted + ":" + minuteFormatted;
         }
 
+
+        public static int extractHourFromTime(String time) {
+                if (time.length() < 2) {
+                    return -1;
+                }
+                String hour = time.substring(0, 2);
+                return Integer.parseInt(hour);
+        }
+
+
+        public static int extractMinuteFromTime(String time) {
+                if (time.length() < 5) {
+                    return -1;
+                }
+                String minute = time.substring(3, 5);
+                return Integer.parseInt(minute);
+        }
+
 }

@@ -25,4 +25,11 @@
     <string name="edit_schedule_title_edit_schedule">Edit Schedule</string>
 
     <string name="edit_schedule_entry_title_edit_schedule_entry">Edit Schedule Entry</string>
+    <string-array name="schedule_entry_types_array">
+        <item>Course</item>
+        <item>Lab</item>
+        <item>Seminary</item>
+        <item>Exam</item>
+        <item>Extracurricular Activity</item>
+    </string-array>
 </resources>

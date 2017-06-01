@@ -8,7 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.xdot.classroom.R;
-
+import com.xdot.classroom.screens.edit_schedule_entry.fragments.EndTimePickerFragment;
+import com.xdot.classroom.screens.edit_schedule_entry.fragments.StartTimePickerFragment;
 
 
 public class EditScheduleEntryActivity extends AppCompatActivity {
@@ -55,12 +56,34 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
                         Log.d(LOG_TAG, "Button: Back");
                         goToPreviousActivity();
                         break;
+
+                    case R.id.btnStartTime:
+                        Log.d(LOG_TAG, "Button: Start Time");
+                        showStartTimePickerDialog();
+                        break;
+
+                    case R.id.btnEndTime:
+                        Log.d(LOG_TAG, "Button: End Time");
+                        showEndTimePickerDialog();
+                        break;
                 }
         }
 
 
         private void goToPreviousActivity() {
                 super.onBackPressed();
+        }
+
+
+        private void showStartTimePickerDialog() {
+                StartTimePickerFragment newFragment = new StartTimePickerFragment();
+                newFragment.show(getSupportFragmentManager(), "startTimePicker");
+        }
+
+
+        private void showEndTimePickerDialog() {
+                EndTimePickerFragment newFragment = new EndTimePickerFragment();
+                newFragment.show(getSupportFragmentManager(), "endTimePicker");
         }
 
 }

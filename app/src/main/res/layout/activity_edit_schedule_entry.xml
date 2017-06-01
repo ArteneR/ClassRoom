@@ -48,7 +48,8 @@
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_weight="5"/>
+                android:layout_weight="5"
+                android:background="@color/color6"/>
 
         </TableRow>
 
@@ -69,7 +70,11 @@
             <EditText
                 android:id="@+id/editText"
                 android:layout_weight="5"
-                android:text="Name"/>
+                android:background="@color/color4"
+                android:padding="6dp"
+                android:text="Name"
+                android:textColorLink="@null"
+                android:textCursorDrawable="@null"/>
         </TableRow>
 
         <TableRow
@@ -87,9 +92,10 @@
                 android:textSize="18sp"/>
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnStartTime"
                 android:layout_weight="5"
-                android:text="10:00"/>
+                android:text="10:00"
+                android:onClick="clicked"/>
         </TableRow>
 
         <TableRow
@@ -107,9 +113,10 @@
                 android:textSize="18sp"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnEndTime"
                 android:layout_weight="5"
-                android:text="12:00"/>
+                android:text="12:00"
+                android:onClick="clicked"/>
         </TableRow>
 
         <TableRow
@@ -129,7 +136,10 @@
             <EditText
                 android:id="@+id/editText2"
                 android:layout_weight="5"
-                android:text="Name"/>
+                android:background="@color/color4"
+                android:padding="6dp"
+                android:text="Name"
+                android:textCursorDrawable="@null"/>
         </TableRow>
 
         <TableRow
@@ -149,13 +159,16 @@
             <EditText
                 android:id="@+id/editText3"
                 android:layout_weight="5"
-                android:text="Name"/>
+                android:background="@color/color4"
+                android:padding="6dp"
+                android:text="Name"
+                android:textCursorDrawable="@null"/>
         </TableRow>
 
     </TableLayout>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnSaveChanges"
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:text="Save Changes"
@@ -165,6 +178,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
         app:layout_constraintBottom_toBottomOf="@+id/ivBackground"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.09"/>
+        app:layout_constraintVertical_bias="0.09"
+        android:onClick="clicked"/>
 
 </android.support.constraint.ConstraintLayout>

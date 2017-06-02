@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.R;
 import com.xdot.classroom.screens.activate_account.ActivateAccountActivity;
 
@@ -17,6 +19,16 @@ import com.xdot.classroom.screens.activate_account.ActivateAccountActivity;
 
 public class SignupActivity extends AppCompatActivity {
         private static String LOG_TAG = "SignupActivity";
+        private EditText etFirstname;
+        private EditText etLastname;
+        private EditText etEmail;
+        private EditText etPassword;
+        private EditText etRePassword;
+        private String enteredFirstname;
+        private String enteredLastname;
+        private String enteredEmail;
+        private String enteredPassword;
+        private String enteredRePassword;
 
 
         @Override
@@ -25,6 +37,7 @@ public class SignupActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_signup);
 
                 activateCustomActionBar();
+                initializeUIElements();
         }
 
 
@@ -45,6 +58,15 @@ public class SignupActivity extends AppCompatActivity {
 
                 mActionBar.setCustomView(mCustomView);
                 mActionBar.setDisplayShowCustomEnabled(true);
+        }
+
+
+        private void initializeUIElements() {
+                etFirstname = (EditText) findViewById(R.id.etFirstname);
+                etLastname = (EditText) findViewById(R.id.etLastname);
+                etEmail = (EditText) findViewById(R.id.etEmail);
+                etPassword = (EditText) findViewById(R.id.etPassword);
+                etRePassword = (EditText) findViewById(R.id.etRePassword);
         }
 
 
@@ -80,15 +102,72 @@ public class SignupActivity extends AppCompatActivity {
 
         private void createAccount() {
                 Log.d(LOG_TAG, "Creating account...");
+                getUserEnteredValues();
 
+                if (isEnteredInputValid()) {
+                        clearAllInputFields();
+                        displayCreateAccountInfoMessage();
+                }
 
-                displayCreateAccountInfoMessage();
         }
 
 
         private void goToActivateAccountActivity() {
                 Intent intent = new Intent(this, ActivateAccountActivity.class);
                 this.startActivity(intent);
+        }
+
+
+        private void getUserEnteredValues() {
+                enteredFirstname = etFirstname.getText().toString();
+                enteredLastname = etLastname.getText().toString();
+                enteredEmail = etEmail.getText().toString();
+                enteredPassword = etPassword.getText().toString();
+                enteredRePassword = etRePassword.getText().toString();
+        }
+
+
+        private boolean isEnteredInputValid() {
+                if (CommonFunctionalities.isFieldEmpty(enteredFirstname)) {
+                        CommonFunctionalities.displayLongToast("Firstname field is required!", getApplicationContext());
+                        return false;
+                }
+
+                if (CommonFunctionalities.isFieldEmpty(enteredLastname)) {
+                        CommonFunctionalities.displayLongToast("Lastname field is required!", getApplicationContext());
+                        return false;
+                }
+
+                if (!CommonFunctionalities.isFieldValidEmail(enteredEmail)) {
+                        CommonFunctionalities.displayLongToast("The email address doesn't seem to be valid!", getApplicationContext());
+                        return false;
+                }
+
+                if (CommonFunctionalities.isFieldEmpty(enteredPassword)) {
+                        CommonFunctionalities.displayLongToast("Password field is required!", getApplicationContext());
+                        return false;
+                }
+
+                if (CommonFunctionalities.isFieldEmpty(enteredRePassword)) {
+                        CommonFunctionalities.displayLongToast("Re-Password field is required!", getApplicationContext());
+                        return false;
+                }
+
+                if (!CommonFunctionalities.areFieldsEqual(enteredPassword, enteredRePassword)) {
+                        CommonFunctionalities.displayLongToast("Passwords don't match!", getApplicationContext());
+                        return false;
+                }
+
+                return true;
+        }
+
+
+        private void clearAllInputFields() {
+                etFirstname.setText(null);
+                etLastname.setText(null);
+                etEmail.setText(null);
+                etPassword.setText(null);
+                etRePassword.setText(null);
         }
 
 

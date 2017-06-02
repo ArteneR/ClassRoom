@@ -15,6 +15,7 @@
     <string name="signup_hint_password">Password</string>
     <string name="signup_hint_re_password">Re-Password</string>
     <string name="signup_button_create_account">Create Account</string>
+    <string name="signup_text_enter_activation_code"><u>Enter activation code</u></string>
 
     <string name="activate_account_title_activate_account">Activate Account</string>
     <string name="activate_account_text_enter_activation_code">Enter activation code:</string>

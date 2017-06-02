@@ -1,5 +1,8 @@
 package com.xdot.classroom.screens.signup;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.xdot.classroom.R;
+import com.xdot.classroom.screens.activate_account.ActivateAccountActivity;
 
 
 
@@ -60,6 +64,11 @@ public class SignupActivity extends AppCompatActivity {
                                 Log.d(LOG_TAG, "Button: Create Account");
                                 createAccount();
                                 break;
+
+                        case R.id.tvEnterActivationCode:
+                                Log.d(LOG_TAG, "Button: Enter Activation Code");
+                                goToActivateAccountActivity();
+                                break;
                 }
         }
 
@@ -71,5 +80,30 @@ public class SignupActivity extends AppCompatActivity {
 
         private void createAccount() {
                 Log.d(LOG_TAG, "Creating account...");
+
+
+                displayCreateAccountInfoMessage();
+        }
+
+
+        private void goToActivateAccountActivity() {
+                Intent intent = new Intent(this, ActivateAccountActivity.class);
+                this.startActivity(intent);
+        }
+
+
+        private void displayCreateAccountInfoMessage() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_DARK);
+                builder.setTitle("Your account has been created!")
+                    .setMessage("Check your email!\n" +
+                                "You should have received a confirmation email with an activation code that you must copy and paste into the account activation code box.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                    goToActivateAccountActivity();
+                            }
+                    });
+                AlertDialog alert = builder.create();
+                alert.show();
         }
 }

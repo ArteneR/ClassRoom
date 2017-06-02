@@ -146,5 +146,22 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.178"/>
 
+    <TextView
+        android:id="@+id/tvEnterActivationCode"
+        android:layout_width="307dp"
+        android:layout_height="26dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:onClick="clicked"
+        android:text="@string/signup_text_enter_activation_code"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"/>
+
 
 </android.support.constraint.ConstraintLayout>

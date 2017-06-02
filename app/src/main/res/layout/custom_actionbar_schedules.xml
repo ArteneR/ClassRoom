@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:onClick="clicked"
-        app:srcCompat="@drawable/selector_arrow_back_icon"/>
+        app:srcCompat="@drawable/selector_logout_icon"/>
 
     <ImageView
         android:id="@+id/ivRightActionbarButton"

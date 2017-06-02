@@ -291,6 +291,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
         private void logout() {
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(this, LoginActivity.class);
                 this.startActivity(intent);
         }

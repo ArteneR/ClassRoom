@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         private TextView tvSkipLogin;
         private EditText etUsername;
         private EditText etPassword;
+        private ProgressBar progressBarLogin;
         private String enteredUsername;
         private String enteredPassword;
 
@@ -69,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 tvSkipLogin = (TextView) findViewById(R.id.tvSkipLogin);
                 etUsername = (EditText) findViewById(R.id.etUsername);
                 etPassword = (EditText) findViewById(R.id.etPassword);
+                progressBarLogin = (ProgressBar) findViewById(R.id.progressBarLogin);
         }
 
 
@@ -104,9 +107,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
         private void login() {
+                progressBarLogin.setVisibility(View.VISIBLE);
                 getUserEnteredValues();
                 if (isEnteredInputValid()) {
                     loginToFirebase();
+                }
+                else {
+                    progressBarLogin.setVisibility(View.GONE);
                 }
         }
 
@@ -135,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                                             // Sign in success, update UI with the signed-in user's information
                                             Log.d(LOG_TAG, "signInWithEmail: Success!");
                                             currentUser = firebaseAuth.getCurrentUser();
+                                            progressBarLogin.setVisibility(View.GONE);
                                             goToSchedulesActivity();
                                     }
                                     else {

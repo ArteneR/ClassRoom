@@ -5,12 +5,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.R;
 import com.xdot.classroom.screens.activate_account.ActivateAccountActivity;
@@ -19,6 +27,10 @@ import com.xdot.classroom.screens.activate_account.ActivateAccountActivity;
 
 public class SignupActivity extends AppCompatActivity {
         private static String LOG_TAG = "SignupActivity";
+        private FirebaseDatabase firebaseDB;
+        private DatabaseReference firebaseDBRef;
+        private FirebaseAuth firebaseAuth;
+        private FirebaseUser currentUser;
         private EditText etFirstname;
         private EditText etLastname;
         private EditText etEmail;
@@ -38,6 +50,15 @@ public class SignupActivity extends AppCompatActivity {
 
                 activateCustomActionBar();
                 initializeUIElements();
+
+                connectToFirebase();
+        }
+
+
+        private void connectToFirebase() {
+                firebaseDB = FirebaseDatabase.getInstance();
+                firebaseDBRef = firebaseDB.getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
@@ -105,10 +126,44 @@ public class SignupActivity extends AppCompatActivity {
                 getUserEnteredValues();
 
                 if (isEnteredInputValid()) {
-                        clearAllInputFields();
-                        displayCreateAccountInfoMessage();
+                        createFirebaseAccount();
                 }
+        }
 
+
+        private void createFirebaseAccount() {
+                firebaseAuth.createUserWithEmailAndPassword(enteredEmail, enteredPassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                            currentUser = firebaseAuth.getCurrentUser();
+
+                                            // Here we should generate unique code and store in DB and send email to user
+
+                                            createDBEntryForUser();
+
+                                            clearAllInputFields();
+                                            displayCreateAccountInfoMessage();
+                                    }
+                                    else {
+                                            Log.w(LOG_TAG, "createUserWithEmail: Failure!", task.getException());
+                                            CommonFunctionalities.displayLongToast("Authentication failed.", getApplicationContext());
+                                    }
+                            }
+                    });
+        }
+
+
+        private void createDBEntryForUser() {
+                String activationCode = "TEST_CODE";
+
+                DatabaseReference usersRef = firebaseDBRef.child("Users").child(currentUser.getUid());
+                usersRef.child("AccountActivated").setValue(false);
+                usersRef.child("ActivationCode").setValue(activationCode);
+                usersRef.child("Email").setValue(currentUser.getEmail());
+                usersRef.child("Firstname").setValue(enteredFirstname);
+                usersRef.child("Lastname").setValue(enteredLastname);
         }
 
 

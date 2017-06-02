@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAda
 import com.xdot.classroom.R;
 import com.xdot.classroom.schedule.Schedule;
 import com.xdot.classroom.screens.create_schedule.CreateScheduleActivity;
+import com.xdot.classroom.screens.login.LoginActivity;
 import com.xdot.classroom.university_activities.UniversityActivity;
 import java.util.ArrayList;
 
@@ -36,6 +39,8 @@ public class SchedulesActivity extends AppCompatActivity {
         private DataProvider dataProvider;
         private FirebaseDatabase firebaseDB;
         private DatabaseReference firebaseDBRef;
+        private FirebaseAuth firebaseAuth;
+        private FirebaseUser currentUser;
 
 
         @Override
@@ -44,20 +49,46 @@ public class SchedulesActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_schedules);
 
                 connectToFirebase();
-                addListenerForUpdateDeviceRegistrationId();
-
-                initializeDataProviderModule();
-
-                activateCustomActionBar();
-                getFirebaseSchedules();
         }
 
 
+        @Override
+        protected void onStart() {
+                super.onStart();
+
+                if (!userIsLoggedIn()) {
+                        goToLoginActivity();
+                }
+                else {
+                        addListenerForUpdateDeviceRegistrationId();
+
+                        initializeDataProviderModule();
+
+                        activateCustomActionBar();
+                        getFirebaseSchedules();
+                }
+        }
+
+
+        private boolean userIsLoggedIn() {
+                currentUser = firebaseAuth.getCurrentUser();
+                if (currentUser != null) {
+                    return true;
+                }
+                return false;
+        }
+
+
+        private void goToLoginActivity() {
+                Intent intent = new Intent(this, LoginActivity.class);
+                this.startActivity(intent);
+        }
+
 
         private void connectToFirebase() {
-                Log.d(LOG_TAG, "connectToFirebase");
                 firebaseDB = FirebaseDatabase.getInstance();
                 firebaseDBRef = firebaseDB.getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
@@ -247,7 +278,8 @@ public class SchedulesActivity extends AppCompatActivity {
 
                 switch (view.getId()) {
                     case R.id.ivLeftActionbarButton:
-                        Log.d(LOG_TAG, "Button: Back");
+                        Log.d(LOG_TAG, "Button: Logout");
+                        logout();
                         break;
 
                     case R.id.ivRightActionbarButton:
@@ -255,6 +287,12 @@ public class SchedulesActivity extends AppCompatActivity {
                         openCreateScheduleActivity();
                         break;
                 }
+        }
+
+
+        private void logout() {
+                Intent intent = new Intent(this, LoginActivity.class);
+                this.startActivity(intent);
         }
 
 

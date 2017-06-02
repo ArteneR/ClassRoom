@@ -1,21 +1,39 @@
 package com.xdot.classroom.screens.login;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
+import com.xdot.classroom.screens.schedules.SchedulesActivity;
+import com.xdot.classroom.screens.signup.SignupActivity;
+
 
 
 public class LoginActivity extends AppCompatActivity {
+        private static String LOG_TAG = "LoginActivity";
+        private FirebaseAuth firebaseAuth;
+        private FirebaseUser currentUser;
         private Button btnLogIn;
         private TextView tvForgotPassword;
         private TextView tvSignUp;
         private TextView tvSkipLogin;
-        private static String LOG_TAG = "LoginActivity";
+        private EditText etUsername;
+        private EditText etPassword;
+        private String enteredUsername;
+        private String enteredPassword;
 
 
         @Override
@@ -23,14 +41,17 @@ public class LoginActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_login);
 
+                connectToFirebase();
+
                 initializeDataProviderModule();
+                initializeUIElements();
 
                 hideActionBar();
+        }
 
-                btnLogIn = (Button) findViewById(R.id.btnLogIn);
-                tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
-                tvSignUp = (TextView) findViewById(R.id.tvSignUp);
-                tvSkipLogin = (TextView) findViewById(R.id.tvSkipLogin);
+
+        private void connectToFirebase() {
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
@@ -38,6 +59,16 @@ public class LoginActivity extends AppCompatActivity {
                 DataProvider dataProvider = (DataProvider)getApplication();
                 dataProvider.init();
                 dataProvider.printSchedules();
+        }
+
+
+        private void initializeUIElements() {
+                btnLogIn = (Button) findViewById(R.id.btnLogIn);
+                tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
+                tvSignUp = (TextView) findViewById(R.id.tvSignUp);
+                tvSkipLogin = (TextView) findViewById(R.id.tvSkipLogin);
+                etUsername = (EditText) findViewById(R.id.etUsername);
+                etPassword = (EditText) findViewById(R.id.etPassword);
         }
 
 
@@ -53,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.btnLogIn:
                         Log.d(LOG_TAG, "Button: " + btnLogIn.getText());
+                        login();
                         break;
 
                     case R.id.tvForgotPassword:
@@ -61,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     case R.id.tvSignUp:
                         Log.d(LOG_TAG, "Button: " + tvSignUp.getText());
+                        goToSignupActivity();
                         break;
 
                     case R.id.tvSkipLogin:
@@ -69,5 +102,66 @@ public class LoginActivity extends AppCompatActivity {
                 }
         }
 
+
+        private void login() {
+                getUserEnteredValues();
+                if (isEnteredInputValid()) {
+                    loginToFirebase();
+                }
+        }
+
+
+        private boolean isEnteredInputValid() {
+                if (CommonFunctionalities.isFieldEmpty(enteredUsername)) {
+                    CommonFunctionalities.displayLongToast("Username (Email) field is required!", getApplicationContext());
+                    return false;
+                }
+
+                if (CommonFunctionalities.isFieldEmpty(enteredPassword)) {
+                    CommonFunctionalities.displayLongToast("Password field is required!", getApplicationContext());
+                    return false;
+                }
+
+                return true;
+        }
+
+
+        private void loginToFirebase() {
+                firebaseAuth.signInWithEmailAndPassword(enteredUsername, enteredPassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                            // Sign in success, update UI with the signed-in user's information
+                                            Log.d(LOG_TAG, "signInWithEmail: Success!");
+                                            currentUser = firebaseAuth.getCurrentUser();
+                                            goToSchedulesActivity();
+                                    }
+                                    else {
+                                            // If sign in fails, display a message to the user.
+                                            Log.w(LOG_TAG, "signInWithEmail: Failure!", task.getException());
+                                            CommonFunctionalities.displayLongToast("Authentication failed!", getApplicationContext());
+                                    }
+                            }
+                    });
+        }
+
+
+        private void getUserEnteredValues() {
+                enteredUsername = etUsername.getText().toString();
+                enteredPassword = etPassword.getText().toString();
+        }
+
+
+        private void goToSignupActivity() {
+                Intent intent = new Intent(this, SignupActivity.class);
+                this.startActivity(intent);
+        }
+
+
+        private void goToSchedulesActivity() {
+                Intent intent = new Intent(this, SchedulesActivity.class);
+                this.startActivity(intent);
+        }
 
 }

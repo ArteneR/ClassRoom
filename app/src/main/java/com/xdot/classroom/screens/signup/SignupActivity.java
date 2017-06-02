@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,6 +37,7 @@ public class SignupActivity extends AppCompatActivity {
         private EditText etEmail;
         private EditText etPassword;
         private EditText etRePassword;
+        private ProgressBar progressBarSignup;
         private String enteredFirstname;
         private String enteredLastname;
         private String enteredEmail;
@@ -88,6 +90,7 @@ public class SignupActivity extends AppCompatActivity {
                 etEmail = (EditText) findViewById(R.id.etEmail);
                 etPassword = (EditText) findViewById(R.id.etPassword);
                 etRePassword = (EditText) findViewById(R.id.etRePassword);
+                progressBarSignup = (ProgressBar) findViewById(R.id.progressBarSingup);
         }
 
 
@@ -122,11 +125,14 @@ public class SignupActivity extends AppCompatActivity {
 
 
         private void createAccount() {
-                Log.d(LOG_TAG, "Creating account...");
+                progressBarSignup.setVisibility(View.VISIBLE);
                 getUserEnteredValues();
 
                 if (isEnteredInputValid()) {
                         createFirebaseAccount();
+                }
+                else {
+                        progressBarSignup.setVisibility(View.GONE);
                 }
         }
 
@@ -136,6 +142,7 @@ public class SignupActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                    progressBarSignup.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                             currentUser = firebaseAuth.getCurrentUser();
 

@@ -138,11 +138,11 @@ public class LoginActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                    progressBarLogin.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                             // Sign in success, update UI with the signed-in user's information
                                             Log.d(LOG_TAG, "signInWithEmail: Success!");
                                             currentUser = firebaseAuth.getCurrentUser();
-                                            progressBarLogin.setVisibility(View.GONE);
                                             goToSchedulesActivity();
                                     }
                                     else {

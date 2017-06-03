@@ -15,6 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
@@ -25,6 +30,8 @@ import com.xdot.classroom.screens.signup.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity {
         private static String LOG_TAG = "LoginActivity";
+        private FirebaseDatabase firebaseDB;
+        private DatabaseReference firebaseDBRef;
         private FirebaseAuth firebaseAuth;
         private FirebaseUser currentUser;
         private Button btnLogIn;
@@ -53,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         private void connectToFirebase() {
+                firebaseDB = FirebaseDatabase.getInstance();
+                firebaseDBRef = firebaseDB.getReference();
                 firebaseAuth = FirebaseAuth.getInstance();
         }
 
@@ -143,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                                             // Sign in success, update UI with the signed-in user's information
                                             Log.d(LOG_TAG, "signInWithEmail: Success!");
                                             currentUser = firebaseAuth.getCurrentUser();
-                                            goToSchedulesActivity();
+                                            displaySchedulesIfUserAccountIsActivated();
                                     }
                                     else {
                                             // If sign in fails, display a message to the user.
@@ -152,6 +161,28 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                             }
                     });
+        }
+
+
+        private void displaySchedulesIfUserAccountIsActivated() {
+                String userId = currentUser.getUid();
+
+                firebaseDBRef.child("Users").child(userId).child("AccountActivated").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                                boolean accountActivated = Boolean.parseBoolean(snapshot.getValue().toString());
+
+                                if (accountActivated) {
+                                        goToSchedulesActivity();
+                                }
+                                else {
+                                        CommonFunctionalities.displayLongToast("Your user account is not activated yet!", getApplicationContext());
+                                }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
         }
 
 

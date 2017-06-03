@@ -7,12 +7,28 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.R;
 
 
 
 public class ActivateAccountActivity extends AppCompatActivity {
         private static String LOG_TAG = "ActivateAccountActivity";
+        private FirebaseDatabase firebaseDB;
+        private DatabaseReference firebaseDBRef;
+        private String registeredEmailAddress;
+        private EditText etActivationCode;
+        private EditText etEmailAddress;
+        private ProgressBar progressBarActivateAccount;
+        private String enteredActivationCode;
+        private String enteredEmailAddress;
 
 
         @Override
@@ -20,7 +36,26 @@ public class ActivateAccountActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_activate_account);
 
+                connectToFirebase();
+
+                initializeUIElements();
+                registeredEmailAddress = getIntent().getStringExtra("email_address");
+                etEmailAddress.setText(registeredEmailAddress);
+
                 activateCustomActionBar();
+        }
+
+
+        private void connectToFirebase() {
+                firebaseDB = FirebaseDatabase.getInstance();
+                firebaseDBRef = firebaseDB.getReference();
+        }
+
+
+        private void initializeUIElements() {
+                etActivationCode = (EditText) findViewById(R.id.etActivationCode);
+                etEmailAddress = (EditText) findViewById(R.id.etEmailAddress);
+                progressBarActivateAccount = (ProgressBar) findViewById(R.id.progressBarActivateAccount);
         }
 
 
@@ -56,9 +91,14 @@ public class ActivateAccountActivity extends AppCompatActivity {
                         goToPreviousActivity();
                         break;
 
-                    case R.id.btnCreateAccount:
-                        Log.d(LOG_TAG, "Button: Create Account");
-                        createAccount();
+                    case R.id.btnActivateAccount:
+                        Log.d(LOG_TAG, "Button: Activate Account");
+                        activateAccount();
+                        break;
+
+                    case R.id.tvResendActivationCode:
+                        Log.d(LOG_TAG, "Button: Resend Activation Code");
+                        resendActivationCode();
                         break;
                 }
         }
@@ -69,7 +109,68 @@ public class ActivateAccountActivity extends AppCompatActivity {
         }
 
 
-        private void createAccount() {
-                Log.d(LOG_TAG, "Creating account...");
+        private void activateAccount() {
+                progressBarActivateAccount.setVisibility(View.VISIBLE);
+                getUserEnteredValues();
+
+                if (isEnteredInputValid()) {
+                        activateFirebaseAccount();
+                }
+                else {
+                        progressBarActivateAccount.setVisibility(View.GONE);
+                }
         }
+
+
+        private void resendActivationCode() {
+
+        }
+
+
+        private void getUserEnteredValues() {
+                enteredActivationCode = etActivationCode.getText().toString().toUpperCase();
+                enteredEmailAddress = etEmailAddress.getText().toString();
+        }
+
+
+        private boolean isEnteredInputValid() {
+                if (CommonFunctionalities.isFieldEmpty(enteredActivationCode)) {
+                        CommonFunctionalities.displayLongToast("Activation Code field is required!", getApplicationContext());
+                        return false;
+                }
+
+                return true;
+        }
+
+
+        private void activateFirebaseAccount() {
+                firebaseDBRef.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot usersSnapshot) {
+                                for (DataSnapshot userSnapshot: usersSnapshot.getChildren()) {
+                                    String currentUserKey = userSnapshot.getKey();
+                                    String currentUserEmail = userSnapshot.child("Email").getValue().toString();
+                                    String activationCode = userSnapshot.child("ActivationCode").getValue().toString();
+
+                                    if (currentUserEmail.equals(enteredEmailAddress)) {
+                                            if (activationCode.equals(enteredActivationCode)) {
+                                                    firebaseDBRef.child("Users").child(currentUserKey).child("AccountActivated").setValue(true);
+                                                    CommonFunctionalities.displayLongToast("Account has been successfully activated!", getApplicationContext());
+                                                    progressBarActivateAccount.setVisibility(View.GONE);
+                                                    goToPreviousActivity();
+                                                    return ;
+                                            }
+                                    }
+                                }
+
+                                CommonFunctionalities.displayLongToast("The account couldn't be activated! Maybe the specified email address or activation code is incorrect.", getApplicationContext());
+                                progressBarActivateAccount.setVisibility(View.GONE);
+                        }
+
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
+        }
+
 }

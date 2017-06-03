@@ -60,12 +60,7 @@ public class SchedulesActivity extends AppCompatActivity {
                         goToLoginActivity();
                 }
                 else {
-                        addListenerForUpdateDeviceRegistrationId();
-
-                        initializeDataProviderModule();
-
-                        activateCustomActionBar();
-                        getFirebaseSchedules();
+                        displaySchedulesIfUserAccountIsActivated();
                 }
         }
 
@@ -76,6 +71,44 @@ public class SchedulesActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+        }
+
+
+        private void displaySchedulesIfUserAccountIsActivated() {
+                String userId = currentUser.getUid();
+
+                firebaseDBRef.child("Users").child(userId).child("AccountActivated").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                                Object snapshotValue = snapshot.getValue();
+
+                                if (snapshotValue == null) {
+                                        firebaseAuth.signOut();
+                                        CommonFunctionalities.displayLongToast("Something went wrong! Please login again!", getApplicationContext());
+                                        goToLoginActivity();
+                                        return ;
+                                }
+
+                                boolean accountActivated = Boolean.parseBoolean(snapshotValue.toString());
+
+                                if (accountActivated) {
+                                        addListenerForUpdateDeviceRegistrationId();
+
+                                        initializeDataProviderModule();
+
+                                        activateCustomActionBar();
+                                        getFirebaseSchedules();
+                                }
+                                else {
+                                        CommonFunctionalities.displayLongToast("Your user account is not activated yet!", getApplicationContext());
+                                        goToLoginActivity();
+                                }
+                        }
+
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
         }
 
 

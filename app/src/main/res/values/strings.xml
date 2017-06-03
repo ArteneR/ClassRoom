@@ -20,6 +20,8 @@
     <string name="activate_account_title_activate_account">Activate Account</string>
     <string name="activate_account_text_enter_activation_code">Enter activation code:</string>
     <string name="activate_account_hint_example_code">eg. 4FG58KJ8</string>
+    <string name="activate_account_text_email_address">Email address:</string>
+    <string name="activate_account_hint_email_address">Registered email address...</string>
     <string name="activate_account_button_activate_account">Activate Account</string>
     <string name="activate_account_text_help_message">You should have received an email with the activation code.  Enter the code in the above box in order to activate your account.</string>
 

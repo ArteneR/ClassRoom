@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.R;
 import com.xdot.classroom.screens.activate_account.ActivateAccountActivity;
+import com.xdot.classroom.send_emails.MailSender;
+import java.util.Random;
 
 
 
@@ -32,6 +34,8 @@ public class SignupActivity extends AppCompatActivity {
         private DatabaseReference firebaseDBRef;
         private FirebaseAuth firebaseAuth;
         private FirebaseUser currentUser;
+        private String mailSenderEmailAddress = "dev.artener@gmail.com";
+        private String mailSenderPassword = "Amiga1200";
         private EditText etFirstname;
         private EditText etLastname;
         private EditText etEmail;
@@ -146,8 +150,6 @@ public class SignupActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                             currentUser = firebaseAuth.getCurrentUser();
 
-                                            // Here we should generate unique code and store in DB and send email to user
-
                                             createDBEntryForUser();
 
                                             clearAllInputFields();
@@ -163,7 +165,8 @@ public class SignupActivity extends AppCompatActivity {
 
 
         private void createDBEntryForUser() {
-                String activationCode = "TEST_CODE";
+                String activationCode = generateRandomActivationCode();
+                sendEmailWithActivationCode(activationCode);
 
                 DatabaseReference usersRef = firebaseDBRef.child("Users").child(currentUser.getUid());
                 usersRef.child("AccountActivated").setValue(false);
@@ -174,8 +177,58 @@ public class SignupActivity extends AppCompatActivity {
         }
 
 
+        private String generateRandomActivationCode() {
+                final int ACTIVATION_CODE_LENGTH = 8;
+                final String POSSIBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*1234567890";
+                StringBuilder randomCodeUnderConstruction = new StringBuilder();
+                Random random = new Random();
+
+                while (randomCodeUnderConstruction.length() < ACTIVATION_CODE_LENGTH) {
+                        int index = (int) (random.nextFloat() * POSSIBLE_CHARS.length());
+                        randomCodeUnderConstruction.append(POSSIBLE_CHARS.charAt(index));
+                }
+                String randomCode = randomCodeUnderConstruction.toString();
+                return randomCode;
+        }
+
+
+        private void sendEmailWithActivationCode(String activationCode) {
+                String[] toAddresses = { enteredEmail };
+                String subject = "Activate your ClassRoom app account";
+                String from = mailSenderEmailAddress;
+                String body = "Hello!\n\n"
+                            + "Your account for ClassRoom app has just been created!\n\n"
+                            + "The account is currently inactive. In order to activate your account, please enter the following code in the app on the Activate Account screen:\n\n"
+                            + "Your activation code is: \n\n" + activationCode + "\n\n"
+                            + "Thank you!\n\n";
+
+                MailSender mailSender = new MailSender(getApplicationContext(), mailSenderEmailAddress, mailSenderPassword);
+                mailSender.setTo(toAddresses);
+                mailSender.setFrom(from);
+                mailSender.setSubject(subject);
+                mailSender.setBody(body);
+
+                try {
+                        if (mailSender.send()) {
+                                CommonFunctionalities.displayLongToast("Email was sent successfully.", getApplicationContext());
+                                Log.d(LOG_TAG, "Email was sent successfully.");
+                        }
+                        else {
+                                CommonFunctionalities.displayLongToast("Email was not sent.", getApplicationContext());
+                                Log.d(LOG_TAG, "Email was not sent.");
+                        }
+                }
+                catch (Exception e) {
+                        CommonFunctionalities.displayLongToast("There was a problem sending the email.", getApplicationContext());
+                        Log.d(LOG_TAG, "There was a problem sending the email.");
+                        e.printStackTrace();
+                }
+        }
+
+
         private void goToActivateAccountActivity() {
                 Intent intent = new Intent(this, ActivateAccountActivity.class);
+                intent.putExtra("email_address", enteredEmail);
                 this.startActivity(intent);
         }
 

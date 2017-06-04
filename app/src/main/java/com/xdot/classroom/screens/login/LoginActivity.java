@@ -165,12 +165,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
         private void displaySchedulesIfUserAccountIsActivated() {
-                String userId = currentUser.getUid();
+                final String userId = currentUser.getUid();
 
                 firebaseDBRef.child("Users").child(userId).child("AccountActivated").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot snapshot) {
-                                boolean accountActivated = Boolean.parseBoolean(snapshot.getValue().toString());
+                                Object snapshotValue = snapshot.getValue();
+                                if (snapshotValue == null) {
+                                        CommonFunctionalities.displayLongToast("Something went wrong! Try to login again...", getApplicationContext());
+                                        return ;
+                                }
+
+                                boolean accountActivated = Boolean.parseBoolean(snapshotValue.toString());
 
                                 if (accountActivated) {
                                         goToSchedulesActivity();

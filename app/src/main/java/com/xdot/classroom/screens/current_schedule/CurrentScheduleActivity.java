@@ -20,7 +20,7 @@ import com.xdot.classroom.screens.edit_schedule.EditScheduleActivity;
 
 
 
-public class CurrentScheduleActivity extends AppCompatActivity {
+public class CurrentScheduleActivity extends AppCompatActivity implements View.OnClickListener {
         private static String LOG_TAG = "CurrentScheduleActivity";
         private String activityTitle = "Current Schedule Name";
         private android.support.v7.app.ActionBar mActionBar;
@@ -103,9 +103,10 @@ public class CurrentScheduleActivity extends AppCompatActivity {
 
                         @Override
                         public void onPageSelected(int position) {
-                            String dayOfWeek = DayOfWeek.values()[position].toString();
-                            TextView v = (TextView) ((Activity)mContext).findViewById(R.id.tvDayOfWeek);
-                            v.setText(dayOfWeek);
+                                String dayOfWeek = DayOfWeek.values()[position].toString();
+                                dataProvider.setCurrentDayOfWeek(dayOfWeek);
+                                TextView v = (TextView) ((Activity)mContext).findViewById(R.id.tvDayOfWeek);
+                                v.setText(dayOfWeek);
                         }
 
                         @Override
@@ -122,6 +123,11 @@ public class CurrentScheduleActivity extends AppCompatActivity {
                 tvActivityTitle.setText(newTitle);
         }
 
+
+        @Override
+        public void onClick(View view) {
+                clicked(view);
+        }
 
 
         /*

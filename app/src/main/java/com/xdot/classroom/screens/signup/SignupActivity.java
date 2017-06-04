@@ -47,6 +47,9 @@ public class SignupActivity extends AppCompatActivity {
         private String enteredEmail;
         private String enteredPassword;
         private String enteredRePassword;
+        private String defaultDeviceRegistrationID = "n/a";
+        private String defaultCurrentlySelectedSchedule = "n/a";
+        private int defaultNotificationMinutesBefore = 15;
 
 
         @Override
@@ -174,6 +177,9 @@ public class SignupActivity extends AppCompatActivity {
                 usersRef.child("Email").setValue(currentUser.getEmail());
                 usersRef.child("Firstname").setValue(enteredFirstname);
                 usersRef.child("Lastname").setValue(enteredLastname);
+                usersRef.child("DeviceRegistrationID").setValue(defaultDeviceRegistrationID);
+                usersRef.child("Preferences").child("CurrentlySelectedSchedule").setValue(defaultCurrentlySelectedSchedule);
+                usersRef.child("Preferences").child("NotificationMinutesBefore").setValue(defaultNotificationMinutesBefore);
         }
 
 

@@ -127,17 +127,23 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
         private void addListenerForUpdateDeviceRegistrationId() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
 
                 firebaseDBRef.child("Users").child(userId).child("DeviceRegistrationID").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        String firebaseDeviceRegistrationId = snapshot.getValue().toString();
-                        checkForUpdateDeviceRegistrationId(firebaseDeviceRegistrationId);
-                    }
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                                Object snapshotValue = snapshot.getValue();
+                                if (snapshotValue == null) {
+                                    checkForUpdateDeviceRegistrationId("");
+                                }
+                                else {
+                                    String firebaseDeviceRegistrationId = snapshotValue.toString();
+                                    checkForUpdateDeviceRegistrationId(firebaseDeviceRegistrationId);
+                                }
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {}
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
                 });
         }
 
@@ -155,7 +161,8 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
         private void updateDeviceRegistrationId(String newDeviceRegistrationId) {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
+
                 firebaseDBRef.child("Users").child(userId).child("DeviceRegistrationID").setValue(newDeviceRegistrationId);
         }
 
@@ -211,7 +218,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
         private void getFirebaseSchedules() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
 
                 firebaseDBRef.child("Users").child(userId).child("Schedules").addValueEventListener(new ValueEventListener() {
                         @Override

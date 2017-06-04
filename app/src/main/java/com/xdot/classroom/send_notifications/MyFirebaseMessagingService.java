@@ -14,8 +14,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.xdot.classroom.R;
 
 
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
+public class MyFirebaseMessagingService extends FirebaseMessagingService {
         private static final String TAG = "MyFirebaseMessagingService";
 
 
@@ -40,20 +40,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
                 Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                    R.mipmap.ic_classroom_launcher);
+                                                           R.mipmap.ic_classroom_launcher);
 
                 NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                    .setSound(defaultSoundUri)
-                    .setLargeIcon(icon)
-                    .setColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAppMain))
-                    .setSmallIcon(R.mipmap.ic_classroom_launcher)
-                    .setContentTitle(messageTitle)
-                    .setContentText(messageBody);
+                            .setSound(defaultSoundUri)
+                            .setLargeIcon(icon)
+                            .setColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAppMain))
+                            .setSmallIcon(R.mipmap.ic_classroom_launcher)
+                            .setContentTitle(messageTitle)
+                            .setContentText(messageBody);
 
-                NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
                 notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
-
         }
+
 }

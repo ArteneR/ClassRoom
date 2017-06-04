@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,7 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
         private DataProvider dataProvider;
         private FirebaseDatabase firebaseDB;
         private DatabaseReference firebaseDBRef;
+        private FirebaseAuth firebaseAuth;
         private String selectedScheduleEntryId;
         private String selectedUnivActivityType;
         private String selectedEntryType;
@@ -72,6 +74,7 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
         private void connectToFirebase() {
                 firebaseDB = FirebaseDatabase.getInstance();
                 firebaseDBRef = firebaseDB.getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
@@ -91,7 +94,7 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
 
 
         private void fillElementsWithFirebaseData() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
                 String scheduleId = dataProvider.getCurrentScheduleId();
                 String dayOfWeek = CommonFunctionalities.capitalizeFirstLetter(dataProvider.getCurrentDayOfWeek());
                 final String entryType = CommonFunctionalities.singularToPlural(selectedUnivActivityType);
@@ -254,7 +257,7 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
         private void saveChanges() {
                 getUserSelectedValues();
 
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
                 String scheduleId = dataProvider.getCurrentScheduleId();
                 String dayOfWeek = CommonFunctionalities.capitalizeFirstLetter(dataProvider.getCurrentDayOfWeek());
                 String entryId = selectedScheduleEntryId;
@@ -295,7 +298,7 @@ public class EditScheduleEntryActivity extends AppCompatActivity {
 
 
         private void deleteScheduleEntry() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
                 String scheduleId = dataProvider.getCurrentScheduleId();
                 String dayOfWeek = CommonFunctionalities.capitalizeFirstLetter(dataProvider.getCurrentDayOfWeek());
                 final String entryType = CommonFunctionalities.singularToPlural(selectedUnivActivityType);

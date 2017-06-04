@@ -163,6 +163,7 @@ public class CurrentScheduleActivity extends AppCompatActivity implements View.O
 
         private void goToEditScheduleActivity() {
                 Intent intent = new Intent(this, EditScheduleActivity.class);
+                intent.putExtra("selected_schedule_id", dataProvider.getCurrentScheduleId());
                 this.startActivity(intent);
         }
 

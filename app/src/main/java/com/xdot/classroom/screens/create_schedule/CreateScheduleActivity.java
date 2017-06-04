@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
         private static String LOG_TAG = "CreateScheduleActivity";
         private FirebaseDatabase firebaseDB;
         private DatabaseReference firebaseDBRef;
+        private FirebaseAuth firebaseAuth;
         private EditText etScheduleName;
 
 
@@ -40,9 +42,9 @@ public class CreateScheduleActivity extends AppCompatActivity {
 
 
         private void connectToFirebase() {
-                Log.d(LOG_TAG, "Connectint To Firebase...");
                 firebaseDB = FirebaseDatabase.getInstance();
                 firebaseDBRef = firebaseDB.getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
@@ -92,7 +94,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
 
 
         private void createNewSchedule() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
 
                 final String newScheduleName = etScheduleName.getText().toString();
 
@@ -131,7 +133,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
 
 
         private void createNewScheduleInFirebase(String newScheduleName) {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
 
                 String newKey = firebaseDBRef.child("Users").child(userId).child("Schedules").push().getKey();
                 firebaseDBRef.child("Users").child(userId).child("Schedules").child(newKey).child("Name").setValue(newScheduleName);

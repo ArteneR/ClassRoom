@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +28,9 @@ public class EditScheduleActivity extends AppCompatActivity {
         private static String LOG_TAG = "EditScheduleActivity";
         private FirebaseDatabase firebaseDB;
         private DatabaseReference firebaseDBRef;
+        private FirebaseAuth firebaseAuth;
         private EditText etScheduleName;
+        private String selectedScheduleId;
 
 
         @Override
@@ -36,6 +39,7 @@ public class EditScheduleActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_edit_schedule);
 
                 connectToFirebase();
+                selectedScheduleId = getIntent().getStringExtra("selected_schedule_id");
 
                 initializeUIElements();
                 fillElementsWithFirebaseData();
@@ -47,6 +51,7 @@ public class EditScheduleActivity extends AppCompatActivity {
         private void connectToFirebase() {
                 firebaseDB = FirebaseDatabase.getInstance();
                 firebaseDBRef = firebaseDB.getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
@@ -56,8 +61,8 @@ public class EditScheduleActivity extends AppCompatActivity {
 
 
         private void fillElementsWithFirebaseData() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
-                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+                String userId = firebaseAuth.getCurrentUser().getUid();
+                String scheduleId = selectedScheduleId;
 
                 firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -134,8 +139,8 @@ public class EditScheduleActivity extends AppCompatActivity {
 
 
         private void saveChanges() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
-                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+                String userId = firebaseAuth.getCurrentUser().getUid();
+                String scheduleId = selectedScheduleId;
                 String editedScheduleName = etScheduleName.getText().toString();
 
                 DatabaseReference scheduleRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Name").getRef();
@@ -163,8 +168,8 @@ public class EditScheduleActivity extends AppCompatActivity {
 
 
         private void deleteSchedule() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
-                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+                String userId = firebaseAuth.getCurrentUser().getUid();
+                String scheduleId = selectedScheduleId;
 
                 DatabaseReference oldScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).getRef();
                 oldScheduleEntryRef.setValue(null);

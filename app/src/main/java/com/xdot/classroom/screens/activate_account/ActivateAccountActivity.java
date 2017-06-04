@@ -123,7 +123,7 @@ public class ActivateAccountActivity extends AppCompatActivity {
 
 
         private void resendActivationCode() {
-
+                Log.d(LOG_TAG, "Resending Activation Code (function NOT IMPLEMENTED yet!)...");
         }
 
 

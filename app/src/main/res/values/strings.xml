@@ -25,11 +25,7 @@
     <string name="activate_account_button_activate_account">Activate Account</string>
     <string name="activate_account_text_help_message">You should have received an email with the activation code.  Enter the code in the above box in order to activate your account.</string>
 
-
     <string name="activate_account_text_resend_activation_code"><u>Resend activation code</u></string>
-
-
-
 
     <string name="schedules_title_schedules">Schedules</string>
     <string name="schedules_text_no_schedules_created_yet">No schedules have been created yet!</string>
@@ -48,6 +44,10 @@
     <string name="edit_schedule_title_edit_schedule">Edit Schedule</string>
     <string name="edit_schedule_text_schedule_name">Schedule name</string>
     <string name="edit_schedule_hint_enter_schedule_name">Enter schedule name...</string>
+    <string name="edit_schedule_checkbox_set_schedule_as_default">Set schedule as default (for notifications)</string>
+    <string name="edit_schedule_text_notification_minutes_before">Notification minutes before</string>
+    <string name="edit_schedule_hint_notification_minutes_before">eg. 15</string>
+    <string name="edit_schedule_text_notification_minutes_before_help">*How many minutes before the schedule activity\n starts should the notification be received.</string>
     <string name="edit_schedule_button_save_changes">Save Changes</string>
     <string name="edit_schedule_button_delete_schedule">Delete Schedule</string>
 

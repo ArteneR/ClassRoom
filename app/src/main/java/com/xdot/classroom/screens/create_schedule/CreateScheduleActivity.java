@@ -106,7 +106,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
                                 }
                                 else {
                                         createNewScheduleInFirebase(newScheduleName);
-                                        CommonFunctionalities.displayShortToast("Schedule have been created!", getApplicationContext());
+                                        CommonFunctionalities.displayShortToast("Schedule has been created!", getApplicationContext());
                                         goToPreviousActivity();
                                 }
                         }

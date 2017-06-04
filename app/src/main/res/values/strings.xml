@@ -68,6 +68,6 @@
         <item>Lab</item>
         <item>Seminary</item>
         <item>Exam</item>
-        <item>Extracurricular Activity</item>
+        <item>ExtracurricularActivity</item>
     </string-array>
 </resources>

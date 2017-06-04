@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +29,11 @@ public class EditScheduleActivity extends AppCompatActivity {
         private static String LOG_TAG = "EditScheduleActivity";
         private FirebaseDatabase firebaseDB;
         private DatabaseReference firebaseDBRef;
+        private FirebaseAuth firebaseAuth;
         private EditText etScheduleName;
+        private CheckBox cbSetScheduleAsDefault;
+        private EditText etNotificationMinutesBefore;
+        private String selectedScheduleId;
 
 
         @Override
@@ -36,6 +42,7 @@ public class EditScheduleActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_edit_schedule);
 
                 connectToFirebase();
+                selectedScheduleId = getIntent().getStringExtra("selected_schedule_id");
 
                 initializeUIElements();
                 fillElementsWithFirebaseData();
@@ -47,33 +54,46 @@ public class EditScheduleActivity extends AppCompatActivity {
         private void connectToFirebase() {
                 firebaseDB = FirebaseDatabase.getInstance();
                 firebaseDBRef = firebaseDB.getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
         private void initializeUIElements() {
                 etScheduleName = (EditText) findViewById(R.id.etScheduleName);
+                cbSetScheduleAsDefault = (CheckBox) findViewById(R.id.cbSetScheduleAsDefault);
+                etNotificationMinutesBefore = (EditText) findViewById(R.id.etNotificationMinutesBefore);
         }
 
 
         private void fillElementsWithFirebaseData() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
-                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+                final String userId = firebaseAuth.getCurrentUser().getUid();
+                final String scheduleId = selectedScheduleId;
 
                 firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot scheduleSnapshot) {
-                            Schedule schedule = scheduleSnapshot.getValue(Schedule.class);
-                            fillScheduleElements(schedule);
+                                Schedule schedule = scheduleSnapshot.getValue(Schedule.class);
+                                etScheduleName.setText(schedule.Name);
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {}
                 });
-        }
 
+                firebaseDBRef.child("Users").child(userId).child("Preferences").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot userPreferencesSnapshot) {
+                                String currentlySelectedScheduleId = userPreferencesSnapshot.child("CurrentlySelectedSchedule").getValue().toString();
+                                boolean scheduleIsDefaultSchedule = (currentlySelectedScheduleId.equals(scheduleId) ? true : false);
+                                int notificationMinutesBefore = Integer.parseInt(userPreferencesSnapshot.child("NotificationMinutesBefore").getValue().toString());
+                                cbSetScheduleAsDefault.setChecked(scheduleIsDefaultSchedule);
+                                etNotificationMinutesBefore.setText(String.valueOf(notificationMinutesBefore));
+                        }
 
-        private void fillScheduleElements(Schedule schedule) {
-                etScheduleName.setText(schedule.Name);
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
+
         }
 
 
@@ -134,12 +154,20 @@ public class EditScheduleActivity extends AppCompatActivity {
 
 
         private void saveChanges() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
-                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+                String userId = firebaseAuth.getCurrentUser().getUid();
+                String scheduleId = selectedScheduleId;
                 String editedScheduleName = etScheduleName.getText().toString();
+                String editedNotificationMinutesBefore = etNotificationMinutesBefore.getText().toString();
+                boolean scheduleSetAsDefault = cbSetScheduleAsDefault.isChecked();
 
                 DatabaseReference scheduleRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).child("Name").getRef();
                 scheduleRef.setValue(editedScheduleName);
+
+                DatabaseReference userPreferencesRef = firebaseDBRef.child("Users").child(userId).child("Preferences").getRef();
+                userPreferencesRef.child("NotificationMinutesBefore").setValue(editedNotificationMinutesBefore);
+                if (scheduleSetAsDefault) {
+                        userPreferencesRef.child("CurrentlySelectedSchedule").setValue(scheduleId);
+                }
 
                 CommonFunctionalities.displayShortToast("Changes have been successfully saved!", getApplicationContext());
                 goToSchedulesActivity();
@@ -163,8 +191,8 @@ public class EditScheduleActivity extends AppCompatActivity {
 
 
         private void deleteSchedule() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
-                String scheduleId = "-KaXH2XXXXXXXVWrJ5dS";
+                String userId = firebaseAuth.getCurrentUser().getUid();
+                String scheduleId = selectedScheduleId;
 
                 DatabaseReference oldScheduleEntryRef = firebaseDBRef.child("Users").child(userId).child("Schedules").child(scheduleId).getRef();
                 oldScheduleEntryRef.setValue(null);

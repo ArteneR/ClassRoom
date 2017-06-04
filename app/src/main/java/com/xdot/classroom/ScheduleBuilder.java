@@ -2,20 +2,23 @@ package com.xdot.classroom;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.xdot.classroom.screens.edit_schedule_entry.EditScheduleEntryActivity;
 import java.util.HashMap;
 import java.util.Map;
 
 
 
-public class ScheduleBuilder {
+public class ScheduleBuilder implements View.OnClickListener {
         private static String LOG_TAG = "ScheduleBuilder";
         private String containerId;
         private int maxHoursInterval = 14;          /* eg. 08:00 -> 22:00 (14 hours) */
@@ -61,7 +64,7 @@ public class ScheduleBuilder {
 
 
 
-        public void addScheduleEntry(String startTime, String endTime, String subject, String room, String building, String backgroundColor) {
+        public void addScheduleEntry(String scheduleEntryId, String univActivityType, String startTime, String endTime, String subject, String room, String building, String backgroundColor) {
                 int startTimeHour = extractTimeHour(startTime);
                 int startTimeMinute = extractTimeMinute(startTime);
                 int endTimeHour = extractTimeHour(endTime);
@@ -82,7 +85,7 @@ public class ScheduleBuilder {
                 Log.d(LOG_TAG, "scheduleEntryMarginTop: " + scheduleEntryMarginTop);
                 Log.d(LOG_TAG, "scheduleEntryHeight: " + scheduleEntryHeight);
 
-                RelativeLayout relativeLayout = makeScheduleEntryLayout(backgroundColor, scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
+                RelativeLayout relativeLayout = makeScheduleEntryLayout(scheduleEntryId, univActivityType, backgroundColor, scheduleEntryMarginTop, scheduleEntryHeight, scheduleEntryData);
 
                 addScheduleEntryLayout(relativeLayout);
         }
@@ -101,7 +104,7 @@ public class ScheduleBuilder {
 
 
 
-        private RelativeLayout makeScheduleEntryLayout(String scheduleEntryColor, int scheduleEntryMarginTop, int scheduleEntryHeight, Map scheduleEntryData) {
+        private RelativeLayout makeScheduleEntryLayout(String scheduleEntryId, String univActivityType, String scheduleEntryColor, int scheduleEntryMarginTop, int scheduleEntryHeight, Map scheduleEntryData) {
                 RelativeLayout relativeLayout = new RelativeLayout((Activity) this.mContext);
                 relativeLayout.setBackgroundColor(Color.parseColor(scheduleEntryColor));
 
@@ -117,6 +120,10 @@ public class ScheduleBuilder {
                 relativeLayout.setLayoutParams(params);
 
                 // Setting the elements inside the schedule entry
+                TextView hiddenIdLayout = makeHiddenIdLayout(scheduleEntryId);
+
+                TextView hiddenUnivActivityType = makeHiddenUnivActivityTypeLayout(univActivityType);
+
                 TextView startTimeLayout = makeStartTimeLayout(scheduleEntryData.get("startTime").toString());
 
                 int endTimeLayoutHeight = 16;       /* in dp */
@@ -129,6 +136,9 @@ public class ScheduleBuilder {
 
                 LinearLayout bottomBorderLayout = makeBottomBorderLayout(scheduleEntryHeightInPx);
 
+                relativeLayout.setOnClickListener(this);
+                relativeLayout.addView(hiddenIdLayout);
+                relativeLayout.addView(hiddenUnivActivityType);
                 relativeLayout.addView(startTimeLayout);
                 relativeLayout.addView(endTimeLayout);
                 relativeLayout.addView(subjectNameLayout);
@@ -145,6 +155,21 @@ public class ScheduleBuilder {
                 return pxValue;
         }
 
+
+        private TextView makeHiddenIdLayout(String hiddenId) {
+                TextView hiddenIdLayout = new TextView((Activity) this.mContext);
+                hiddenIdLayout.setText("ScheduleEntryId::" + hiddenId);
+                hiddenIdLayout.setVisibility(View.INVISIBLE);
+                return hiddenIdLayout;
+        }
+
+
+        private TextView makeHiddenUnivActivityTypeLayout(String univActivityType) {
+                TextView hiddenUnivActivityTypeLayout = new TextView((Activity) this.mContext);
+                hiddenUnivActivityTypeLayout.setText("UnivActivityType::" + univActivityType);
+                hiddenUnivActivityTypeLayout.setVisibility(View.INVISIBLE);
+                return hiddenUnivActivityTypeLayout;
+        }
 
 
         private TextView makeStartTimeLayout(String startTime) {
@@ -476,4 +501,51 @@ public class ScheduleBuilder {
                 return ( hoursBetween * 60 ) + minutesBetween;
         }
 
+
+        @Override
+        public void onClick(View view) {
+                Log.d(LOG_TAG, "Clicked on the schedule entry");
+                RelativeLayout relativeLayout = (RelativeLayout) view;
+                String hiddenId = "";
+                String univActivityType = "";
+
+                for (int i = 0; i < relativeLayout.getChildCount(); i++) {
+                        View child = relativeLayout.getChildAt(i);
+                        try {
+                                TextView childTextView = (TextView) child;
+                                String text = childTextView.getText().toString();
+                                int textLength = text.length();
+                                if (textLength >= 18) {
+                                        String textFirstPart = text.substring(0, 17);
+                                        String textSecondPart = text.substring(17, textLength);
+                                        if (textFirstPart.equals("ScheduleEntryId::")) {
+                                                hiddenId = textSecondPart;
+                                        }
+                                }
+
+                                if (textLength >= 19) {
+                                        String textFirstPart = text.substring(0, 18);
+                                        String textSecondPart = text.substring(18, textLength);
+                                        if (textFirstPart.equals("UnivActivityType::")) {
+                                                univActivityType = textSecondPart;
+                                        }
+                                }
+                        }
+                        catch (java.lang.ClassCastException e) {
+                                Log.d(LOG_TAG, "Class Cast Exception: ");
+                                e.printStackTrace();
+                        }
+                }
+
+                goToEditScheduleActivity(hiddenId, univActivityType);
+        }
+
+
+        private void goToEditScheduleActivity(String scheduleEntryId, String univActivityType) {
+                Log.d(LOG_TAG, "Opening schedule entry for edit -> id: " + scheduleEntryId);
+                Intent intent = new Intent(mContext, EditScheduleEntryActivity.class);
+                intent.putExtra("selected_schedule_entry_id", scheduleEntryId);
+                intent.putExtra("univ_activity_type", univActivityType);
+                mContext.startActivity(intent);
+        }
 }

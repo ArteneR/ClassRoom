@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
         android:layout_centerInParent="true"
-        android:text="@string/schedules_title_schedules"
+        android:text="@string/signup_title_signup"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/colorTextMain"
@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:onClick="clicked"
-        app:srcCompat="@drawable/selector_logout_icon"/>
+        app:srcCompat="@drawable/selector_arrow_back_icon"/>
 
     <ImageView
         android:id="@+id/ivRightActionbarButton"
@@ -34,6 +34,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp"
         android:onClick="clicked"
-        app:srcCompat="@drawable/selector_plus_icon"/>
+        app:srcCompat="@drawable/selector_plus_icon"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

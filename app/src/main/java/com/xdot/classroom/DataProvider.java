@@ -12,6 +12,7 @@ public class DataProvider extends Application {
         private List<Schedule> schedules;
         private static String LOG_TAG = "DataProvider";
         private int currentScheduleIndex = 0;
+        private String currentDayOfWeek = DayOfWeek.values()[0].toString();
 
 
         public DataProvider() {}
@@ -65,6 +66,16 @@ public class DataProvider extends Application {
         }
 
 
+        public void setCurrentDayOfWeek(String currentDayOfWeek) {
+                this.currentDayOfWeek = currentDayOfWeek;
+        }
+
+
+        public String getCurrentDayOfWeek() {
+                return this.currentDayOfWeek;
+        }
+
+
         public void addSchedule(Schedule newSchedule) {
                 this.schedules.add(newSchedule);
         }
@@ -96,6 +107,11 @@ public class DataProvider extends Application {
 
         public String getCurrentScheduleName() {
                 return schedules.get(currentScheduleIndex).Name;
+        }
+
+
+        public String getCurrentScheduleId() {
+                return schedules.get(currentScheduleIndex).getId();
         }
 
 }

@@ -42,6 +42,7 @@ public class CurrentScheduleFragmentWednesday extends Fragment {
         @Override
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
                 super.onActivityCreated(savedInstanceState);
+                Log.d(LOG_TAG, "SWITCHED TO DAY: WEDNESDAY");
 
                 // create and show the schedule
                 ScheduleBuilder scheduleBuilder = new ScheduleBuilder("schedule_container_wednesday", mContext);
@@ -49,12 +50,14 @@ public class CurrentScheduleFragmentWednesday extends Fragment {
 
                 for (int i = 0; i < univActivities.size(); i++) {
                         Log.d(LOG_TAG, "UnivActivity: " + univActivities.get(i));
-                        scheduleBuilder.addScheduleEntry(univActivities.get(i).StartTime,
-                                                    univActivities.get(i).EndTime,
-                                                    univActivities.get(i).Subject,
-                                                    univActivities.get(i).Room,
-                                                    univActivities.get(i).Building,
-                                                    univActivities.get(i).getBackgroundColor());
+                        scheduleBuilder.addScheduleEntry(univActivities.get(i).getId(),
+                                                         univActivities.get(i).getClass().getSimpleName(),
+                                                         univActivities.get(i).StartTime,
+                                                         univActivities.get(i).EndTime,
+                                                         univActivities.get(i).Subject,
+                                                         univActivities.get(i).Room,
+                                                         univActivities.get(i).Building,
+                                                         univActivities.get(i).getBackgroundColor());
                 }
         }
 

@@ -41,6 +41,12 @@ public class UniversityActivity {
 
 
         @Exclude
+        public String getId() {
+                return this.id;
+        }
+
+
+        @Exclude
         public String getBackgroundColor() {
                 return backgroundColor;
         }

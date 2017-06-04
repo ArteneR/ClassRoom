@@ -8,6 +8,25 @@
     <string name="login_text_no_account_sign_up">Don\'t have account? Sign up!</string>
     <string name="login_text_skip_login">Skip login</string>
 
+    <string name="signup_title_signup">Signup</string>
+    <string name="signup_hint_firstname">Firstname</string>
+    <string name="signup_hint_lastname">Lastname</string>
+    <string name="signup_hint_email">Email</string>
+    <string name="signup_hint_password">Password</string>
+    <string name="signup_hint_re_password">Re-Password</string>
+    <string name="signup_button_create_account">Create Account</string>
+    <string name="signup_text_enter_activation_code"><u>Enter activation code</u></string>
+
+    <string name="activate_account_title_activate_account">Activate Account</string>
+    <string name="activate_account_text_enter_activation_code">Enter activation code:</string>
+    <string name="activate_account_hint_example_code">eg. 4FG58KJ8</string>
+    <string name="activate_account_text_email_address">Email address:</string>
+    <string name="activate_account_hint_email_address">Registered email address...</string>
+    <string name="activate_account_button_activate_account">Activate Account</string>
+    <string name="activate_account_text_help_message">You should have received an email with the activation code.  Enter the code in the above box in order to activate your account.</string>
+
+    <string name="activate_account_text_resend_activation_code"><u>Resend activation code</u></string>
+
     <string name="schedules_title_schedules">Schedules</string>
     <string name="schedules_text_no_schedules_created_yet">No schedules have been created yet!</string>
     <string name="schedules_text_your_schedules">Your schedules:</string>
@@ -25,6 +44,10 @@
     <string name="edit_schedule_title_edit_schedule">Edit Schedule</string>
     <string name="edit_schedule_text_schedule_name">Schedule name</string>
     <string name="edit_schedule_hint_enter_schedule_name">Enter schedule name...</string>
+    <string name="edit_schedule_checkbox_set_schedule_as_default">Set schedule as default (for notifications)</string>
+    <string name="edit_schedule_text_notification_minutes_before">Notification minutes before</string>
+    <string name="edit_schedule_hint_notification_minutes_before">eg. 15</string>
+    <string name="edit_schedule_text_notification_minutes_before_help">*How many minutes before the schedule activity\n starts should the notification be received.</string>
     <string name="edit_schedule_button_save_changes">Save Changes</string>
     <string name="edit_schedule_button_delete_schedule">Delete Schedule</string>
 
@@ -45,6 +68,6 @@
         <item>Lab</item>
         <item>Seminary</item>
         <item>Exam</item>
-        <item>Extracurricular Activity</item>
+        <item>ExtracurricularActivity</item>
     </string-array>
 </resources>

@@ -32,11 +32,15 @@
         app:layout_constraintTop_toTopOf="@+id/ivBackground"
         android:layout_marginTop="50dp"
         app:layout_constraintHorizontal_bias="0.516"
-        android:id="@+id/tableLayout2">
+        android:id="@+id/tableLayout2"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
 
             <TextView
                 android:id="@+id/tvScheduleName"
@@ -65,6 +69,70 @@
                 android:textCursorDrawable="@null"/>
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp"
+            android:layout_marginTop="20dp">
+
+            <CheckBox
+                android:id="@+id/cbSetScheduleAsDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/color4"
+                android:text="@string/edit_schedule_checkbox_set_schedule_as_default"
+                android:textCursorDrawable="@null"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tvNotificationMinutesBefore"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@string/edit_schedule_text_notification_minutes_before"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/etNotificationMinutesBefore"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/color4"
+                android:ems="10"
+                android:hint="eg. 15"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textCursorDrawable="@null"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp">
+
+            <TextView
+                android:id="@+id/tvNotificationMinutesBeforeHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:text="@string/edit_schedule_text_notification_minutes_before_help"/>
+        </TableRow>
+
     </TableLayout>
 
     <Button
@@ -78,7 +146,9 @@
         android:onClick="clicked"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
         android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
 
     <Button
         android:id="@+id/btnDeleteSchedule"
@@ -92,6 +162,8 @@
         android:text="@string/edit_schedule_button_delete_schedule"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSaveChanges"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnSaveChanges"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
 
 </android.support.constraint.ConstraintLayout>

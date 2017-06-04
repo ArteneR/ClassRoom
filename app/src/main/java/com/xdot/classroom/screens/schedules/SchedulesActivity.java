@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ import com.xdot.classroom.list_views.schedules_activity.SchedulesRecyclerViewAda
 import com.xdot.classroom.R;
 import com.xdot.classroom.schedule.Schedule;
 import com.xdot.classroom.screens.create_schedule.CreateScheduleActivity;
+import com.xdot.classroom.screens.login.LoginActivity;
 import com.xdot.classroom.university_activities.UniversityActivity;
 import java.util.ArrayList;
 
@@ -36,6 +39,8 @@ public class SchedulesActivity extends AppCompatActivity {
         private DataProvider dataProvider;
         private FirebaseDatabase firebaseDB;
         private DatabaseReference firebaseDBRef;
+        private FirebaseAuth firebaseAuth;
+        private FirebaseUser currentUser;
 
 
         @Override
@@ -44,36 +49,101 @@ public class SchedulesActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_schedules);
 
                 connectToFirebase();
-                addListenerForUpdateDeviceRegistrationId();
-
-                initializeDataProviderModule();
-
-                activateCustomActionBar();
-                getFirebaseSchedules();
         }
 
 
+        @Override
+        protected void onStart() {
+                super.onStart();
+
+                if (!userIsLoggedIn()) {
+                        goToLoginActivity();
+                }
+                else {
+                        displaySchedulesIfUserAccountIsActivated();
+                }
+        }
+
+
+        private boolean userIsLoggedIn() {
+                currentUser = firebaseAuth.getCurrentUser();
+                if (currentUser != null) {
+                    return true;
+                }
+                return false;
+        }
+
+
+        private void displaySchedulesIfUserAccountIsActivated() {
+                String userId = currentUser.getUid();
+
+                firebaseDBRef.child("Users").child(userId).child("AccountActivated").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                                Object snapshotValue = snapshot.getValue();
+
+                                if (snapshotValue == null) {
+                                        firebaseAuth.signOut();
+                                        CommonFunctionalities.displayLongToast("Something went wrong! Please login again!", getApplicationContext());
+                                        goToLoginActivity();
+                                        return ;
+                                }
+
+                                boolean accountActivated = Boolean.parseBoolean(snapshotValue.toString());
+
+                                if (accountActivated) {
+                                        addListenerForUpdateDeviceRegistrationId();
+
+                                        initializeDataProviderModule();
+
+                                        activateCustomActionBar();
+                                        getFirebaseSchedules();
+                                }
+                                else {
+                                        CommonFunctionalities.displayLongToast("Your user account is not activated yet!", getApplicationContext());
+                                        goToLoginActivity();
+                                }
+                        }
+
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
+        }
+
+
+        private void goToLoginActivity() {
+                Intent intent = new Intent(this, LoginActivity.class);
+                this.startActivity(intent);
+        }
+
 
         private void connectToFirebase() {
-                Log.d(LOG_TAG, "connectToFirebase");
                 firebaseDB = FirebaseDatabase.getInstance();
                 firebaseDBRef = firebaseDB.getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
         }
 
 
 
         private void addListenerForUpdateDeviceRegistrationId() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
 
                 firebaseDBRef.child("Users").child(userId).child("DeviceRegistrationID").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        String firebaseDeviceRegistrationId = snapshot.getValue().toString();
-                        checkForUpdateDeviceRegistrationId(firebaseDeviceRegistrationId);
-                    }
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                                Object snapshotValue = snapshot.getValue();
+                                if (snapshotValue == null) {
+                                    checkForUpdateDeviceRegistrationId("");
+                                }
+                                else {
+                                    String firebaseDeviceRegistrationId = snapshotValue.toString();
+                                    checkForUpdateDeviceRegistrationId(firebaseDeviceRegistrationId);
+                                }
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {}
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
                 });
         }
 
@@ -91,7 +161,8 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
         private void updateDeviceRegistrationId(String newDeviceRegistrationId) {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
+
                 firebaseDBRef.child("Users").child(userId).child("DeviceRegistrationID").setValue(newDeviceRegistrationId);
         }
 
@@ -147,7 +218,7 @@ public class SchedulesActivity extends AppCompatActivity {
 
 
         private void getFirebaseSchedules() {
-                String userId = "4o5JWilDQyTcrY7JyngUhzR8NGj1";
+                String userId = firebaseAuth.getCurrentUser().getUid();
 
                 firebaseDBRef.child("Users").child(userId).child("Schedules").addValueEventListener(new ValueEventListener() {
                         @Override
@@ -247,7 +318,8 @@ public class SchedulesActivity extends AppCompatActivity {
 
                 switch (view.getId()) {
                     case R.id.ivLeftActionbarButton:
-                        Log.d(LOG_TAG, "Button: Back");
+                        Log.d(LOG_TAG, "Button: Logout");
+                        logout();
                         break;
 
                     case R.id.ivRightActionbarButton:
@@ -255,6 +327,13 @@ public class SchedulesActivity extends AppCompatActivity {
                         openCreateScheduleActivity();
                         break;
                 }
+        }
+
+
+        private void logout() {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, LoginActivity.class);
+                this.startActivity(intent);
         }
 
 

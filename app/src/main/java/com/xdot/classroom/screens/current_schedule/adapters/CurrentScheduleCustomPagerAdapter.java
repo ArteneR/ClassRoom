@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
-
 import com.xdot.classroom.screens.current_schedule.fragments.CurrentScheduleFragmentFriday;
 import com.xdot.classroom.screens.current_schedule.fragments.CurrentScheduleFragmentMonday;
 import com.xdot.classroom.screens.current_schedule.fragments.CurrentScheduleFragmentSaturday;
@@ -14,6 +13,7 @@ import com.xdot.classroom.screens.current_schedule.fragments.CurrentScheduleFrag
 import com.xdot.classroom.screens.current_schedule.fragments.CurrentScheduleFragmentThursday;
 import com.xdot.classroom.screens.current_schedule.fragments.CurrentScheduleFragmentTuesday;
 import com.xdot.classroom.screens.current_schedule.fragments.CurrentScheduleFragmentWednesday;
+
 
 
 public class CurrentScheduleCustomPagerAdapter extends FragmentPagerAdapter {

@@ -139,4 +139,39 @@ public class CommonFunctionalities {
                 }
         }
 
+
+        public static boolean isFieldEmpty(String field) {
+                if (field.length() == 0) {
+                    return true;
+                }
+                return false;
+        }
+
+
+        public static boolean areFieldsEqual(String field1, String field2) {
+                if (field1.equals(field2)) {
+                    return true;
+                }
+                return false;
+        }
+
+
+        public static boolean isFieldValidEmail(CharSequence field) {
+                if (field == null) {
+                    return false;
+                }
+                else {
+                    return android.util.Patterns.EMAIL_ADDRESS.matcher(field).matches();
+                }
+        }
+
+
+        public static String capitalizeFirstLetter(String original) {
+                if (original == null || original.length() == 0) {
+                    return original;
+                }
+                original = original.toLowerCase();
+                return original.substring(0, 1).toUpperCase() + original.substring(1);
+        }
+
 }

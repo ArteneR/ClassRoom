@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.xdot.classroom.DataProvider;
 import com.xdot.classroom.R;
-import com.xdot.classroom.ScheduleBuilder;
+import com.xdot.classroom.schedule.ScheduleBuilder;
 import com.xdot.classroom.schedule.Schedule;
 import com.xdot.classroom.university_activities.UniversityActivity;
 import java.util.List;

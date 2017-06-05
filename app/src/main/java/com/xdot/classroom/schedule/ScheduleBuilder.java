@@ -1,4 +1,4 @@
-package com.xdot.classroom;
+package com.xdot.classroom.schedule;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.xdot.classroom.R;
 import com.xdot.classroom.screens.edit_schedule_entry.EditScheduleEntryActivity;
 import java.util.HashMap;
 import java.util.Map;

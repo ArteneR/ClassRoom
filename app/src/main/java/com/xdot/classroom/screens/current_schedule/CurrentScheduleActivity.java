@@ -13,8 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import com.xdot.classroom.DataProvider;
-import com.xdot.classroom.DayOfWeek;
+import com.xdot.classroom.schedule.DayOfWeek;
 import com.xdot.classroom.R;
+import com.xdot.classroom.screens.create_schedule_entry.CreateScheduleEntryActivity;
 import com.xdot.classroom.screens.current_schedule.adapters.CurrentScheduleCustomPagerAdapter;
 import com.xdot.classroom.screens.edit_schedule.EditScheduleActivity;
 
@@ -143,7 +144,8 @@ public class CurrentScheduleActivity extends AppCompatActivity implements View.O
                         break;
 
                     case R.id.ivRightActionbarButton:
-                        Log.d(LOG_TAG, "Button: Add Course");
+                        Log.d(LOG_TAG, "Button: Add Schedule Entry");
+                        goToCreateScheduleEntryActivity();
                         break;
 
                     case R.id.btnEditSchedule:
@@ -159,6 +161,11 @@ public class CurrentScheduleActivity extends AppCompatActivity implements View.O
                 super.onBackPressed();
         }
 
+
+        private void goToCreateScheduleEntryActivity() {
+                Intent intent = new Intent(this, CreateScheduleEntryActivity.class);
+                this.startActivity(intent);
+        }
 
 
         private void goToEditScheduleActivity() {

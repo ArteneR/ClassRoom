@@ -37,6 +37,8 @@
     <string name="create_schedule_hint_schedule_name">Schedule name...</string>
     <string name="create_schedule_button_create_schedule">Create Schedule</string>
 
+    <string name="create_schedule_entry_title_create_schedule_entry">Create Schedule Entry</string>
+
     <string name="current_schedule_title_current_schedule_name">Current Schedule Name</string>
     <string name="current_schedule_button_edit_schedule">Edit Schedule </string>
     <string name="current_schedule_text_monday">MONDAY</string>

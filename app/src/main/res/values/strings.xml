@@ -43,9 +43,9 @@
     <string name="create_schedule_entry_text_subject_name">Subject name:</string>
     <string name="create_schedule_entry_hint_subject_name">eg. Programming</string>
     <string name="create_schedule_entry_text_start_time">Start time:</string>
-    <string name="create_schedule_entry_button_start_time">hh:mm</string>
+    <string name="create_schedule_entry_button_start_time">08:00</string>
     <string name="create_schedule_entry_text_end_time">End time:</string>
-    <string name="create_schedule_entry_button_end_time">hh:mm</string>
+    <string name="create_schedule_entry_button_end_time">09:00</string>
     <string name="create_schedule_entry_text_building_name">Building name:</string>
     <string name="create_schedule_entry_hint_building_name">eg. Corpul A</string>
     <string name="create_schedule_entry_text_room_name">Room name:</string>
@@ -71,9 +71,9 @@
     <string name="edit_schedule_entry_text_subject_name">Subject name:</string>
     <string name="edit_schedule_entry_hint_subject_name">eg. Programming</string>
     <string name="edit_schedule_entry_text_start_time">Start time:</string>
-    <string name="edit_schedule_entry_button_start_time">hh:mm</string>
+    <string name="edit_schedule_entry_button_start_time">08:00</string>
     <string name="edit_schedule_entry_text_end_time">End time:</string>
-    <string name="edit_schedule_entry_button_end_time">hh:mm</string>
+    <string name="edit_schedule_entry_button_end_time">09:00</string>
     <string name="edit_schedule_entry_text_building_name">Building name:</string>
     <string name="edit_schedule_entry_hint_building_name">eg. Corpul A</string>
     <string name="edit_schedule_entry_text_room_name">Room name:</string>

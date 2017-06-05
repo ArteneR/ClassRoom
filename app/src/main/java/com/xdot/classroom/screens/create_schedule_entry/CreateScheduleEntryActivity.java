@@ -23,6 +23,7 @@ public class CreateScheduleEntryActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_create_schedule_entry);
 
                 activateCustomActionBar();
+                activateDayOfTheWeekSpinner();
                 activateEntryTypeSpinner();
         }
 
@@ -44,6 +45,16 @@ public class CreateScheduleEntryActivity extends AppCompatActivity {
 
                 mActionBar.setCustomView(mCustomView);
                 mActionBar.setDisplayShowCustomEnabled(true);
+        }
+
+
+        private void activateDayOfTheWeekSpinner() {
+                Spinner spinner = (Spinner) findViewById(R.id.spinnerDayOfTheWeek);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                                                                                     R.array.days_of_week_array,
+                                                                                     android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
         }
 
 

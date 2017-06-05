@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import com.xdot.classroom.R;
 
 
@@ -21,6 +23,7 @@ public class CreateScheduleEntryActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_create_schedule_entry);
 
                 activateCustomActionBar();
+                activateEntryTypeSpinner();
         }
 
 
@@ -41,6 +44,16 @@ public class CreateScheduleEntryActivity extends AppCompatActivity {
 
                 mActionBar.setCustomView(mCustomView);
                 mActionBar.setDisplayShowCustomEnabled(true);
+        }
+
+
+        private void activateEntryTypeSpinner() {
+                Spinner spinner = (Spinner) findViewById(R.id.spinnerEntryType);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                                                                                     R.array.schedule_entry_types_array,
+                                                                                     android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
         }
 
 

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import com.xdot.classroom.R;
 
@@ -15,6 +17,14 @@ import com.xdot.classroom.R;
 
 public class CreateScheduleEntryActivity extends AppCompatActivity {
         private static String LOG_TAG = "CodeTemplateActivity";
+        private String selectedDayOfTheWeek;
+        private Spinner spinnerDayOfTheWeek;
+        private Spinner spinnerEntryType;
+        private EditText etSubjectName;
+        private Button btnStartTime;
+        private Button btnEndTime;
+        private EditText etBuildingName;
+        private EditText etRoomName;
 
 
         @Override
@@ -22,9 +32,42 @@ public class CreateScheduleEntryActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_create_schedule_entry);
 
+                selectedDayOfTheWeek = getIntent().getStringExtra("selected_day_of_week");
+
+                initializeUIElements();
+
                 activateCustomActionBar();
                 activateDayOfTheWeekSpinner();
                 activateEntryTypeSpinner();
+
+                fillElementsWithData();
+        }
+
+
+        private void initializeUIElements() {
+                spinnerDayOfTheWeek = (Spinner) findViewById(R.id.spinnerDayOfTheWeek);
+                spinnerEntryType = (Spinner) findViewById(R.id.spinnerEntryType);
+                etSubjectName = (EditText) findViewById(R.id.etSubjectName);
+                btnStartTime = (Button) findViewById(R.id.btnStartTime);
+                btnEndTime = (Button) findViewById(R.id.btnEndTime);
+                etBuildingName = (EditText) findViewById(R.id.etBuildingName);
+                etRoomName = (EditText) findViewById(R.id.etRoomName);
+        }
+
+
+        private void fillElementsWithData() {
+                int spinnerDayOfTheWeekIndex = getDayOfTheWeekSpinnerValueIndex(selectedDayOfTheWeek);
+                spinnerDayOfTheWeek.setSelection(spinnerDayOfTheWeekIndex);
+        }
+
+
+        private int getDayOfTheWeekSpinnerValueIndex(String value) {
+                for (int i = 0; i < spinnerDayOfTheWeek.getCount(); i++) {
+                    if (spinnerDayOfTheWeek.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
+                        return i;
+                    }
+                }
+                return -1;
         }
 
 

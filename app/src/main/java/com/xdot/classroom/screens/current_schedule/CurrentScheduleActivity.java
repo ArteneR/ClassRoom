@@ -30,6 +30,7 @@ public class CurrentScheduleActivity extends AppCompatActivity implements View.O
         private Context mContext;
         private final int DEFAULT_SCHEDULE_INDEX = 0;
         private DataProvider dataProvider;
+        private TextView tvDayOfWeek;
 
 
         @Override
@@ -106,8 +107,8 @@ public class CurrentScheduleActivity extends AppCompatActivity implements View.O
                         public void onPageSelected(int position) {
                                 String dayOfWeek = DayOfWeek.values()[position].toString();
                                 dataProvider.setCurrentDayOfWeek(dayOfWeek);
-                                TextView v = (TextView) ((Activity)mContext).findViewById(R.id.tvDayOfWeek);
-                                v.setText(dayOfWeek);
+                                tvDayOfWeek = (TextView) ((Activity)mContext).findViewById(R.id.tvDayOfWeek);
+                                tvDayOfWeek.setText(dayOfWeek);
                         }
 
                         @Override
@@ -164,6 +165,8 @@ public class CurrentScheduleActivity extends AppCompatActivity implements View.O
 
         private void goToCreateScheduleEntryActivity() {
                 Intent intent = new Intent(this, CreateScheduleEntryActivity.class);
+                String selectedDayOfWeek = (tvDayOfWeek == null ? "Monday" : tvDayOfWeek.getText().toString());
+                intent.putExtra("selected_day_of_week", selectedDayOfWeek);
                 this.startActivity(intent);
         }
 

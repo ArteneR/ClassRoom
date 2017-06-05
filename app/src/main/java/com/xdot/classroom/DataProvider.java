@@ -1,7 +1,7 @@
 package com.xdot.classroom;
 
 import android.app.Application;
-import android.util.Log;
+import com.xdot.classroom.schedule.DayOfWeek;
 import com.xdot.classroom.schedule.Schedule;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.xdot.classroom;
+package com.xdot.classroom.schedule;
 
 
 public enum DayOfWeek {

@@ -1,4 +1,4 @@
-package com.xdot.classroom.list_views.schedules_activity;
+package com.xdot.classroom.screens.schedules.list_views;
 
 
 public class SchedulesListData {

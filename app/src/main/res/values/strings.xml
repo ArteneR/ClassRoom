@@ -37,6 +37,21 @@
     <string name="create_schedule_hint_schedule_name">Schedule name...</string>
     <string name="create_schedule_button_create_schedule">Create Schedule</string>
 
+    <string name="create_schedule_entry_title_create_schedule_entry">Create Schedule Entry</string>
+    <string name="create_schedule_entry_text_day_of_the_week">Day of the week:</string>
+    <string name="create_schedule_entry_text_entry_type">Entry type:</string>
+    <string name="create_schedule_entry_text_subject_name">Subject name:</string>
+    <string name="create_schedule_entry_hint_subject_name">eg. Programming</string>
+    <string name="create_schedule_entry_text_start_time">Start time:</string>
+    <string name="create_schedule_entry_button_start_time">08:00</string>
+    <string name="create_schedule_entry_text_end_time">End time:</string>
+    <string name="create_schedule_entry_button_end_time">09:00</string>
+    <string name="create_schedule_entry_text_building_name">Building name:</string>
+    <string name="create_schedule_entry_hint_building_name">eg. Corpul A</string>
+    <string name="create_schedule_entry_text_room_name">Room name:</string>
+    <string name="create_schedule_entry_hint_room_name">eg. A209</string>
+    <string name="create_schedule_entry_button_create_schedule_entry">Create Schedule Entry</string>
+
     <string name="current_schedule_title_current_schedule_name">Current Schedule Name</string>
     <string name="current_schedule_button_edit_schedule">Edit Schedule </string>
     <string name="current_schedule_text_monday">MONDAY</string>
@@ -56,7 +71,9 @@
     <string name="edit_schedule_entry_text_subject_name">Subject name:</string>
     <string name="edit_schedule_entry_hint_subject_name">eg. Programming</string>
     <string name="edit_schedule_entry_text_start_time">Start time:</string>
+    <string name="edit_schedule_entry_button_start_time">08:00</string>
     <string name="edit_schedule_entry_text_end_time">End time:</string>
+    <string name="edit_schedule_entry_button_end_time">09:00</string>
     <string name="edit_schedule_entry_text_building_name">Building name:</string>
     <string name="edit_schedule_entry_hint_building_name">eg. Corpul A</string>
     <string name="edit_schedule_entry_text_room_name">Room name:</string>
@@ -69,5 +86,15 @@
         <item>Seminary</item>
         <item>Exam</item>
         <item>ExtracurricularActivity</item>
+    </string-array>
+
+    <string-array name="days_of_week_array">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </string-array>
 </resources>

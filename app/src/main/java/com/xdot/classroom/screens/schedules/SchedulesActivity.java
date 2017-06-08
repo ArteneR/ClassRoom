@@ -42,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.DataProvider;
+import com.xdot.classroom.screens.map_view.MapViewActivity;
 import com.xdot.classroom.screens.schedules.list_views.SchedulesListData;
 import com.xdot.classroom.screens.schedules.list_views.SchedulesRecyclerViewAdapter;
 import com.xdot.classroom.R;
@@ -540,15 +541,20 @@ public class SchedulesActivity extends AppCompatActivity implements OnMapReadyCa
                 Log.d(LOG_TAG, "Button clicked!");
 
                 switch (view.getId()) {
-                    case R.id.ivLeftActionbarButton:
-                        Log.d(LOG_TAG, "Button: Logout");
-                        logout();
-                        break;
+                        case R.id.ivLeftActionbarButton:
+                                Log.d(LOG_TAG, "Button: Logout");
+                                logout();
+                                break;
 
-                    case R.id.ivRightActionbarButton:
-                        Log.d(LOG_TAG, "Button: Add Schedule");
-                        openCreateScheduleActivity();
-                        break;
+                        case R.id.ivRightActionbarButton:
+                                Log.d(LOG_TAG, "Button: Add Schedule");
+                                openCreateScheduleActivity();
+                                break;
+
+                        case R.id.tvMapView:
+                                Log.d(LOG_TAG, "Button: Map View");
+                                openMapViewActivity();
+                                break;
                 }
         }
 
@@ -562,6 +568,12 @@ public class SchedulesActivity extends AppCompatActivity implements OnMapReadyCa
 
         private void openCreateScheduleActivity() {
                 Intent intent = new Intent(this, CreateScheduleActivity.class);
+                this.startActivity(intent);
+        }
+
+
+        private void openMapViewActivity() {
+                Intent intent = new Intent(this, MapViewActivity.class);
                 this.startActivity(intent);
         }
 

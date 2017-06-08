@@ -82,6 +82,12 @@
     <string name="edit_schedule_entry_button_save_changes">Save Changes</string>
 
     <string name="map_view_title_map_view">Map View</string>
+    <string name="map_view_text_find_your_classroom">Find your classroom:</string>
+    <string name="map_view_text_building">Building:</string>
+    <string name="map_view_hint_building">eg. Corpul A</string>
+    <string name="map_view_text_room">Room:</string>
+    <string name="map_view_hint_room">eg. A209</string>
+    <string name="map_view_button_find">Find</string>
 
     <string-array name="schedule_entry_types_array">
         <item>Course</item>

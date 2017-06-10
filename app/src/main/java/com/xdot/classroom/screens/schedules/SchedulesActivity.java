@@ -301,6 +301,7 @@ public class SchedulesActivity extends AppCompatActivity implements OnMapReadyCa
                 markerOptions.title("Your Position");
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                 mCurrLocationMarker = this.googleMap.addMarker(markerOptions);
+                mCurrLocationMarker.showInfoWindow();
 
                 //move map camera
                 int zoomLevel = 16;

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -30,7 +31,17 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.xdot.classroom.location.Building;
+import com.xdot.classroom.location.BuildingLocationCoords;
+import com.xdot.classroom.CommonFunctionalities;
 import com.xdot.classroom.R;
+import com.xdot.classroom.location.ClassroomLocation;
+import com.xdot.classroom.location.Section;
 
 
 
@@ -39,16 +50,23 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
                                                                   GoogleApiClient.OnConnectionFailedListener,
                                                                   LocationListener {
         private static String LOG_TAG = "MapViewActivity";
+        private FirebaseDatabase firebaseDB;
+        private DatabaseReference firebaseDBRef;
         private GoogleMap googleMap;
         private SupportMapFragment mapFrag;
         private LocationRequest mLocationRequest;
         private GoogleApiClient mGoogleApiClient;
         private Location mLastLocation;
         private Marker mCurrLocationMarker;
+        private Marker mSearchedBuildingMarker;
         public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
         private static final String PREFS_LOCATION = "PREFS_LOCATION";
         private String lastLocationLongitude;
         private String lastLocationLatitude;
+        private EditText etBuilding;
+        private EditText etRoom;
+        private String searchedBuilding;
+        private String searchedRoom;
 
 
 
@@ -56,6 +74,9 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_map_view);
+
+                connectToFirebase();
+                initializeUIElements();
 
                 restoreUserPreferences();
                 activateCustomActionBar();
@@ -67,6 +88,18 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
         protected void onStop() {
                 super.onStop();
                 saveUserPreferences();
+        }
+
+
+        private void connectToFirebase() {
+                firebaseDB = FirebaseDatabase.getInstance();
+                firebaseDBRef = firebaseDB.getReference();
+        }
+
+
+        private void initializeUIElements() {
+                etBuilding = (EditText) findViewById(R.id.etBuilding);
+                etRoom = (EditText) findViewById(R.id.etRoom);
         }
 
 
@@ -282,6 +315,10 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
                                 goToPreviousActivity();
                                 break;
 
+                        case R.id.btnFind:
+                                Log.d(LOG_TAG, "Button: Find");
+                                findSearchedBuildingLocation();
+                                break;
                 }
         }
 
@@ -289,4 +326,81 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
         private void goToPreviousActivity() {
                 super.onBackPressed();
         }
+
+
+        private void findSearchedBuildingLocation() {
+                getUserSelectedValues();
+                final String searchedLocation = "Timisoara";
+
+                firebaseDBRef.child("Locations").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot locationsSnapshot) {
+                                boolean foundLocation = false;
+
+                                for (DataSnapshot locationSnapshot: locationsSnapshot.getChildren()) {
+                                        ClassroomLocation location = locationSnapshot.getValue(ClassroomLocation.class);
+                                        String currentLocationName = location.getName().toString();
+
+                                        if (currentLocationName.equals(searchedLocation)) {
+                                                foundLocation = true;
+                                                findSearchedBuildingAtLocation(location);
+                                        }
+                                }
+
+                                if (!foundLocation) {
+                                        CommonFunctionalities.displayLongToast("Couldn't find the specified building/room!", getApplicationContext());
+                                }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                });
+        }
+
+
+        private void findSearchedBuildingAtLocation(ClassroomLocation location) {
+                Building building = location.getBuilding(searchedBuilding);
+                Section section = location.getSection(searchedBuilding);
+                BuildingLocationCoords buildingCoords = null;
+
+                if (building != null) {
+                        buildingCoords = building.getBuildingLocation();
+                }
+                else if (section != null) {
+                        buildingCoords = section.getSectionLocation();
+                }
+
+                if (buildingCoords == null) {
+                        CommonFunctionalities.displayLongToast("The specified building/room couldn't be found!", getApplicationContext());
+                        return ;
+                }
+
+                double buildingLatitude = buildingCoords.getLatitude();
+                double buildingLongitude= buildingCoords.getLongitude();
+
+                addDestinationMarker(buildingLatitude, buildingLongitude);
+        }
+
+
+        private void addDestinationMarker(double destLatitude, double destLongitude) {
+                if (mSearchedBuildingMarker != null) {
+                        mSearchedBuildingMarker.remove();
+                }
+                String destMarkerTitle = searchedBuilding + (searchedRoom.isEmpty() ? "" : " - " + searchedRoom);
+                LatLng latLngSearchedBuilding = new LatLng(destLatitude, destLongitude);
+                MarkerOptions markerOptionsSearchedBuilding = new MarkerOptions();
+
+                markerOptionsSearchedBuilding.position(latLngSearchedBuilding);
+                markerOptionsSearchedBuilding.title(destMarkerTitle);
+                markerOptionsSearchedBuilding.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+                mSearchedBuildingMarker = this.googleMap.addMarker(markerOptionsSearchedBuilding);
+                mSearchedBuildingMarker.showInfoWindow();
+        }
+
+
+        private void getUserSelectedValues() {
+                searchedBuilding = etBuilding.getText().toString();
+                searchedRoom = etRoom.getText().toString();
+        }
+
 }

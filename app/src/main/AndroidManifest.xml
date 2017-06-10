@@ -6,8 +6,14 @@
         android:name="com.xdot.classroom.permission.C2D_MESSAGE"
         android:protectionLevel="signature"/>
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.xdot.classroom.permission.C2D_MESSAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".DataProvider"
@@ -44,6 +50,12 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAppMain"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDlPnZaWpmD0yCwH9B-aLe6TiX_egEHJPs"/>
 
         <activity android:name=".screens.login.LoginActivity">
 
@@ -104,6 +116,8 @@
         <activity android:name=".screens.activate_account.ActivateAccountActivity">
         </activity>
         <activity android:name=".screens.create_schedule_entry.CreateScheduleEntryActivity">
+        </activity>
+        <activity android:name=".screens.map_view.MapViewActivity">
         </activity>
     </application>
 

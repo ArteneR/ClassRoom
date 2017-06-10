@@ -31,6 +31,7 @@
     <string name="schedules_text_no_schedules_created_yet">No schedules have been created yet!</string>
     <string name="schedules_text_your_schedules">Your schedules:</string>
     <string name="schedules_text_card_view_row_schedule_name">Schedule Name</string>
+    <string name="schedules_button_map_view">Map View</string>
 
     <string name="create_schedule_title_create_schedule">Create schedule</string>
     <string name="create_schedule_text_new_schedule">New Schedule:</string>
@@ -79,6 +80,14 @@
     <string name="edit_schedule_entry_text_room_name">Room name:</string>
     <string name="edit_schedule_entry_hint_room_name">eg. A209</string>
     <string name="edit_schedule_entry_button_save_changes">Save Changes</string>
+
+    <string name="map_view_title_map_view">Map View</string>
+    <string name="map_view_text_find_your_classroom">Find your classroom:</string>
+    <string name="map_view_text_building">Building:</string>
+    <string name="map_view_hint_building">eg. Corpul A</string>
+    <string name="map_view_text_room">Room:</string>
+    <string name="map_view_hint_room">eg. A209</string>
+    <string name="map_view_button_find">Find</string>
 
     <string-array name="schedule_entry_types_array">
         <item>Course</item>

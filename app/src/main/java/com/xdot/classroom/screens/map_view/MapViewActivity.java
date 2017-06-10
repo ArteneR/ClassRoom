@@ -275,6 +275,9 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
                 //move map camera
                 int zoomLevel = 16;
                 this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
+
+                removeCurrentPolyline();
+                drawPathBetweenMarkers();
         }
 
 
@@ -434,7 +437,6 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
 
         private void drawPathBetweenMarkers() {
                 if (mCurrLocationMarker == null || mSearchedBuildingMarker == null) {
-                        CommonFunctionalities.displayLongToast("Couldn't draw path to the searched building!", getApplicationContext());
                         return ;
                 }
 
